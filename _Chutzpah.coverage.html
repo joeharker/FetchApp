@@ -1,0 +1,247 @@
+
+<html>
+<head>
+    <title>Chutzpah Code Coverage Results</title>
+    <script type='text/javascript'>
+        
+function chutzpah_toggleSource(id) {
+        var element = document.getElementById(id);
+        if(element.style.display === 'block') {
+            element.style.display = 'none';
+        } else {
+            element.style.display = 'block';
+        }
+    }
+
+    </script>
+    <style>
+        
+#chutzpah-main
+{
+  background:#EEE;
+  clear:both;
+  color:#333;
+  font-family:'Helvetica Neue Light', HelveticaNeue-Light, 'Helvetica Neue', Calibri, Helvetica, Arial, sans-serif;
+  font-size:17px;
+  margin:2px;
+}
+
+#chutzpah-main a
+{
+  color:#333;
+  text-decoration:none;
+}
+
+#chutzpah-main a:hover
+{
+  text-decoration:underline;
+}
+
+.chutzpah
+{
+  border-bottom:1px solid #FFF;
+  clear:both;
+  margin:0;
+  padding:5px;
+}
+
+.chutzpah-error
+{
+  color:red;
+}
+
+.chutzpah-success
+{
+  color:#5E7D00;
+}
+
+.chutzpah-file
+{
+  width:auto;
+}
+
+.chutzpah-cl
+{
+  float:left;
+}
+
+.chutzpah div.rs
+{
+  float:right;
+  margin-left:50px;
+  width:150px;
+}
+
+.chutzpah-nb
+{
+  padding-right:10px;
+}
+
+#chutzpah-main a.chutzpah-logo
+{
+  color:#3245FF;
+  cursor:pointer;
+  font-weight:700;
+  text-decoration:none;
+}
+
+.chutzpah-source
+{
+  background-color:#FFF;
+  border:1px solid #CBCBCB;
+  color:#363636;
+  margin:25px 20px;
+  overflow-x:scroll;
+  width:80%;
+}
+
+.chutzpah-source div
+{
+  white-space:nowrap;
+}
+
+.chutzpah-source span
+{
+  background-color:#EAEAEA;
+  color:#949494;
+  display:inline-block;
+  padding:0 10px;
+  text-align:center;
+}
+
+.chutzpah-source .miss
+{
+  background-color:#e6c3c7;
+}
+
+    </style>
+</head>
+<body>
+<div id='chutzpah-main'>
+	<div class='chutzpah chutzpah-title'>
+		<div class='chutzpah-cl chutzpah-file'>
+			<a href='http://chutzpah.codeplex.com/' target='_blank' class='chutzpah-logo'>Chutzpah</a> code coverage via <a href='http://blanketjs.org' target='_blank' class='chutzpah-logo'>blanket.js</a> results
+		</div>
+		<div class='chutzpah-cl rs'>
+			Coverage (%)
+		</div>
+		<div class='chutzpah-cl rs'>
+			Covered/Total Smts.
+		</div>
+		<div style='clear:both;'>
+		</div>
+	</div>
+
+
+<div class='chutzpah chutzpah-success'>
+	<div class='chutzpah-cl chutzpah-file'>
+		<span class='chutzpah-nb'>1.</span><a href='javascript:chutzpah_toggleSource("file-1")'>c:\users\jharker\documents\fetchapp\fetch1\app.js</a>
+	</div>
+	<div class='chutzpah-cl rs'>
+		100 %
+	</div>
+	<div class='chutzpah-cl rs'>
+		1/1
+	</div>
+	<div id='file-1' class='chutzpah-source' style='display:none;'>
+		 <div class=''><span class=''>1</span>/*exported&nbsp;app&nbsp;*/</div> <div class='hit'><span class=''>2</span>var&nbsp;app&nbsp;=&nbsp;angular.module(&#39;Fetch1App&#39;,&nbsp;[&#39;ngAnimate&#39;]);</div>
+	</div>
+	<div style='clear:both;'>
+	</div>
+</div>
+
+
+<div class='chutzpah chutzpah-success'>
+	<div class='chutzpah-cl chutzpah-file'>
+		<span class='chutzpah-nb'>2.</span><a href='javascript:chutzpah_toggleSource("file-2")'>c:\users\jharker\documents\fetchapp\fetch1\demo\demoService.js</a>
+	</div>
+	<div class='chutzpah-cl rs'>
+		100 %
+	</div>
+	<div class='chutzpah-cl rs'>
+		11/11
+	</div>
+	<div id='file-2' class='chutzpah-source' style='display:none;'>
+		 <div class=''><span class=''>&nbsp;&nbsp;1</span>/*global&nbsp;app&nbsp;*/</div> <div class='hit'><span class=''>&nbsp;&nbsp;2</span>app.factory(&#39;DemoSrvc&#39;,&nbsp;[</div> <div class=''><span class=''>&nbsp;&nbsp;3</span>&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;()&nbsp;{</div> <div class='hit'><span class=''>&nbsp;&nbsp;4</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;use&nbsp;strict&#39;;</div> <div class='hit'><span class=''>&nbsp;&nbsp;5</span>&nbsp;&nbsp;&nbsp;&nbsp;	var&nbsp;s&nbsp;=&nbsp;{},</div> <div class=''><span class=''>&nbsp;&nbsp;6</span>&nbsp;&nbsp;&nbsp;&nbsp;		hashe&nbsp;=&nbsp;{};</div> <div class=''><span class=''>&nbsp;&nbsp;7</span></div> <div class='hit'><span class=''>&nbsp;&nbsp;8</span>&nbsp;&nbsp;&nbsp;&nbsp;	s.set&nbsp;=&nbsp;function(key,&nbsp;val){</div> <div class='hit'><span class=''>&nbsp;&nbsp;9</span>&nbsp;&nbsp;&nbsp;&nbsp;		hashe[key]&nbsp;=&nbsp;val;</div> <div class=''><span class=''>10</span>&nbsp;&nbsp;&nbsp;&nbsp;	};</div> <div class=''><span class=''>11</span></div> <div class='hit'><span class=''>12</span>&nbsp;&nbsp;&nbsp;&nbsp;	s.get&nbsp;=&nbsp;function&nbsp;(key)&nbsp;{</div> <div class='hit'><span class=''>13</span>&nbsp;&nbsp;&nbsp;&nbsp;		var&nbsp;val&nbsp;=&nbsp;&#39;&#39;;</div> <div class=''><span class=''>14</span></div> <div class='hit'><span class=''>15</span>&nbsp;&nbsp;&nbsp;&nbsp;		if&nbsp;(hashe[key]&nbsp;!==&nbsp;undefined)&nbsp;{</div> <div class='hit'><span class=''>16</span>&nbsp;&nbsp;&nbsp;&nbsp;			val&nbsp;=&nbsp;hashe[key];</div> <div class=''><span class=''>17</span>&nbsp;&nbsp;&nbsp;&nbsp;		}</div> <div class=''><span class=''>18</span></div> <div class='hit'><span class=''>19</span>&nbsp;&nbsp;&nbsp;&nbsp;		return&nbsp;val;</div> <div class=''><span class=''>20</span>&nbsp;&nbsp;&nbsp;&nbsp;	};</div> <div class=''><span class=''>21</span></div> <div class='hit'><span class=''>22</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;s;</div> <div class='{{executed}}'><span class=''>23</span>&nbsp;&nbsp;&nbsp;&nbsp;}]);</div>
+	</div>
+	<div style='clear:both;'>
+	</div>
+</div>
+
+
+<div class='chutzpah chutzpah-success'>
+	<div class='chutzpah-cl chutzpah-file'>
+		<span class='chutzpah-nb'>3.</span><a href='javascript:chutzpah_toggleSource("file-3")'>c:\users\jharker\documents\fetchapp\fetch1\demo\demoController.js</a>
+	</div>
+	<div class='chutzpah-cl rs'>
+		100 %
+	</div>
+	<div class='chutzpah-cl rs'>
+		13/13
+	</div>
+	<div id='file-3' class='chutzpah-source' style='display:none;'>
+		 <div class=''><span class=''>&nbsp;&nbsp;1</span>/*global&nbsp;app&nbsp;*/</div> <div class='hit'><span class=''>&nbsp;&nbsp;2</span>app.controller(&#39;DemoCtrl&#39;,&nbsp;[&#39;DemoSrvc&#39;,</div> <div class=''><span class=''>&nbsp;&nbsp;3</span>&nbsp;&nbsp;function&nbsp;(DemoSrvc)&nbsp;{</div> <div class='hit'><span class=''>&nbsp;&nbsp;4</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;use&nbsp;strict&#39;;</div> <div class='hit'><span class=''>&nbsp;&nbsp;5</span>&nbsp;&nbsp;	var&nbsp;c&nbsp;=&nbsp;this;</div> <div class=''><span class=''>&nbsp;&nbsp;6</span></div> <div class='hit'><span class=''>&nbsp;&nbsp;7</span>&nbsp;&nbsp;	c.pickup&nbsp;=&nbsp;DemoSrvc.get(&#39;pickup&#39;);</div> <div class='hit'><span class=''>&nbsp;&nbsp;8</span>&nbsp;&nbsp;	c.delivery&nbsp;=&nbsp;DemoSrvc.get(&#39;delivery&#39;);</div> <div class='hit'><span class=''>&nbsp;&nbsp;9</span>&nbsp;&nbsp;	c.price&nbsp;=&nbsp;DemoSrvc.get(&#39;price&#39;);</div> <div class=''><span class=''>10</span></div> <div class='hit'><span class=''>11</span>&nbsp;&nbsp;	c.setPickup&nbsp;=&nbsp;function&nbsp;()&nbsp;{</div> <div class='hit'><span class=''>12</span>&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;DemoSrvc.set(&#39;pickup&#39;,&nbsp;c.pickup);</div> <div class=''><span class=''>13</span>&nbsp;&nbsp;	};</div> <div class=''><span class=''>14</span></div> <div class='hit'><span class=''>15</span>&nbsp;&nbsp;	c.setDelivery&nbsp;=&nbsp;function&nbsp;()&nbsp;{</div> <div class='hit'><span class=''>16</span>&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;DemoSrvc.set(&#39;delivery&#39;,&nbsp;c.delivery);</div> <div class=''><span class=''>17</span>&nbsp;&nbsp;	};</div> <div class=''><span class=''>18</span></div> <div class='hit'><span class=''>19</span>&nbsp;&nbsp;	c.setPrice&nbsp;=&nbsp;function&nbsp;()&nbsp;{</div> <div class='hit'><span class=''>20</span>&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;DemoSrvc.set(&#39;price&#39;,&nbsp;c.price);</div> <div class=''><span class=''>21</span>&nbsp;&nbsp;	};</div> <div class=''><span class=''>22</span></div> <div class='hit'><span class=''>23</span>&nbsp;&nbsp;	return&nbsp;c;</div> <div class='{{executed}}'><span class=''>24</span>&nbsp;&nbsp;}]);</div>
+	</div>
+	<div style='clear:both;'>
+	</div>
+</div>
+
+
+<div class='chutzpah chutzpah-success'>
+	<div class='chutzpah-cl chutzpah-file'>
+		<span class='chutzpah-nb'>4.</span><a href='javascript:chutzpah_toggleSource("file-4")'>c:\users\jharker\documents\fetchapp\fetch1\page\pageController.js</a>
+	</div>
+	<div class='chutzpah-cl rs'>
+		93.33 %
+	</div>
+	<div class='chutzpah-cl rs'>
+		14/15
+	</div>
+	<div id='file-4' class='chutzpah-source' style='display:none;'>
+		 <div class=''><span class=''>&nbsp;&nbsp;1</span>/*global&nbsp;app&nbsp;*/</div> <div class='hit'><span class=''>&nbsp;&nbsp;2</span>app.controller(&#39;PageCtrl&#39;,&nbsp;[</div> <div class=''><span class=''>&nbsp;&nbsp;3</span>&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;()&nbsp;{</div> <div class='hit'><span class=''>&nbsp;&nbsp;4</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;use&nbsp;strict&#39;;</div> <div class='hit'><span class=''>&nbsp;&nbsp;5</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;c&nbsp;=&nbsp;this,</div> <div class=''><span class=''>&nbsp;&nbsp;6</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;regex,</div> <div class=''><span class=''>&nbsp;&nbsp;7</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;match</div> <div class=''><span class=''>&nbsp;&nbsp;8</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;</div> <div class=''><span class=''>&nbsp;&nbsp;9</span></div> <div class='hit'><span class=''>10</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c.template&nbsp;=&nbsp;&#39;loading/loading.html&#39;;</div> <div class='hit'><span class=''>11</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c.animateMore&nbsp;=&nbsp;&#39;&#39;;</div> <div class=''><span class=''>12</span></div> <div class='hit'><span class=''>13</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c.load&nbsp;=&nbsp;function&nbsp;(template,&nbsp;direction)&nbsp;{</div> <div class='hit'><span class=''>14</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(direction&nbsp;!==&nbsp;undefined)&nbsp;{</div> <div class='hit'><span class=''>15</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c.animateMore&nbsp;=&nbsp;&#39;slide-&#39;&nbsp;+&nbsp;direction;</div> <div class=''><span class=''>16</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{</div> <div class='hit'><span class=''>17</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c.animateMore&nbsp;=&nbsp;&#39;&#39;;</div> <div class=''><span class=''>18</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</div> <div class=''><span class=''>19</span></div> <div class='hit'><span class=''>20</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c.template&nbsp;=&nbsp;template;</div> <div class=''><span class=''>21</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</div> <div class=''><span class=''>22</span></div> <div class=''><span class=''>23</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//onload-complete&nbsp;load&nbsp;a&nbsp;template&nbsp;if&nbsp;listed&nbsp;in&nbsp;a&nbsp;jump&nbsp;url&nbsp;param</div> <div class='hit'><span class=''>24</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;regex&nbsp;=&nbsp;new&nbsp;RegExp(&#39;(?:\\?|&amp;)jump=([^&amp;]*)(?=&amp;|$)&#39;,&nbsp;&#39;gi&#39;);</div> <div class='hit'><span class=''>25</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;match&nbsp;=&nbsp;regex.exec(window.document.location.search);</div> <div class='hit'><span class=''>26</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(match&nbsp;!==&nbsp;null)&nbsp;{</div> <div class='miss'><span class=''>27</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c.template&nbsp;=&nbsp;match[1];</div> <div class=''><span class=''>28</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</div> <div class=''><span class=''>29</span></div> <div class='hit'><span class=''>30</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;c;</div> <div class='{{executed}}'><span class=''>31</span>&nbsp;&nbsp;&nbsp;&nbsp;}]);</div>
+	</div>
+	<div style='clear:both;'>
+	</div>
+</div>
+
+
+<div class='chutzpah chutzpah-success'>
+	<div class='chutzpah-cl chutzpah-file'>
+		<span class='chutzpah-nb'>5.</span><a href='javascript:chutzpah_toggleSource("file-5")'>c:\users\jharker\documents\fetchapp\fetch1\authentication\authenticateController.js</a>
+	</div>
+	<div class='chutzpah-cl rs'>
+		70 %
+	</div>
+	<div class='chutzpah-cl rs'>
+		7/10
+	</div>
+	<div id='file-5' class='chutzpah-source' style='display:none;'>
+		 <div class=''><span class=''>&nbsp;&nbsp;1</span>/*global&nbsp;app&nbsp;*/</div> <div class='hit'><span class=''>&nbsp;&nbsp;2</span>app.controller(&#39;AuthCtrl&#39;,&nbsp;[</div> <div class=''><span class=''>&nbsp;&nbsp;3</span>&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;()&nbsp;{</div> <div class='hit'><span class=''>&nbsp;&nbsp;4</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;use&nbsp;strict&#39;;</div> <div class='hit'><span class=''>&nbsp;&nbsp;5</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;c&nbsp;=&nbsp;this;</div> <div class=''><span class=''>&nbsp;&nbsp;6</span></div> <div class='hit'><span class=''>&nbsp;&nbsp;7</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c.clientId&nbsp;=&nbsp;&#39;ca_5oSXm50hso4vFBv5IvDHVVklCiUkdP8R&#39;;</div> <div class='hit'><span class=''>&nbsp;&nbsp;8</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c.publishableKey&nbsp;=&nbsp;&#39;pk_test_LDonp15qE0gZigryIcfweU23&#39;;</div> <div class=''><span class=''>&nbsp;&nbsp;9</span></div> <div class='hit'><span class=''>10</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c.injectPayButton&nbsp;=&nbsp;function&nbsp;()&nbsp;{</div> <div class='miss'><span class=''>11</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;tag&nbsp;=&nbsp;document.createElement(&#39;script&#39;);</div> <div class=''><span class=''>12</span></div> <div class='miss'><span class=''>13</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tag.src&nbsp;=&nbsp;&#39;https://checkout.stripe.com/checkout.js&#39;;</div> <div class='miss'><span class=''>14</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.getElementsByTagName(&#39;head&#39;)[0].appendChild(tag);</div> <div class=''><span class=''>15</span></div> <div class=''><span class=''>16</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//return&nbsp;&#39;&lt;script&nbsp;src=&quot;https://checkout.stripe.com/checkout.js&quot;&nbsp;				class=&quot;stripe-button&quot;&nbsp;				data-key=&quot;pk_test_LDonp15qE0gZigryIcfweU23&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data-image=&quot;https://stripe.com/img/documentation/checkout/marketplace.png&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data-name=&quot;FETCH1&nbsp;TRANSPORT&nbsp;LLC&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data-description=&quot;2&nbsp;widgets&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data-zip-code=&quot;true&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data-amount=&quot;2000&quot;&gt;&#39;;</div> <div class=''><span class=''>17</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</div> <div class=''><span class=''>18</span></div> <div class='hit'><span class=''>19</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;c;</div> <div class='{{executed}}'><span class=''>20</span>&nbsp;&nbsp;&nbsp;&nbsp;}]);</div>
+	</div>
+	<div style='clear:both;'>
+	</div>
+</div>
+
+
+<div class='chutzpah chutzpah-success'>
+	<div class='chutzpah-cl chutzpah-file'>
+		<span class='chutzpah-nb'>6.</span><a href='javascript:chutzpah_toggleSource("file-6")'>Total</a>
+	</div>
+	<div class='chutzpah-cl rs'>
+		92 %
+	</div>
+	<div class='chutzpah-cl rs'>
+		46/50
+	</div>
+	<div id='file-6' class='chutzpah-source' style='display:none;'>
+		
+	</div>
+	<div style='clear:both;'>
+	</div>
+</div>
+
+
+</div>
+</body>
+</html>
+

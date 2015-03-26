@@ -1,0 +1,15 @@
+﻿<div ng-controller="AuthCtrl as auth">
+	<form action="/charge" method="POST">
+		<script joe-script src="https://checkout.stripe.com/checkout.js"
+				class="stripe-button"
+				data-key="{{ auth.publishableKey }}"
+				data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+				data-name="FETCH1 TRANSPORT LLC"
+				data-description="2 widgets"
+				data-zip-code="true"
+				data-amount="2000">
+		</script>
+	</form>
+	<br />
+	<button ng-click="page.load('customer/trackMap/trackMap.html');">Next</button>
+</div>

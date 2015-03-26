@@ -1,0 +1,3 @@
+﻿{
+  "CodeCoverageExcludes": ["*\\scripts\\*.js","*\\unitTests\\*.js"]
+}

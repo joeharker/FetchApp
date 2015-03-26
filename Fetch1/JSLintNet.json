@@ -1,0 +1,11 @@
+﻿{
+  "ignore": [
+    "\\Fetch1\\scripts\\",
+    "\\Fetch1\\resources\\"
+  ],
+  "options": {
+    "predef": {}
+  },
+  "runOnBuild": false,
+  "cancelBuild": false
+}

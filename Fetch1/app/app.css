@@ -1,0 +1,41 @@
+﻿body {
+	margin: 0px;
+	text-align: center;
+}
+header{
+	background-color: silver;
+	height: 22px;
+}
+nav{
+	padding: 0 11px 0 11px;
+	height: 44px;
+}
+section{
+	padding: 11px;
+}
+footer{
+}
+
+.center-v-wrapper { display: table; width: 100%; height: 100%; }
+.center-v-cell { display: table-cell; vertical-align: middle; }
+.center-h { display: block; width: 100%; margin: auto; }
+.center-t { text-align: center; }
+.right-h { display: block; float: right; }
+.right-t { text-align: right; }
+.left-h { display: block; float: left; }
+.left-t { text-align: left; }
+.inline { display: inline-block; vertical-align: top; }
+.clear-fix:after { content: "."; clear: both; display: block; height: 0; visibility: hidden; }
+.hidden { display: none; }
+
+.button-base{
+	margin: 22px 0 22px 0;
+	width: 100%;
+	height: 44px;
+}
+.button-tall{
+	height: 88px;
+}
+.button-half{
+	width: 43%;
+}
