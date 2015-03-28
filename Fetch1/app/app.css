@@ -1,19 +1,34 @@
-﻿body {
+﻿* {
 	margin: 0px;
+	padding: 0px;
+}
+body {
+	margin: 0px;
+	padding: 0px;
 	text-align: center;
+	font-family: Helvetica, Arial, sans-serif;
 }
 header{
-	background-color: silver;
-	height: 22px;
+	border: 1px solid pink;
+	height: 20px;
 }
 nav{
-	padding: 0 11px 0 11px;
-	height: 44px;
+	padding: 0 22px 0 22px;
+	height: 43px;
+	border-bottom: 1px solid silver;
 }
 section{
-	padding: 11px;
+	padding: 0 44px 0 44px;
 }
 footer{
+}
+
+h1{
+	font-size: 20px;
+}
+
+.page-dark {
+	background-color: black;
 }
 
 .center-v-wrapper { display: table; width: 100%; height: 100%; }
@@ -28,8 +43,15 @@ footer{
 .clear-fix:after { content: "."; clear: both; display: block; height: 0; visibility: hidden; }
 .hidden { display: none; }
 
+.pad-tall{
+	height: 44px;
+}
+
+.pad-short{
+	height: 22px;
+}
+
 .button-base{
-	margin: 22px 0 22px 0;
 	width: 100%;
 	height: 44px;
 }
