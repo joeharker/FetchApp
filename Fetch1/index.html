@@ -1,33 +1,32 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="Fetch1App">
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="Fetch1App" ng-controller="PageCtrl as page" ng-class="page.theme">
 <head>
 	<meta charset="utf-8">
 	<title>Fetch1</title>
 
-<!-- injected styles start -->
+	<!-- injected styles start -->
 	<link href="app/app.css?ver=201503281714" rel="stylesheet" />
 	<link href="app/authentication/authenticate.css?ver=201503281714" rel="stylesheet" />
 	<link href="app/page/animations.css?ver=201503281714" rel="stylesheet" />
-<!-- injected styles end -->
+	<!-- injected styles end -->
 
 	<script src="resources/scripts/angular.js?ver=201503191839"></script>
 	<script src="resources/scripts/angular-animate.js?ver=201503191839"></script>
 	<script src="cordova.js?ver=201503191839"></script>
 	<script src="app/app.js?ver=201503191839"></script>
 
-<!-- injected scripts start -->
+	<!-- injected scripts start -->
 	<script src="cordova.js?ver=201503281714"></script>
 	<script src="app/authentication/authenticateController.js?ver=201503281714"></script>
-	<script src="app/loading/loadingController.js?ver=201503281714"></script>
 	<script src="app/page/pageController.js?ver=201503281714"></script>
 	<script src="common/errorHandler/debugController.js?ver=201503281714"></script>
 	<script src="common/errorHandler/errorService.js?ver=201503281714"></script>
 	<script src="common/scriptInjectorDirective/scriptInjectorDirective.js?ver=201503281714"></script>
 	<script src="demo/demoController.js?ver=201503281714"></script>
 	<script src="demo/demoService.js?ver=201503281714"></script>
-<!-- injected scripts end -->
+	<!-- injected scripts end -->
 </head>
-<body ng-controller="PageCtrl as page">
+<body>
 	<header></header>
 	<nav>
 		<div class="center-v-wrapper">
@@ -36,13 +35,15 @@
 			</div>
 		</div>
 	</nav>
-	<section class="slide-animate-container">
-		<div class="slide-animate" ng-class="page.animateMore" ng-include="page.template"></div>
-	</section>
-	<footer ng-controller="DebugCtrl as debug">
-		<div style="color: silver;">
-			{{ page.template }}
+	<div id="content" class="slide-animate-container" ng-class="page.theme">
+		<div class="slide-animate" ng-class="page.animateMore" ng-include="page.template">
+			<img class="center-h" src="resources/screen/startscreen.png" />
 		</div>
+	</div>
+	<footer ng-controller="DebugCtrl as debug" ng-class="page.theme">
+		<!--<div style="color: silver;">
+			{{ page.template }}
+		</div>-->
 		<div style="color: red;">
 			{{ debug.LastError }}
 		</div>
