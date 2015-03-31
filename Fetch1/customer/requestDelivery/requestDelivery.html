@@ -1,34 +1,44 @@
-﻿<div ng-controller="DemoCtrl as demo">
-	SET DELIVERY
+﻿<div class="hidden">{{ page.theme = 'lighter'; }}</div>
+<div ng-controller="DemoCtrl as demo">
+	<div class="pad-short"></div>
+	PACKAGE SIZE
 	<br />
-	<br />
-	Pickup address:
-	<br />
-	<input type="text" ng-model="demo.pickup" ng-change="demo.setPickup()" />
-	<br />
-	Delivery method:
-	<br />
-	<input type="radio" name="size" ng-model="demo.price" ng-change="demo.setPrice()" value="7.50">  small
-	<input type="radio" name="size" ng-model="demo.price" ng-change="demo.setPrice()" ng-value="10.00"> medium
-	<input type="radio" name="size" ng-model="demo.price" ng-change="demo.setPrice()" value="21.51"> large
-	<br />
-	Description of package:
-	<br />
-	<input type="text" />
-	<br />
-	Estimated weight:
-	<br />
-	<input type="text" />
-	<br />
-	special instructions:
-	<br />
-	<input type="text" />
-	<br />
-	<textarea rows="5" cols="25"></textarea>
-	<br />
-	Delivery address:
-	<br />
-	<input type="text" ng-model="demo.delivery" ng-change="demo.setDelivery()" />
-	<br />
-	<button ng-click="page.load('customer/deliveryVerification/deliveryVerification.html');">Set Pickup Now</button>
+	<button ng-click="page.load('app/authentication/authenticateDriver.html');" class="button-base button-skinny dark">
+		S
+	</button>
+	<div class="space-small"></div>
+	<button ng-click="page.load('app/authentication/authenticateDriver.html');" class="button-base button-skinny dark">
+		M
+	</button>
+	<div class="space-small"></div>
+	<button ng-click="page.load('app/authentication/authenticateDriver.html');" class="button-base button-skinny dark">
+		L
+	</button>
+	<div class="pad-short"></div>
+	<div class="window">
+		<table style="width: 99%;">
+			<tr><td>PICKUP<br />ADDRESS	</td><td><input type="text" style="width: 100%;" /></td></tr>
+			<tr><td>CONTENTS			</td><td><input type="text" style="width: 100%;" /></td></tr>
+			<tr><td>WEIGHT				</td><td><input type="text" style="width: 100%;" /></td></tr>
+		</table>
+	</div>
+	<div class="pad-short"></div>
+	<div class="window">
+		<table style="width: 99%;">
+			<tr><td>DEL.<br />ADDRESS	</td><td><input type="text" style="width: 100%;" /></td></tr>
+		</table>
+	</div>
+	<div class="pad-short"></div>
+	<!--<button ng-click="page.load('customer/deliveryVerification/deliveryVerification.html');">Set Pickup Now</button>-->
+	<button class="button-base button-half dark">
+		SPECIAL
+		<br />
+		INSTRUCTIONS
+	</button>
+	<div class="space-small"></div>
+	<button ng-click="page.load('customer/deliveryVerification/deliveryVerification.html');" class="button-base button-half light">
+		SET
+		<br />
+		DELIVERY
+	</button>
 </div>
