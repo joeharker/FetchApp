@@ -1,11 +1,45 @@
-﻿<div ng-controller="DemoCtrl as demo">
-	VERIFICATION and COSTS
-	<br />
-	Pick up address: {{ demo.pickup }}
-	<br />
-	Delivery address: {{ demo.delivery }}
-	<br />
-	price for delivery: {{ demo.price }}
-	<br />
-	<button ng-click="page.load('app/authentication/authenticateCustomer.html');">Accept</button>
+﻿<div class="hidden">{{ page.theme = 'lighter'; }}</div>
+<div ng-controller="DemoCtrl as demo">
+	<div class="short"></div>
+	PLEASE VERIFY INFO FOR ACURACY
+	<div class="short"></div>
+	<button class="skinnier medium dark">
+		M
+	</button>
+	<span class="skinniest"></span>
+	<div class="window medium wider">
+		I have a small 10 lb package
+	</div>
+	<div class="short"></div>
+	<button class="skinnier medium dark">
+		V
+	</button>
+	<span class="skinniest"></span>
+	<div class="window medium wider">
+		Package to be picked up from here ...
+	</div>
+	<div class="short"></div>
+	<button class="skinnier medium dark">
+		>
+	</button>
+	<span class="skinniest"></span>
+	<div class="window medium wider">
+		Package will be delivered here ...
+	</div>
+	<div class="short"></div>
+	<button class="skinnier medium dark">
+		$
+	</button>
+	<span class="skinniest"></span>
+	<div class="window medium wider">
+		Estimated cost of shipment $...
+	</div>
+	<div class="short right-t">I VERIFY THIS</div>
+	<button ng-click="page.back();" class=" medium wide stop">
+		EDIT
+	</button>
+	<span class="skinnier"></span>
+	<button ng-click="page.load('app/authentication/authenticateCustomer.html');" class="medium wide light">
+		SET/GO
+	</button>
 </div>

@@ -16,6 +16,7 @@ header{
 	height: 20px;
 	background-color: #FFFFFF;
 	color: #000000;
+	z-index: 1;
 }
 nav{
 	position: fixed;
@@ -26,12 +27,15 @@ nav{
 	border-bottom: 1px solid silver;
 	background-color: #FFFFFF;
 	color: #000000;
+	z-index: 2;
 }
 .slide-animate{
 	height: 100%;
 	margin-top: 66px;			/* head height */
 	margin-bottom: 22px;		/* foot height */
 	padding: 0 44px 0 44px;
+	overflow: auto;
+	z-index: 1;
 }
 footer{
 	position: fixed;
@@ -42,6 +46,10 @@ footer{
 
 h1{
 	font-size: 20px;
+}
+
+button{
+	border-radius: 4px;
 }
 
 .center-v-wrapper { display: table; width: 100%; height: 100%; }
@@ -56,38 +64,54 @@ h1{
 .clear-fix:after { content: "."; clear: both; display: block; height: 0; visibility: hidden; }
 .hidden { display: none; }
 
-.pad-tall{
+.tall{
+	height: 88px;
+}
+
+.medium{
 	height: 44px;
 }
 
-.pad-short{
+.short{
 	height: 22px;
 }
 
-.space-small{
+.skinniest{
 	display: inline-block;
 	width: 5%;
 }
 
-.button-base{
+.skinnier{
+	display: inline-block;
+	width: 20%;
+}
+
+.skinny{ /**/
+	display: block;
+	width: 30%;
+}
+
+.wide{
+	display: inline-block;
+	width: 35%;
+}
+
+.wider{
+	display: inline-block;
+	width: 70%;
+}
+
+.widest{
+	display: inline-block;
 	width: 100%;
-	height: 44px;
-	border-radius: 4px;
 }
-.button-tall{
-	height: 88px;
-}
-.button-half{
-	width: 43%;
-}
-.button-skinny{
-	width: 25%;
-}
+
 .dark{
 	background-color: #051B57;
 	color: #FFFFFF;
 	border-color: navy;
 }
+
 .darker{
 	background-color: #000000;
 	color: #FFFFFF;
@@ -106,11 +130,17 @@ h1{
 	border-color: silver;
 }
 
+.stop{
+	background-color: #D90307;
+	color: #FFFFFF;
+	border-color: red;
+}
+
 .window {
+	vertical-align: top;
 	background: #FFFFFF;
 	border: 1px solid gray;
 	border-radius: 4px;
-	margin: 0 -22px 0 -22px;
 }
 
 td{
