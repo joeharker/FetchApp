@@ -16,7 +16,6 @@ header{
 	height: 20px;
 	background-color: #FFFFFF;
 	color: #000000;
-	z-index: 1;
 }
 nav{
 	position: fixed;
@@ -27,7 +26,7 @@ nav{
 	border-bottom: 1px solid silver;
 	background-color: #FFFFFF;
 	color: #000000;
-	z-index: 2;
+	z-index: 1;
 }
 .slide-animate{
 	height: 100%;
@@ -35,7 +34,6 @@ nav{
 	margin-bottom: 22px;		/* foot height */
 	padding: 0 44px 0 44px;
 	overflow: auto;
-	z-index: 1;
 }
 footer{
 	position: fixed;
