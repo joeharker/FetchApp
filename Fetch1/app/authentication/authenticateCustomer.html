@@ -1,4 +1,8 @@
-﻿<div ng-controller="AuthCtrl as auth">
+﻿<div class="hidden">{{ page.theme = 'dark'; }}</div>
+<div class="short"></div>
+LOGIN TO COMPLETE
+<div class="short"></div>
+<div ng-controller="AuthCtrl as auth">
 	<form action="/charge" method="POST">
 		<script joe-script src="https://checkout.stripe.com/checkout.js"
 				class="stripe-button"

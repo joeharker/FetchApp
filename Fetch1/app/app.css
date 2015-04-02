@@ -134,6 +134,16 @@ button{
 	border-color: red;
 }
 
+.city {
+	height: 100%;
+	background-image: url(../../resources/screen/startscreen.png);
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-top: 66px;
+	margin-bottom: 0;
+}
+
 .window {
 	vertical-align: top;
 	background: #FFFFFF;
