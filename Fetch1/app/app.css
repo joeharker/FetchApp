@@ -23,8 +23,8 @@ nav{
 	padding: 0 22px 0 22px;
 	height: 43px;
 	width: 100%;
-	border-bottom: 1px solid silver;
-	background-color: #FFFFFF;
+	border-bottom: 1px solid gray;
+	background-color: #C0C0C0;
 	color: #000000;
 	z-index: 1;
 }
