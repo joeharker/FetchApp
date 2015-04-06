@@ -14,12 +14,19 @@ app.controller('PageCtrl', [
         c.animateMore = '';
         c.disableBack = true;
         c.theme = '';
+        c.title = '';
 
-        c.load = function (template, direction) {
+        c.load = function (template, title, direction) {
             if (direction !== undefined) {
                 c.animateMore = 'slide-' + direction;
             } else {
                 c.animateMore = '';
+            }
+
+            if (title !== undefined) {
+            	c.title = title;
+            } else {
+            	c.title = '';
             }
 
             history.push(c.template);
@@ -28,7 +35,8 @@ app.controller('PageCtrl', [
         };
 
         c.back = function () {
-            if (history.length > 0) {
+        	if (history.length > 0) {
+        		c.title = '';
                 c.animateMore = 'slide-back';
                 c.template = history[history.length - 1];
                 history.pop();
