@@ -16,17 +16,11 @@ app.controller('PageCtrl', [
         c.theme = '';
         c.title = '';
 
-        c.load = function (template, title, direction) {
+        c.load = function (template, direction) {
             if (direction !== undefined) {
                 c.animateMore = 'slide-' + direction;
             } else {
                 c.animateMore = '';
-            }
-
-            if (title !== undefined) {
-            	c.title = title;
-            } else {
-            	c.title = '';
             }
 
             history.push(c.template);
