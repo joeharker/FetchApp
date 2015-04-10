@@ -1,4 +1,4 @@
-﻿<div class="hidden">{{ page.theme = 'lighter'; }}</div>
+﻿<div class="hidden">{{ page.theme = 'lighter'; page.title = 'MY DELIVERY INFORMATION'; }}</div>
 <div ng-controller="DemoCtrl as demo">
 	<div class="short"></div>
 	PACKAGE SIZE
@@ -29,7 +29,7 @@
 		INS.
 	</button>
 	<span class="skinnier"></span>
-	<button ng-click="page.load('customer/deliveryVerification/deliveryVerification.html', 'VERIFY SHIPMENT');" class="wide light">
+	<button ng-click="page.load('customer/deliveryVerification/deliveryVerification.html');" class="wide light">
 		SET
 		<br />
 		DELIVERY
