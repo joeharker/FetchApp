@@ -1,49 +1,51 @@
 ﻿<div class="hidden">{{ page.theme = 'lighter'; }}</div>
 <div ng-controller="AuthCtrl as auth">
-	<div class="short"></div>
-	PLEASE VERIFY INFO FOR ACURACY
-	<div class="short"></div>
-	<button class="skinnier medium dark fa fa-archive"></button>
-	<span class="skinniest"></span>
-	<div class="window medium wider">
-		I have a small 10 lb package
-	</div>
-	<div class="short"></div>
-	<button class="skinnier medium dark fa fa-arrow-down"></button>
-	<span class="skinniest"></span>
-	<div class="window medium wider">
-		Package to be picked up from here ...
-	</div>
-	<div class="short"></div>
-	<button class="skinnier medium dark fa fa-arrow-right"></button>
-	<span class="skinniest"></span>
-	<div class="window medium wider">
-		Package will be delivered here ...
-	</div>
-	<div class="short"></div>
-	<button class="skinnier medium dark fa fa-usd"></button>
-	<span class="skinniest"></span>
-	<div class="window medium wider">
-		Estimated cost of shipment $...
-	</div>
-	<div class="short right-t">I VERIFY THIS</div>
-	<button ng-click="page.back();" class="medium wide stop">
-		EDIT
-	</button>
-	<span class="skinniest"></span>
-	<!--<button ng-click="page.load('app/authentication/authenticateCustomer.html');" class="medium wide light">
-		SET/GO
-	</button>-->
+	<div ng-controller="DemoCtrl as demo">
+		<div class="short"></div>
+		PLEASE VERIFY INFO FOR ACURACY
+		<div class="short"></div>
+		<button class="skinnier medium dark fa fa-archive"></button>
+		<span class="skinniest"></span>
+		<div class="window medium wider">
+			I have a {{ demo.size }} {{ demo.weight }} lb package
+		</div>
+		<div class="short"></div>
+		<button class="skinnier medium dark fa fa-arrow-down"></button>
+		<span class="skinniest"></span>
+		<div class="window medium wider">
+			Package to be picked up from {{ demo.pickup }}
+		</div>
+		<div class="short"></div>
+		<button class="skinnier medium dark fa fa-arrow-right"></button>
+		<span class="skinniest"></span>
+		<div class="window medium wider">
+			Package will be delivered to {{ demo.delivery }}
+		</div>
+		<div class="short"></div>
+		<button class="skinnier medium dark fa fa-usd"></button>
+		<span class="skinniest"></span>
+		<div class="window medium wider">
+			Estimated cost of shipment $ TODO
+		</div>
+		<div class="short right-t">I VERIFY THIS</div>
+		<button ng-click="page.back();" class="medium wide stop">
+			EDIT
+		</button>
+		<span class="skinniest"></span>
+		<!--<button ng-click="page.load('app/authentication/authenticateCustomer.html');" class="medium wide light">
+			SET/GO
+		</button>-->
 
-	<form action="index.html" method="POST">
-		<script joe-script src="https://checkout.stripe.com/checkout.js"
-				class="stripe-button"
-				data-key="{{ auth.publishableKey }}"
-				data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-				data-name="FETCH1 TRANSPORT LLC"
-				data-description="2 widgets"
-				data-zip-code="true"
-				data-amount="2000">
-		</script>
-	</form>
+		<form action="index.html" method="POST">
+			<script joe-script src="https://checkout.stripe.com/checkout.js"
+					class="stripe-button"
+					data-key="{{ auth.publishableKey }}"
+					data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+					data-name="FETCH1 TRANSPORT LLC"
+					data-description="2 widgets"
+					data-zip-code="true"
+					data-amount="2000">
+			</script>
+		</form>
+	</div>
 </div>
