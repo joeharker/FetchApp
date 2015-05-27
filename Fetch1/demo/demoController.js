@@ -16,7 +16,7 @@ app.controller('DemoCtrl', ['DemoSrvc',
   	c.setWeight = function () { DemoSrvc.set('weight', c.weight); };
   	c.setContent = function () { DemoSrvc.set('content', c.content); };
   	c.setInstructions = function () { DemoSrvc.set('instructions', c.instructions); };
-  	c.setSize = function (size) { DemoSrvc.set('size', size); };
+  	c.setSize = function (size) { c.size = size; DemoSrvc.set('size', size); };
 
   	return c;
   }]);
