@@ -7,7 +7,8 @@ app.directive('joeScript', function () {
 
             tag.src = attrs.src;
 
-            document.getElementsByTagName('head')[0].appendChild(tag);
+            //document.getElementsByTagName('head')[0].appendChild(tag);
+            document.body.appendChild(tag);
         }
     };
 });

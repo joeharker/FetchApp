@@ -30,7 +30,7 @@ nav{
 .slide-animate{
 	height: 100%;
 	margin-top: 66px;			/* head height */
-	margin-bottom: 22px;		/* foot height */
+	margin-bottom: 40px;		/* foot height */
 	padding: 0 44px 0 44px;
 	overflow: auto;
 }
@@ -38,7 +38,7 @@ footer{
 	position: fixed;
 	width: 100%;
 	bottom: 0;
-	height: 22px;
+	height: 40px;
 }
 
 h1{
