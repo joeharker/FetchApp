@@ -1,21 +1,17 @@
 ﻿/*global app */
-app.controller('MapController', ['mapService', '$interval', '$timeout',
-function (mapService, $interval, $timeout) {
+app.controller('MapController', ['locationService', '$interval', '$timeout',
+function (locationService, $interval, $timeout) {
 	var c = this;
 
-	c.googleMap = null;
 	c.mapMarkers = [];
-
-	c.initialize = function () {
-		var mapOptions = {
-			mapTypeId: google.maps.MapTypeId.ROADMAP,
-			zoom: 12,
-			center: new google.maps.LatLng(latitude, longitude)
-		};
-		c.googleMap = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-		$interval(pulseLocations, 3000);
+	var data = locationService.position;
+	var mapOptions = {
+		mapTypeId: google.maps.MapTypeId.ROADMAP,
+		zoom: 12,
+		center: new google.maps.LatLng(data.latitude, data.longitude)
 	};
+	c.googleMap = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	$interval(function () { pulseLocations(); }, 3000);
 
 	var updateNearDevices = function (latitude, longitude) {
 		//mapServices.getNearDevices(latitude, longitude)
@@ -50,16 +46,9 @@ function (mapService, $interval, $timeout) {
 	};
 
 	var pulseLocations = function () {
-		var data = mapServices.position;
+		var data = locationService.position;
 		updateNearDevices(data.latitude, data.longitude);
 	};
-
-	//init
-	var script = document.createElement('script');
-	script.type = 'text/javascript';
-	script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp';
-	document.body.appendChild(script);
-	$timeout(c.initialize(), 1000);
 
 	return c;
 }]);
