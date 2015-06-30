@@ -3,6 +3,8 @@ app.controller('MapController', ['locationService', '$interval', '$timeout',
 function (locationService, $interval, $timeout) {
 	var c = this;
 
+	c.directionsDisplay = new google.maps.DirectionsRenderer();
+	c.directionsService = new google.maps.DirectionsService();
 	c.mapMarkers = [];
 	var data = locationService.position;
 	var mapOptions = {
@@ -11,7 +13,24 @@ function (locationService, $interval, $timeout) {
 		center: new google.maps.LatLng(data.latitude, data.longitude)
 	};
 	c.googleMap = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	c.directionsDisplay.setMap(c.googleMap);
 	$interval(function () { pulseLocations(); }, 3000);
+
+	c.calculateRoute = function (start, end) {
+		var request = {
+			origin: start,
+			destination: end,
+			travelMode: google.maps.TravelMode.DRIVING
+		};
+		c.directionsService.route(request, function (response, status) {
+			if (status == google.maps.DirectionsStatus.OK) {
+				c.directionsDisplay.setDirections(response);
+				console.log('distance = ' + response.routes[0].legs[0].distance.value);
+				console.log('duration = ' + response.routes[0].legs[0].duration.value);
+				console.log(response.routes[0].legs[0]);
+			}
+		});
+	}
 
 	var updateNearDevices = function (latitude, longitude) {
 		//mapServices.getNearDevices(latitude, longitude)
