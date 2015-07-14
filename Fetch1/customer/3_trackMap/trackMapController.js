@@ -48,6 +48,17 @@ function (locationService, $interval, $timeout, mapService) {
 		mapService.calculateRoute(start, end)
 		.then(function (rout) {
 			console.log(rout);
+		}, function (reason) {
+			console.log('Failed: ' + reason);
+		});
+	};
+
+	c.cleanAddress = function (address) {
+		mapService.cleanAddress(address)
+		.then(function (clean) {
+			console.log(clean);
+		}, function (reason) {
+			console.log('Failed: ' + reason);
 		});
 	};
 
