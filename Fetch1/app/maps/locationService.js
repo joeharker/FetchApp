@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.factory('locationService', ['ErrorService', '$http', '$q',
-function (ErrorService, $http, $q) {
+app.factory('locationService', ['ErrorService',
+function (ErrorService) {
 	var s = this;
 	var watchPositionOptions = { enableHighAccuracy: true };
 
