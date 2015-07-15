@@ -1,49 +1,53 @@
 ﻿<div class="hidden">{{ page.theme = 'lighter'; page.title = 'MY DELIVERY INFORMATION'; }}</div>
 <div ng-controller="DemoCtrl as demo" ng-init="special=false;">
-	<div class="short"></div>
-	PACKAGE SIZE
-	<br />
-	<button class="medium skinnier dark fa fa-envelope" ng-click="demo.setSize('small');" ng-class="demo.size==='small' ? 'selected' : 'x'"></button>
-	<span class="skinniest"></span>
-	<button class="medium skinnier dark fa fa-gift" ng-click="demo.setSize('medium');" ng-class="demo.size==='medium' ? 'selected' : 'x'"></button>
-	<span class="skinniest"></span>
-	<button class="medium skinnier dark fa fa-bicycle" ng-click="demo.setSize('large');" ng-class="demo.size==='large' ? 'selected' : 'x'"></button>
-	<div class="short"></div>
-	<div class="window">
-		<table style="width: 99%;">
-			<tr><td>PICKUP<br />ADDRESS	</td><td><input type="text" style="width: 100%;" ng-model="demo.pickup" ng-change="demo.setPickup()" /></td></tr>
-			<tr><td>CONTENTS			</td><td><input type="text" style="width: 100%;" ng-model="demo.content" ng-change="demo.setContent()" /></td></tr>
-			<tr><td>WEIGHT				</td><td><input type="text" style="width: 100%;" ng-model="demo.weight" ng-change="demo.setWeight()" /></td></tr>
-		</table>
+	<div ng-controller="RequestDeliveryController as delivery">
+		<form ng-keyup="delivery.validatePage()">
+			<div class="short"></div>
+			PACKAGE SIZE
+			<br />
+			<button class="medium skinnier dark fa fa-envelope" ng-click="demo.setSize('small');" ng-class="demo.size==='small' ? 'selected' : 'x'"></button>
+			<span class="skinniest"></span>
+			<button class="medium skinnier dark fa fa-gift" ng-click="demo.setSize('medium');" ng-class="demo.size==='medium' ? 'selected' : 'x'"></button>
+			<span class="skinniest"></span>
+			<button class="medium skinnier dark fa fa-bicycle" ng-click="demo.setSize('large');" ng-class="demo.size==='large' ? 'selected' : 'x'"></button>
+			<div class="short"></div>
+			<div class="window">
+				<table style="width: 99%;">
+					<tr><td>PICKUP<br />ADDRESS	</td><td><input type="text" ng-blur="delivery.cleanPickupAddress(demo);" style="width: 100%;" ng-model="demo.pickup" ng-change="demo.setPickup()" placeholder="Full Address" ng-class="demo.pickup==='' ? 'error' : 'x'" /></td></tr>
+					<tr><td>DEL.<br />ADDRESS	</td><td><input type="text" ng-blur="delivery.cleanDeliveryAddress(demo);" style="width: 100%;" ng-model="demo.delivery" ng-change="demo.setDelivery()" placeholder="Full Address" ng-class="demo.delivery==='' ? 'error' : 'x'" /></td></tr>
+				</table>
+			</div>
+			<div class="short"></div>
+			<div class="window">
+				<table style="width: 99%;">
+					<tr><td>CONTENTS			</td><td><input type="text" style="width: 100%;" ng-model="demo.content" ng-change="demo.setContent()" placeholder="Content description" ng-class="demo.content==='' ? 'error' : 'x'" /></td></tr>
+					<tr><td>WEIGHT				</td><td><input type="text" style="width: 100%;" ng-model="demo.weight" ng-change="delivery.validateWeight(demo); demo.setWeight()" placeholder="Weight in pounds" ng-class="demo.weight==='' ? 'error' : 'x'" /></td></tr>
+				</table>
+			</div>
+			<div class="short"></div>
+			<div ng-show="special">
+				<div class="window">
+					<table style="width: 99%;">
+						<tr>
+							<td>INSTRUCTIONS	</td>
+							<td><textarea style="width: 100%;" ng-model="demo.instructions" ng-change="demo.setInstructions()"></textarea></td>
+						</tr>
+					</table>
+				</div>
+				<div class="short"></div>
+			</div>
+			<button ng-click="page.load('customer/2_deliveryVerification/deliveryVerification.html');" class="wide light">
+				SET
+				<br />
+				DELIVERY
+			</button>
+			<span class="skinnier"></span>
+			<button class="wide dark" ng-click="special=true;" ng-hide="special">
+				SPECIAL
+				<br />
+				INS.
+			</button>
+			<!--TODO move the set delivery button here-->
+		</form>
 	</div>
-	<div class="short"></div>
-	<div class="window">
-		<table style="width: 99%;">
-			<tr><td>DEL.<br />ADDRESS	</td><td><input type="text" style="width: 100%;" ng-model="demo.delivery" ng-change="demo.setDelivery()" /></td></tr>
-		</table>
-	</div>
-	<div class="short"></div>
-	<div ng-show="special">
-		<div class="window">
-			<table style="width: 99%;">
-				<tr>
-					<td>INSTRUCTIONS	</td>
-					<td><textarea style="width: 100%;" ng-model="demo.instructions" ng-change="demo.setInstructions()"></textarea></td>
-				</tr>
-			</table>
-		</div>
-		<div class="short"></div>
-	</div>
-	<button ng-click="page.load('customer/2_deliveryVerification/deliveryVerification.html');" class="wide light">
-		SET
-		<br />
-		DELIVERY
-	</button>
-	<span class="skinnier"></span>
-	<button class="wide dark" ng-click="special=true;" ng-hide="special">
-		SPECIAL
-		<br />
-		INS.
-	</button>
-	<!--TODO move the set delivery button here-->
 </div>

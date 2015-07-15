@@ -51,11 +51,13 @@ function (ErrorService, locationService, $q) {
 
 		geocoder.geocode({ 'address': address }, function (results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
-				s.googleMap.setCenter(results[0].geometry.location);
-				var marker = new google.maps.Marker({
-					map: s.googleMap,
-					position: results[0].geometry.location
-				});
+				if (s.googleMap !== undefined) {
+					s.googleMap.setCenter(results[0].geometry.location);
+					var marker = new google.maps.Marker({
+						map: s.googleMap,
+						position: results[0].geometry.location
+					});
+				}
 				deferred.resolve(results[0].formatted_address);
 			} else {
 				deferred.reject(status);
