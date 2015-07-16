@@ -19,6 +19,7 @@ namespace GenerateLinks
 					 "\\resources\\" 
 					,"\\unitTests\\"
 					,"\\app.js"
+					,"cordova.js"
 				};
 				StringBuilder insert;
 				string ROOT = Regex.Replace(System.Reflection.Assembly.GetExecutingAssembly().Location, @"(\\[^\\]+){4}$", "") + @"\Fetch1\";

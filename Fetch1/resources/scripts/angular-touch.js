@@ -1,6 +1,6 @@
 ﻿/**
- * @license AngularJS v1.3.10
- * (c) 2010-2014 Google, Inc. http://angularjs.org
+ * @license AngularJS v1.4.2
+ * (c) 2010-2015 Google, Inc. http://angularjs.org
  * License: MIT
  */
 (function (window, angular, undefined) {
@@ -27,6 +27,10 @@
     // define ngTouch module
     /* global -ngTouch */
     var ngTouch = angular.module('ngTouch', []);
+
+    function nodeName_(element) {
+        return angular.lowercase(element.nodeName || (element[0] && element[0].nodeName));
+    }
 
     /* global ngTouch: false */
 
@@ -68,11 +72,9 @@
         };
 
         function getCoordinates(event) {
-            var touches = event.touches && event.touches.length ? event.touches : [event];
-            var e = (event.changedTouches && event.changedTouches[0]) ||
-                (event.originalEvent && event.originalEvent.changedTouches &&
-                    event.originalEvent.changedTouches[0]) ||
-                touches[0].originalEvent || touches[0];
+            var originalEvent = event.originalEvent || event;
+            var touches = originalEvent.touches && originalEvent.touches.length ? originalEvent.touches : [originalEvent];
+            var e = (originalEvent.changedTouches && originalEvent.changedTouches[0]) || touches[0];
 
             return {
                 x: e.clientX,
@@ -104,7 +106,8 @@
              * `$swipe` will listen for `mouse` and `touch` events.
              *
              * The four events are `start`, `move`, `end`, and `cancel`. `start`, `move`, and `end`
-             * receive as a parameter a coordinates object of the form `{ x: 150, y: 310 }`.
+             * receive as a parameter a coordinates object of the form `{ x: 150, y: 310 }` and the raw
+             * `event`. `cancel` receives the raw `event` as its single parameter.
              *
              * `start` is called on either `mousedown` or `touchstart`. After this event, `$swipe` is
              * watching for `touchmove` or `mousemove` events. These events are ignored until the total
@@ -194,7 +197,9 @@
         };
     }]);
 
-    /* global ngTouch: false */
+    /* global ngTouch: false,
+      nodeName_: false
+    */
 
     /**
      * @ngdoc directive
@@ -260,7 +265,7 @@
             // double-tapping, and then fire a click event.
             //
             // This delay sucks and makes mobile apps feel unresponsive.
-            // So we detect touchstart, touchmove, touchcancel and touchend ourselves and determine when
+            // So we detect touchstart, touchcancel and touchend ourselves and determine when
             // the user has tapped on something.
             //
             // What happens when the browser then generates a click event?
@@ -272,7 +277,7 @@
             // So the sequence for a tap is:
             // - global touchstart: Sets an "allowable region" at the point touched.
             // - element's touchstart: Starts a touch
-            // (- touchmove or touchcancel ends the touch, no click follows)
+            // (- touchcancel ends the touch, no click follows)
             // - element's touchend: Determines if the tap is valid (didn't move too far away, didn't hold
             //   too long) and fires the user's tap handler. The touchend also calls preventGhostClick().
             // - preventGhostClick() removes the allowable region the global touchstart created.
@@ -336,7 +341,7 @@
                     lastLabelClickCoordinates = null;
                 }
                 // remember label click coordinates to prevent click busting of trigger click event on input
-                if (event.target.tagName.toLowerCase() === 'label') {
+                if (nodeName_(event.target) === 'label') {
                     lastLabelClickCoordinates = [x, y];
                 }
 
@@ -352,7 +357,7 @@
                 event.preventDefault();
 
                 // Blur focused form elements
-                event.target && event.target.blur();
+                event.target && event.target.blur && event.target.blur();
             }
 
 
@@ -415,14 +420,12 @@
 
                     startTime = Date.now();
 
-                    var touches = event.touches && event.touches.length ? event.touches : [event];
-                    var e = touches[0].originalEvent || touches[0];
+                    // Use jQuery originalEvent
+                    var originalEvent = event.originalEvent || event;
+                    var touches = originalEvent.touches && originalEvent.touches.length ? originalEvent.touches : [originalEvent];
+                    var e = touches[0];
                     touchStartX = e.clientX;
                     touchStartY = e.clientY;
-                });
-
-                element.on('touchmove', function (event) {
-                    resetState();
                 });
 
                 element.on('touchcancel', function (event) {
@@ -432,9 +435,12 @@
                 element.on('touchend', function (event) {
                     var diff = Date.now() - startTime;
 
-                    var touches = (event.changedTouches && event.changedTouches.length) ? event.changedTouches :
-                        ((event.touches && event.touches.length) ? event.touches : [event]);
-                    var e = touches[0].originalEvent || touches[0];
+                    // Use jQuery originalEvent
+                    var originalEvent = event.originalEvent || event;
+                    var touches = (originalEvent.changedTouches && originalEvent.changedTouches.length) ?
+                        originalEvent.changedTouches :
+                        ((originalEvent.touches && originalEvent.touches.length) ? originalEvent.touches : [originalEvent]);
+                    var e = touches[0];
                     var x = e.clientX;
                     var y = e.clientY;
                     var dist = Math.sqrt(Math.pow(x - touchStartX, 2) + Math.pow(y - touchStartY, 2));
