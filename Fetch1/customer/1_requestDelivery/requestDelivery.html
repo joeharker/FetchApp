@@ -1,7 +1,7 @@
 ﻿<div class="hidden">{{ page.theme = 'lighter'; page.title = 'MY DELIVERY INFORMATION'; }}</div>
-<div ng-controller="DemoCtrl as demo" ng-init="special=false;">
+<div ng-controller="DemoCtrl as demo">
 	<div ng-controller="RequestDeliveryController as delivery">
-		<form ng-keyup="delivery.validatePage()">
+		<form ng-keyup="enableNext = delivery.validatePage()">
 			<div class="short"></div>
 			PACKAGE SIZE
 			<br />
@@ -13,8 +13,8 @@
 			<div class="short"></div>
 			<div class="window">
 				<table style="width: 99%;">
-					<tr><td>PICKUP<br />ADDRESS	</td><td><input type="text" ng-blur="delivery.cleanPickupAddress(demo);" style="width: 100%;" ng-model="demo.pickup" ng-change="demo.setPickup()" placeholder="Full Address" ng-class="demo.pickup==='' ? 'error' : 'x'" /></td></tr>
-					<tr><td>DEL.<br />ADDRESS	</td><td><input type="text" ng-blur="delivery.cleanDeliveryAddress(demo);" style="width: 100%;" ng-model="demo.delivery" ng-change="demo.setDelivery()" placeholder="Full Address" ng-class="demo.delivery==='' ? 'error' : 'x'" /></td></tr>
+					<tr><td>PICKUP<br />ADDRESS	</td><td><textarea ng-blur="delivery.cleanPickupAddress(demo);" style="width: 100%;" ng-model="demo.pickup" ng-change="demo.setPickup()" placeholder="Full Address" ng-class="demo.pickup==='' ? 'error' : 'x'"></textarea></td></tr>
+					<tr><td>DEL.<br />ADDRESS	</td><td><textarea ng-blur="delivery.cleanDeliveryAddress(demo);" style="width: 100%;" ng-model="demo.delivery" ng-change="demo.setDelivery()" placeholder="Full Address" ng-class="demo.delivery==='' ? 'error' : 'x'"></textarea></td></tr>
 				</table>
 			</div>
 			<div class="short"></div>
@@ -36,7 +36,7 @@
 				</div>
 				<div class="short"></div>
 			</div>
-			<button ng-click="page.load('customer/2_deliveryVerification/deliveryVerification.html');" class="wide light">
+			<button ng-disabled="!enableNext" ng-click="page.load('customer/2_deliveryVerification/deliveryVerification.html');" class="wide light">
 				SET
 				<br />
 				DELIVERY

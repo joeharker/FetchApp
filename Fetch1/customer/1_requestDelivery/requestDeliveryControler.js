@@ -32,7 +32,7 @@ function (mapService, $q, $scope) {
 
 	c.validatePage = function () {
 		var result = document.getElementsByClassName('error');
-		console.log(result.length);
+		return result.length == 0;
 	};
 
 	return c;
