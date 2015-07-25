@@ -1,7 +1,7 @@
 ﻿<div class="hidden">{{ page.theme = 'lighter'; page.title = 'MY DELIVERY INFORMATION'; }}</div>
 <div ng-controller="DemoCtrl as demo">
 	<div ng-controller="RequestDeliveryController as delivery">
-		<form ng-keyup="enableNext = delivery.validatePage()">
+		<form ng-keyup="enableNext = delivery.validatePage()" ng-init="enableNext = delivery.validatePage()">
 			<div class="short"></div>
 			PACKAGE SIZE
 			<br />

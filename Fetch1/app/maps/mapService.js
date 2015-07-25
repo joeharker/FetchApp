@@ -31,7 +31,9 @@ function (ErrorService, locationService, $q) {
 
 		directionsService.route(request, function (response, status) {
 			if (status == google.maps.DirectionsStatus.OK) {
-				s.directionsDisplay.setDirections(response);
+				if (s.directionsDisplay !== undefined) {
+					s.directionsDisplay.setDirections(response);
+				}
 				for (var i = 0; i < response.routes[0].legs.length; i++) {
 					rout.meters += response.routes[0].legs[i].distance.value;
 					rout.seconds += response.routes[0].legs[i].duration.value;
