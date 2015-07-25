@@ -40,7 +40,7 @@ function (ErrorService, locationService, $q) {
 				}
 				deferred.resolve(rout);
 			}else{
-				deferred.reject(rout);
+				deferred.reject(google.maps.DirectionsStatus);
 			}
 		});
 

@@ -17,7 +17,9 @@
 					<tr><td>DEL.<br />ADDRESS	</td><td><textarea ng-blur="delivery.cleanDeliveryAddress(demo);" style="width: 100%;" ng-model="demo.delivery" ng-change="demo.setDelivery()" placeholder="Full Address" ng-class="demo.delivery==='' ? 'error' : 'x'"></textarea></td></tr>
 				</table>
 			</div>
-			<div class="short"></div>
+			<div class="short">
+				<input readonly="readonly" type="text" ng-model="demo.distance" placeholder="need drivable addresses" ng-class="demo.distance==='' ? 'error' : 'x'" />
+			</div>
 			<div class="window">
 				<table style="width: 99%;">
 					<tr><td>CONTENTS			</td><td><input type="text" style="width: 100%;" ng-model="demo.content" ng-change="demo.setContent()" placeholder="Content description" ng-class="demo.content==='' ? 'error' : 'x'" /></td></tr>
@@ -47,7 +49,6 @@
 				<br />
 				INS.
 			</button>
-			<!--TODO move the set delivery button here-->
 		</form>
 	</div>
 </div>

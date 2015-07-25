@@ -37,7 +37,7 @@ function (mapService, $q) {
 
 			form.price = price.toFixed(2);
 		}, function (reason) {
-			console.log('Failed: ' + reason);
+			console.log(['Failed', reason]);
 		});
 	};
 

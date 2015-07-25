@@ -3,6 +3,15 @@ app.controller('RequestDeliveryController', ['mapService', '$q', '$scope',
 function (mapService, $q, $scope) {
 	var c = this;
 
+	var checkDistance = function (form) {
+		mapService.calculateRoute(form.pickup, form.delivery)
+		.then(function (rout) {
+			form.distance = (rout.meters / 1609.34).toFixed(2) + ' miles';
+		}, function (reason) {
+			form.distance = '';
+		});
+	};
+
 	c.cleanPickupAddress = function (form) {
 		mapService.cleanAddress(form.pickup)
 		.then(function (clean) {
@@ -11,6 +20,8 @@ function (mapService, $q, $scope) {
 		}, function (reason) {
 			form.pickup = '';
 		});
+
+		checkDistance(form);
 	};
 
 	c.cleanDeliveryAddress = function (form) {
@@ -21,6 +32,8 @@ function (mapService, $q, $scope) {
 		}, function (reason) {
 			form.delivery = '';
 		});
+
+		checkDistance(form);
 	};
 
 	c.validateWeight = function (form) {
