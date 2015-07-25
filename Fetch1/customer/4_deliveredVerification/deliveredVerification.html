@@ -1,6 +1,29 @@
 ﻿<div class="hidden">{{ page.theme = 'dark city'; page.title = 'VERIFY SHIPMENT' }}</div>
 <div class="tall"></div>
-<div class="tall"></div>
+<div class="tall center-h">
+	<table class="center-h" style="width: 150px; background-color: white; color: black">
+		<tr>
+			<td>F1 App</td>
+			<td>
+				<input name="app" type="radio" value="1" />
+				<input name="app" type="radio" value="2" />
+				<input name="app" type="radio" value="3" />
+				<input name="app" type="radio" value="4" />
+				<input name="app" type="radio" value="5" />
+			</td>
+		</tr>
+		<tr>
+			<td>F1 Driver</td>
+			<td>
+				<input name="driver" type="radio" value="1" />
+				<input name="driver" type="radio" value="2" />
+				<input name="driver" type="radio" value="3" />
+				<input name="driver" type="radio" value="4" />
+				<input name="driver" type="radio" value="5" />
+			</td>
+		</tr>
+	</table>
+</div>
 <div class="tall"></div>
 <button ng-click="page.load('app/clientType/clientType.html');" class="short wide stop">NO THANKS</button>
 <span class="skinnier"></span>
