@@ -1,5 +1,8 @@
 ﻿<div ng-controller="AuthCtrl as auth">
-	<a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id={{auth.clientId}}" class="stripe-connect"><span>Connect with Stripe</span></a>
-	<br />
-	<button ng-click="page.load('driver/pickupMap/pickupMap.html');">Next</button>
+	<div class="tall"></div>
+	<a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id={{auth.clientId}}" class="stripe-connect"><img src="../../resources/icon/blue-on-light.png" /></a>
+	<div class="short"></div>
+	<button ng-click="page.load('driver/1_pickupMap/pickupMap.html');" class="medium wide light">
+		Test Without Auth
+	</button>
 </div>

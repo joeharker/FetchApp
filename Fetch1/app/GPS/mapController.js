@@ -47,10 +47,12 @@ function (locationService, $interval, $timeout, mapService) {
 	c.calculateRoute = function (start, end) {
 		mapService.calculateRoute(start, end)
 		.then(function (rout) {
-			console.log(rout);
 		}, function (reason) {
-			console.log('Failed: ' + reason);
 		});
+	};
+
+	c.addPin = function (address, ngexperession) {
+		mapService.addPin(address, ngexperession);
 	};
 
 	return c;

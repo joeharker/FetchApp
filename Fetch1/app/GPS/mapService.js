@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.factory('mapService', ['ErrorService', 'locationService','$q',
-function (ErrorService, locationService, $q) {
+app.factory('mapService', ['ErrorService', 'locationService','$q', '$rootScope',
+function (ErrorService, locationService, $q, $rootScope) {
 	var s = this;
 	
 	s.initMap = function (canvasElement, latitude, longitude) {
@@ -67,6 +67,26 @@ function (ErrorService, locationService, $q) {
 		});
 
 		return deferred.promise;
+	};
+
+	s.addPin = function (address, ngexperession) {
+		var geocoder = new google.maps.Geocoder();
+
+		geocoder.geocode({ 'address': address }, function (results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				if (s.googleMap !== undefined) {
+					var marker = new google.maps.Marker({
+						map: s.googleMap,
+						position: results[0].geometry.location
+					});
+
+					google.maps.event.addListener(marker, 'click', function () {
+						alert(ngexperession);
+						$rootScope.$eval(ngexperession);
+					});
+				}
+			}
+		});
 	};
 
 	return s;

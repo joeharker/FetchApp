@@ -6,7 +6,6 @@ function (mapService, $q) {
 	c.calculateCost = function (form) {
 		mapService.calculateRoute(form.pickup, form.delivery)
 		.then(function (rout) {
-			console.log(rout);
 			var price = 0.0;
 
 			switch(form.size) {

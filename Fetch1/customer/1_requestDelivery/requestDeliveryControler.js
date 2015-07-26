@@ -15,7 +15,6 @@ function (mapService, $q, $scope) {
 	c.cleanPickupAddress = function (form) {
 		mapService.cleanAddress(form.pickup)
 		.then(function (clean) {
-			console.log(clean);
 			form.pickup = clean;
 		}, function (reason) {
 			form.pickup = '';
@@ -27,7 +26,6 @@ function (mapService, $q, $scope) {
 	c.cleanDeliveryAddress = function (form) {
 		mapService.cleanAddress(form.delivery)
 		.then(function (clean) {
-			console.log(clean);
 			form.delivery = clean;
 		}, function (reason) {
 			form.delivery = '';
