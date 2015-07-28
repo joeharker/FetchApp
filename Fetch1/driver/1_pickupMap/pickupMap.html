@@ -1,9 +1,11 @@
 ﻿<!--button ng-click="page.load('driver/takeDelivery/takeDelivery.html');"-->
 <div class="hidden">{{ page.theme = 'darker'; }}</div>
 <div ng-controller="MapController as map">
-	<div ng-controller="DemoCtrl as demo" ng-init="map.addPin(demo.pickup, 'page.load(\'driver/takeDelivery/takeDelivery.html\');');map.addPin(demo.delivery, 'page.load(\'driver/takeDelivery/takeDelivery.html\');');">
-		<div class="short"></div>
-		<div id="map-canvas"></div>
-		Available pickups
+	<div ng-controller="PickupMapControler as pickup">
+		<div ng-controller="DemoCtrl as demo" ng-init="pickup.init(demo, page);">
+			<div class="short"></div>
+			<div id="map-canvas"></div>
+			Available pickups
+		</div>
 	</div>
 </div>

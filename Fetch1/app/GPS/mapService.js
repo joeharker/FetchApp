@@ -69,7 +69,7 @@ function (ErrorService, locationService, $q, $rootScope) {
 		return deferred.promise;
 	};
 
-	s.addPin = function (address, ngexperession) {
+	s.addPin = function (address, callback) {
 		var geocoder = new google.maps.Geocoder();
 
 		geocoder.geocode({ 'address': address }, function (results, status) {
@@ -81,8 +81,7 @@ function (ErrorService, locationService, $q, $rootScope) {
 					});
 
 					google.maps.event.addListener(marker, 'click', function () {
-						alert(ngexperession);
-						$rootScope.$eval(ngexperession);
+						callback();
 					});
 				}
 			}
