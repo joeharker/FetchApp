@@ -1,38 +1,38 @@
-﻿<div class="hidden">{{ page.theme = 'lighter'; }}</div>
+﻿<div class="hidden">{{ page.theme = 'lighter'; page.title = 'DELIVERY' }}</div>
 	<div ng-controller="DemoCtrl as demo">
-	<div ng-controller="DeliveryVerificationCtrl as delivery" ng-init="delivery.calculateCost(demo)">
-		<div class="short"></div>
-		DELIVERY INFO
-		<div class="short"></div>
-		<button class="skinnier medium dark fa fa-archive"></button>
-		<span class="skinniest"></span>
-		<div class="window medium wider">
-			A {{ demo.size }} {{ demo.weight }} lb package
+		<div ng-controller="TakeDeliveryCtrl as delivery" ng-init="delivery.calculateCost(demo)">
+			<div class="short"></div>
+			DELIVERY INFO
+			<div class="short"></div>
+			<button class="skinnier medium dark fa fa-archive"></button>
+			<span class="skinniest"></span>
+			<div class="window medium wider">
+				A {{ demo.size }} {{ demo.weight }} lb package
+			</div>
+			<div class="short"></div>
+			<button class="skinnier medium dark fa fa-arrow-down"></button>
+			<span class="skinniest"></span>
+			<div class="window medium wider">
+				Package to be picked up from {{ demo.pickup }}
+			</div>
+			<div class="short"></div>
+			<button class="skinnier medium dark fa fa-arrow-right"></button>
+			<span class="skinniest"></span>
+			<div class="window medium wider">
+				Package will be delivered to {{ demo.delivery }}
+			</div>
+			<div class="short"></div>
+			<button class="skinnier medium dark fa fa-usd"></button>
+			<span class="skinniest"></span>
+			<div class="window medium wider">
+				Payment ${{ (demo.price * 0.90).toFixed(2); }}
+			</div>
+			<button ng-click="page.back();" class="medium wide stop">
+				REJECT
+			</button>
+			<span class="skinniest"></span>
+			<a href="geo:38.897096,-77.036545" class="medium wide light">
+				ACCEPT
+			</a>
 		</div>
-		<div class="short"></div>
-		<button class="skinnier medium dark fa fa-arrow-down"></button>
-		<span class="skinniest"></span>
-		<div class="window medium wider">
-			Package to be picked up from {{ demo.pickup }}
-		</div>
-		<div class="short"></div>
-		<button class="skinnier medium dark fa fa-arrow-right"></button>
-		<span class="skinniest"></span>
-		<div class="window medium wider">
-			Package will be delivered to {{ demo.delivery }}
-		</div>
-		<div class="short"></div>
-		<button class="skinnier medium dark fa fa-usd"></button>
-		<span class="skinniest"></span>
-		<div class="window medium wider">
-			Payment ${{ (demo.price * 0.90).toFixed(2); }}
-		</div>
-		<button ng-click="page.back();" class="medium wide stop">
-			REJECT
-		</button>
-		<span class="skinniest"></span>
-		<button ng-click="page.load('driver/gpsPickup/gpsPickup.html');" class="medium wide light">
-			ACCEPT
-		</button>
-	</div>
 </div>
