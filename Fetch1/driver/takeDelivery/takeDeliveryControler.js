@@ -40,5 +40,9 @@ function (mapService, $q) {
 		});
 	};
 
+	c.getLatLng = function (form) {
+		form.latLng = mapService.getGeo(form.delivery)
+	};
+
 	return c;
 }]);

@@ -69,6 +69,28 @@ function (ErrorService, locationService, $q, $rootScope) {
 		return deferred.promise;
 	};
 
+	s.getGeo = function (address) {
+		var geocoder = new google.maps.Geocoder();
+		var deferred = $q.defer();
+
+		geocoder.geocode({ 'address': address }, function (results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				if (s.googleMap !== undefined) {
+					s.googleMap.setCenter(results[0].geometry.location);
+					var marker = new google.maps.Marker({
+						map: s.googleMap,
+						position: results[0].geometry.location
+					});
+				}
+				deferred.resolve('geo:' + results[0].geometry.location.lng + ',' + results[0].geometry.location.lat);
+			} else {
+				deferred.reject(status);
+			}
+		});
+
+		return deferred.promise;
+	};
+
 	s.addPin = function (address, callback) {
 		var geocoder = new google.maps.Geocoder();
 
