@@ -83,7 +83,7 @@ function (ErrorService, locationService, $q, $rootScope) {
 					});
 				}
 				console.log(results[0].geometry.location);
-				deferred.resolve('geo:' + results[0].geometry.location.G + ',' + results[0].geometry.location.K);
+				deferred.resolve('geo:' + results[0].geometry.location.G.toFixed(6) + ',' + results[0].geometry.location.K.toFixed(6));
 			} else {
 				deferred.reject(status);
 			}
