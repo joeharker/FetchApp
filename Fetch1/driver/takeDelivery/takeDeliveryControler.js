@@ -41,7 +41,11 @@ function (mapService, $q) {
 	};
 
 	c.getLatLng = function (form) {
-		form.latLng = mapService.getGeo(form.delivery)
+		mapService.getGeo(form.delivery)
+		.then(function (latLng) {
+			form.latLng = latLng;
+			console.log(latLng);
+		});
 	};
 
 	return c;

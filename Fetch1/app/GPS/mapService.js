@@ -82,7 +82,8 @@ function (ErrorService, locationService, $q, $rootScope) {
 						position: results[0].geometry.location
 					});
 				}
-				deferred.resolve('geo:' + results[0].geometry.location.lng + ',' + results[0].geometry.location.lat);
+				console.log(results[0].geometry.location);
+				deferred.resolve('geo:' + results[0].geometry.location.G + ',' + results[0].geometry.location.K);
 			} else {
 				deferred.reject(status);
 			}
