@@ -82,8 +82,7 @@ function (ErrorService, locationService, $q, $rootScope) {
 						position: results[0].geometry.location
 					});
 				}
-				console.log(results[0].geometry.location);
-				deferred.resolve('geo:' + results[0].geometry.location.G.toFixed(6) + ',' + results[0].geometry.location.K.toFixed(6));
+				deferred.resolve('http://maps.google.com/maps?daddr=' + results[0].formatted_address.replace(/ /g, '+'));
 			} else {
 				deferred.reject(status);
 			}
