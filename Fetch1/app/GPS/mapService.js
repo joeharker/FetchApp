@@ -86,8 +86,8 @@ function (ErrorService, locationService, $q, $rootScope) {
 				console.log(navigator.userAgent);
 				if (navigator.userAgent.search(/(iPad)|(iPhone)|(iPod)/i) != -1) {
 					root = 'maps:q=';
-				} else if (navigator.userAgent.search(/(Android)|(Chrome)/i) != -1) {
-					root = 'geo:q=';
+				//} else if (navigator.userAgent.search(/(Android)|(Chrome)/i) != -1) {
+				//	root = 'geo:q=';
 				} else {
 					root = 'http://maps.google.com?q=';
 				}
