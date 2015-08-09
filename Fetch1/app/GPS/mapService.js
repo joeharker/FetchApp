@@ -87,7 +87,7 @@ function (ErrorService, locationService, $q, $rootScope) {
 				if (navigator.userAgent.search(/(iPad)|(iPhone)|(iPod)/i) != -1) {
 					root = 'maps:q=';
 				//} else if (navigator.userAgent.search(/(Android)|(Chrome)/i) != -1) {
-				//	root = 'geo:q=';
+				//	root = 'geo:';	//looks like this only works with lat long
 				} else {
 					root = 'http://maps.google.com?q=';
 				}
