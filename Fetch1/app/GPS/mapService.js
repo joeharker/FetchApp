@@ -82,7 +82,16 @@ function (ErrorService, locationService, $q, $rootScope) {
 						position: results[0].geometry.location
 					});
 				}
-				deferred.resolve('http://maps.google.com/maps?daddr=' + results[0].formatted_address.replace(/ /g, '+'));
+				var root = '';
+				console.log(navigator.userAgent);
+				if (navigator.userAgent.search(/(iPad)|(iPhone)|(iPod)/i) != -1) {
+					root = 'maps:q=';
+				} else if (navigator.userAgent.search(/(Android)/i) != -1) {
+					root = 'geo:';
+				} else {
+					root = 'http://maps.google.com?q=';
+				}
+				deferred.resolve(root + results[0].formatted_address.replace(/ /g, '+'));
 			} else {
 				deferred.reject(status);
 			}
