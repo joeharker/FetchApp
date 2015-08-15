@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.controller('DeliveryVerificationCtrl', ['mapService', '$q',
-function (mapService, $q) {
+app.controller('DeliveryVerificationCtrl', ['mapService', '$q', 'DemoSrvc',
+function (mapService, $q, DemoSrvc) {
 	var c = this;
 
 	c.calculateCost = function (form) {
@@ -35,6 +35,7 @@ function (mapService, $q) {
 			}
 
 			form.price = price.toFixed(2);
+			DemoSrvc.set('price', form.price);
 		}, function (reason) {
 			console.log(['Failed', reason]);
 		});

@@ -9,6 +9,7 @@ app.controller('DemoCtrl', ['DemoSrvc',
   	c.weight = DemoSrvc.get('weight');
   	c.content = DemoSrvc.get('content');
   	c.instructions = DemoSrvc.get('instructions');
+  	c.price = DemoSrvc.get('price');
   	c.size = (DemoSrvc.get('size') === '') ? 'small' : DemoSrvc.get('size');
 
   	c.setPickup = function () { DemoSrvc.set('pickup', c.pickup); };
@@ -16,6 +17,7 @@ app.controller('DemoCtrl', ['DemoSrvc',
   	c.setWeight = function () { DemoSrvc.set('weight', c.weight); };
   	c.setContent = function () { DemoSrvc.set('content', c.content); };
   	c.setInstructions = function () { DemoSrvc.set('instructions', c.instructions); };
+  	c.setPrice = function () { DemoSrvc.set('price', c.price); };
   	c.setSize = function (size) { c.size = size; DemoSrvc.set('size', size); };
 
   	return c;

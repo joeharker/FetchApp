@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.controller('RequestDeliveryController', ['mapService', '$q', '$scope',
-function (mapService, $q, $scope) {
+app.controller('RequestDeliveryController', ['mapService', '$q', 
+function (mapService, $q) {
 	var c = this;
 
 	var checkDistance = function (form) {
