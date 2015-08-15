@@ -36,9 +36,9 @@ nav{
 }
 footer{
 	position: fixed;
-	width: 100%;
+	width: 100px;
 	bottom: 0;
-	height: 40px;
+	height: 0px;
 }
 
 h1{
