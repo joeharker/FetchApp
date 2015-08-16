@@ -27,10 +27,13 @@
 				<span> / </span>
 				<input type="text" size="4" data-stripe="exp-year" ng-model="card.exp_year" />
 			</div>
-			<input type="text" name="stripeToken" ng-model="card.stripeToken" />
+			<input type="text" data-stripe="stripeToken" ng-model="card.stripeToken" />
+			<input type="text" data-stripe="" ng-model="card.amount" ng-init="card.amount = demo.price * 100" />
+			<input type="text" data-stripe="" ng-model="card.currency" ng-init="card.currency = 'usd'" />
+			<input type="text" data-stripe="" ng-model="card.content" ng-init="card.content = demo.content" />
 		</form>
 
-		<button ng-click="pay.submit(card);" class="medium wide light">
+		<button ng-click="pay.submit(card)" class="medium wide light">
 			Submit Payment
 		</button>
 	</div>
