@@ -28,7 +28,7 @@ app.factory('ErrorService', ['$log',
 
         s.reportMessage = function (message, details) {
             var xmlHttp = new XMLHttpRequest();
-            var rootErrorUrl = 'http://fetch1.azurewebsites.net/api/Log?message=';
+            var rootErrorUrl = 'http://fetch001.azurewebsites.net/api/Log?message=';
 
             if (message !== lastError) {
                 //test to prevent circular reference web calls
