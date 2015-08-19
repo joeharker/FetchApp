@@ -15,5 +15,9 @@ app.controller('AuthCtrl', ['guidService',
 			//then c.win.close();
         };
 
+        c.test = function () {
+        	c.win.close();
+        };
+
         return c;
     }]);
