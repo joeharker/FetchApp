@@ -44,14 +44,39 @@
 </div>
 -->
 
-<form action="" method="POST" class="paymentPosition">
-	<script joe-script src="https://checkout.stripe.com/checkout.js"
-			class="stripe-button"
-			data-key="pk_test_LDonp15qE0gZigryIcfweU23"
-			data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-			data-name="FETCH1 TRANSPORT LLC"
-			data-description="Delivery of TODO"
-			data-zip-code="true"
-			data-amount="1000">
-	</script>
-</form>
+<!DOCTYPE html>
+<html lang="en" ng-app="Fetch1App" ng-controller="PageCtrl as page" ng-class="page.theme">
+<head>
+	<meta charset="utf-8">
+	<title>Fetch1</title>
+
+	<link href="app/app.css?ver=201508161747" rel="stylesheet" />
+	<script src="https://js.stripe.com/v2/"></script>
+</head>
+<body>
+	<header></header>
+	<nav>
+		<div class="center-v-wrapper">
+			<div class="center-v-cell">
+				Confirm Payment
+			</div>
+		</div>
+	</nav>
+	<div id="content" class="slide-animate-container">
+		<form action="" method="POST" class="paymentPosition">
+			<script joe-script src="https://checkout.stripe.com/checkout.js"
+					class="stripe-button"
+					data-key="pk_test_LDonp15qE0gZigryIcfweU23"
+					data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+					data-name="FETCH1 TRANSPORT LLC"
+					data-description="Delivery of TODO"
+					data-zip-code="true"
+					data-amount="1000">
+			</script>
+		</form>
+	</div>
+	<footer ng-controller="DebugCtrl as debug">
+		
+	</footer>
+</body>
+</html>
