@@ -38,16 +38,10 @@
 				</div>
 				<div class="short"></div>
 			</div>
-			<button ng-disabled="!enableNext" ng-click="delivery.verifyWindow();" class="wide light">
+			<button ng-disabled="!enableNext" ng-click="page.load('customer/2_deliveryverification/deliveryverification.html');" class="wide light">
 				SET
 				<br />
 				DELIVERY
-			</button>
-			<button ng-disabled="!enableNext" ng-click="delivery.test();" class="wide light">
-				test
-			</button>
-			<button ng-disabled="!enableNext" ng-click="delivery.close();" class="wide light">
-				close
 			</button>
 			<span class="skinnier"></span>
 			<button class="wide dark" ng-click="special=true;" ng-hide="special">

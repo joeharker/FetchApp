@@ -28,5 +28,28 @@ function ($q, $scope, $http) {
 		});
 	};
 
+	//////////////////////////////////////////new/////////////////////////////////////
+
+	var handler = StripeCheckout.configure({
+		key: 'pk_test_LDonp15qE0gZigryIcfweU23',
+		image: '../../resources/icon/icon.png',
+		locale: 'auto',
+		token: function (token) {
+			alert(token.id);
+			// Use the token to create the charge with a server-side script.
+			// You can access the token ID with `token.id`
+		}
+	});
+
+	c.submitnew = function () {
+		// Open Checkout with further options
+		handler.open({
+			name: 'FETCH1 TRANSPORT LLC',
+			description: '2 widgets',
+			zipCode: true,
+			amount: 2000
+		});
+	};
+
 	return c;
 }]);

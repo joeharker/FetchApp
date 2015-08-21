@@ -1,39 +1,6 @@
-﻿<html>
-<head>
-	<title>pay</title>
-	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-	<script src="https://checkout.stripe.com/checkout.js"></script>
-</head>
-<body>
-	<button id="customButton">Purchase</button>
+﻿<div class="hidden">{{ page.theme = 'lighter'; }}</div>
+<div ng-controller="PayCtrl as pay">
 
-	<script>
-		var handler = StripeCheckout.configure({
-			key: 'pk_test_LDonp15qE0gZigryIcfweU23',
-			image: '../../resources/icon/icon.png',
-			locale: 'auto',
-			token: function (token) {
-				alert(token.id);
-				// Use the token to create the charge with a server-side script.
-				// You can access the token ID with `token.id`
-			}
-		});
+	<button id="customButton" ng-click="pay.submitnew()">Purchase</button>
 
-		$('#customButton').on('click', function (e) {
-			// Open Checkout with further options
-			handler.open({
-				name: 'FETCH1 TRANSPORT LLC',
-				description: '2 widgets',
-				zipCode: true,
-				amount: 2000
-			});
-			e.preventDefault();
-		});
-
-		// Close Checkout on page navigation
-		$(window).on('popstate', function () {
-			handler.close();
-		});
-	</script>
-</body>
-</html>
+</div>
