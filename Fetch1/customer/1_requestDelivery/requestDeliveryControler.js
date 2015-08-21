@@ -48,7 +48,7 @@ function (mapService, $q) {
 	};
 
 	c.verifyWindow = function () {
-		c.win = window.open('customer/2.5_payment/payment.html?hello');
+		c.win = window.open('customer/2.5_payment/payment.html');
 	};
 
 	c.test = function () {
