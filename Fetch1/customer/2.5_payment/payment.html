@@ -1,4 +1,5 @@
-﻿<div class="hidden">{{ page.theme = 'lighter'; page.title = 'MAKE PAYMENT'; }}</div>
+﻿<!--
+<div class="hidden">{{ page.theme = 'lighter'; page.title = 'MAKE PAYMENT'; }}</div>
 <div ng-controller="DemoCtrl as demo">
 	<div ng-controller="PayCtrl as pay">
 		<form action="" method="POST" name="payment-form">
@@ -41,3 +42,16 @@
 		</button>
 	</div>
 </div>
+-->
+
+<form action="" method="POST" class="paymentPosition">
+	<script joe-script src="https://checkout.stripe.com/checkout.js"
+			class="stripe-button"
+			data-key="pk_test_LDonp15qE0gZigryIcfweU23"
+			data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+			data-name="FETCH1 TRANSPORT LLC"
+			data-description="Delivery of TODO"
+			data-zip-code="true"
+			data-amount="1000">
+	</script>
+</form>

@@ -2,6 +2,7 @@
 app.controller('RequestDeliveryController', ['mapService', '$q', 
 function (mapService, $q) {
 	var c = this;
+	c.win = {};
 
 	var checkDistance = function (form) {
 		mapService.calculateRoute(form.pickup, form.delivery)
@@ -44,6 +45,18 @@ function (mapService, $q) {
 	c.validatePage = function () {
 		var result = document.getElementsByClassName('error');
 		return result.length == 0;
+	};
+
+	c.verifyWindow = function () {
+		c.win = window.open('customer/2.5_payment/payment.html');
+	};
+
+	c.test = function () {
+		console.log(c.win.location.href);
+	};
+
+	c.close = function () {
+		c.win.close();
 	};
 
 	return c;
