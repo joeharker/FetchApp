@@ -1,5 +1,6 @@
 ﻿/*global app */
 app.controller('AuthCtrl', ['guidService',
+	//TODO turn into strip service
     function (guidService) {
         'use strict';
         var c = this;

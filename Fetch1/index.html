@@ -1,17 +1,18 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" ng-app="Fetch1App" ng-controller="PageCtrl as page" ng-class="page.theme">
 <head>
 	<meta charset="utf-8">
 	<title>Fetch1</title>
 
 <!-- injected styles start -->
-	<link href="app/app.css?ver=201508202130" rel="stylesheet" />
-	<link href="app/authentication/authenticate.css?ver=201508202130" rel="stylesheet" />
-	<link href="app/page/animations.css?ver=201508202130" rel="stylesheet" />
+	<link href="app/app.css?ver=201508221048" rel="stylesheet" />
+	<link href="app/authentication/authenticate.css?ver=201508221048" rel="stylesheet" />
+	<link href="app/page/animations.css?ver=201508221048" rel="stylesheet" />
 <!-- injected styles end -->
 
 	<link href="resources/fonts/font-awesome.css" rel="stylesheet" />
 	<script src="https://js.stripe.com/v2/"></script>
+	<script src="https://checkout.stripe.com/checkout.js"></script>
 	<script src="resources/scripts/angular.js"></script>
 	<script src="resources/scripts/angular-animate.js"></script>
 	<script src="resources/scripts/angular-touch.js"></script>
@@ -20,26 +21,23 @@
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 
 <!-- injected scripts start -->
-	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-	<script src="https://checkout.stripe.com/checkout.js"></script>
-
-	<script src="app/authentication/authenticateController.js?ver=201508202130"></script>
-	<script src="app/devices/android.js?ver=201508202130"></script>
-	<script src="app/GPS/locationService.js?ver=201508202130"></script>
-	<script src="app/GPS/mapController.js?ver=201508202130"></script>
-	<script src="app/GPS/mapService.js?ver=201508202130"></script>
-	<script src="app/Numbers/guidService.js?ver=201508202130"></script>
-	<script src="app/page/pageController.js?ver=201508202130"></script>
-	<script src="common/errorHandler/debugController.js?ver=201508202130"></script>
-	<script src="common/errorHandler/errorService.js?ver=201508202130"></script>
-	<script src="common/scriptInjectorDirective/scriptInjectorDirective.js?ver=201508202130"></script>
-	<script src="customer/1_requestDelivery/requestDeliveryControler.js?ver=201508202130"></script>
-	<script src="customer/2_1_deliveryVerification/deliveryVerificationControler.js?ver=201508202130"></script>
-	<script src="customer/2_5_payment/paymentControler.js?ver=201508202130"></script>
-	<script src="demo/demoController.js?ver=201508202130"></script>
-	<script src="demo/demoService.js?ver=201508202130"></script>
-	<script src="driver/1_pickupMap/pickupMapControler.js?ver=201508202130"></script>
-	<script src="driver/takeDelivery/takeDeliveryControler.js?ver=201508202130"></script>
+	<script src="app/authentication/authenticateController.js?ver=201508221048"></script>
+	<script src="app/devices/android.js?ver=201508221048"></script>
+	<script src="app/GPS/locationService.js?ver=201508221048"></script>
+	<script src="app/GPS/mapController.js?ver=201508221048"></script>
+	<script src="app/GPS/mapService.js?ver=201508221048"></script>
+	<script src="app/Numbers/guidService.js?ver=201508221048"></script>
+	<script src="app/page/pageController.js?ver=201508221048"></script>
+	<script src="common/errorHandler/debugController.js?ver=201508221048"></script>
+	<script src="common/errorHandler/errorService.js?ver=201508221048"></script>
+	<script src="common/scriptInjectorDirective/scriptInjectorDirective.js?ver=201508221048"></script>
+	<script src="customer/1_requestDelivery/requestDeliveryControler.js?ver=201508221048"></script>
+	<script src="customer/2_1_deliveryVerification/deliveryVerificationControler.js?ver=201508221048"></script>
+	<script src="customer/2_5_findDriver/findDriverControler.js?ver=201508221048"></script>
+	<script src="demo/demoController.js?ver=201508221048"></script>
+	<script src="demo/demoService.js?ver=201508221048"></script>
+	<script src="driver/1_pickupMap/pickupMapControler.js?ver=201508221048"></script>
+	<script src="driver/takeDelivery/takeDeliveryControler.js?ver=201508221048"></script>
 <!-- injected scripts end -->
 </head>
 <body>

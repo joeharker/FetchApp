@@ -1,0 +1,12 @@
+﻿<div class="hidden">{{ page.theme = 'lighter'; }}</div>
+<div ng-controller="FindDriverCtrl as driver">
+
+	{{ driver.message }}
+	
+	<br />
+
+	<button ng-click="driver.submit(('Delivery of '+ demo.content), (demo.price * 100), page);" class="medium wide light">
+		Pay With Card
+	</button>
+
+</div>
