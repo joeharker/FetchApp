@@ -1,5 +1,5 @@
 /*global app */
-app.factory('DemoSrvc', [
+app.factory('DeliverySrvc', [
     function () {
         'use strict';
     	var s = {},

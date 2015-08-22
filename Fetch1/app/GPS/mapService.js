@@ -60,7 +60,7 @@ function (ErrorService, locationService, $q, $rootScope) {
 						position: results[0].geometry.location
 					});
 				}
-				deferred.resolve(results[0].formatted_address);
+				deferred.resolve(results[0].formatted_address + '|' + results[0].geometry.location.G + '|' + results[0].geometry.location.K);
 			} else {
 				deferred.reject(status);
 			}
@@ -83,7 +83,6 @@ function (ErrorService, locationService, $q, $rootScope) {
 					});
 				}
 				var root = '';
-				console.log(navigator.userAgent);
 				if (navigator.userAgent.search(/(iPad)|(iPhone)|(iPod)/i) != -1) {
 					root = 'maps:q=';
 				//} else if (navigator.userAgent.search(/(Android)|(Chrome)/i) != -1) {

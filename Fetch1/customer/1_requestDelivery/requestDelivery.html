@@ -1,29 +1,29 @@
 ﻿<div class="hidden">{{ page.theme = 'lighter'; page.title = 'MY DELIVERY INFORMATION'; }}</div>
-<div ng-controller="DemoCtrl as demo">
+<div ng-controller="DeliveryCtrl as demo">
 	<div ng-controller="RequestDeliveryController as delivery">
 		<form ng-keyup="enableNext = delivery.validatePage()" ng-init="enableNext = delivery.validatePage()">
 			<div class="short"></div>
 			PACKAGE SIZE
 			<br />
-			<button class="medium skinnier dark fa fa-envelope" ng-click="demo.setSize('small');" ng-class="demo.size==='small' ? 'selected' : 'x'"></button>
+			<button class="medium skinnier dark fa fa-envelope" ng-click="demo.setSize('small');" ng-class="demo.data.size==='small' ? 'selected' : 'x'"></button>
 			<span class="skinniest"></span>
-			<button class="medium skinnier dark fa fa-gift" ng-click="demo.setSize('medium');" ng-class="demo.size==='medium' ? 'selected' : 'x'"></button>
+			<button class="medium skinnier dark fa fa-gift" ng-click="demo.setSize('medium');" ng-class="demo.data.size==='medium' ? 'selected' : 'x'"></button>
 			<span class="skinniest"></span>
-			<button class="medium skinnier dark fa fa-bicycle" ng-click="demo.setSize('large');" ng-class="demo.size==='large' ? 'selected' : 'x'"></button>
+			<button class="medium skinnier dark fa fa-bicycle" ng-click="demo.setSize('large');" ng-class="demo.data.size==='large' ? 'selected' : 'x'"></button>
 			<div class="short"></div>
 			<div class="window">
 				<table style="width: 99%;">
-					<tr><td>PICKUP<br />ADDRESS	</td><td><textarea ng-blur="delivery.cleanPickupAddress(demo);" style="width: 100%;" ng-model="demo.pickup" ng-change="demo.setPickup()" placeholder="Full Address" ng-class="demo.pickup==='' ? 'error' : 'x'"></textarea></td></tr>
-					<tr><td>DEL.<br />ADDRESS	</td><td><textarea ng-blur="delivery.cleanDeliveryAddress(demo);" style="width: 100%;" ng-model="demo.delivery" ng-change="demo.setDelivery()" placeholder="Full Address" ng-class="demo.delivery==='' ? 'error' : 'x'"></textarea></td></tr>
+					<tr><td>PICKUP<br />ADDRESS	</td><td><textarea ng-blur="delivery.cleanPickupAddress(demo);" style="width: 100%;" ng-model="demo.data.pickup" ng-change="demo.setPickup();" placeholder="Full Address" ng-class="demo.data.pickup==='' ? 'error' : 'x'"></textarea></td></tr>
+					<tr><td>DEL.<br />ADDRESS	</td><td><textarea ng-blur="delivery.cleanDeliveryAddress(demo);" style="width: 100%;" ng-model="demo.data.delivery" ng-change="demo.setDelivery();" placeholder="Full Address" ng-class="demo.data.delivery==='' ? 'error' : 'x'"></textarea></td></tr>
 				</table>
 			</div>
 			<div class="short">
-				<input readonly="readonly" type="text" ng-model="demo.distance" placeholder="need drivable addresses" ng-class="demo.distance==='' ? 'error' : 'x'" />
+				<input readonly="readonly" type="text" ng-model="demo.data.distance" placeholder="need drivable addresses" ng-class="demo.data.distance==='' ? 'error' : 'x'" />
 			</div>
 			<div class="window">
 				<table style="width: 99%;">
-					<tr><td>CONTENTS			</td><td><input type="text" style="width: 100%;" ng-model="demo.content" ng-change="demo.setContent()" placeholder="Content description" ng-class="demo.content==='' ? 'error' : 'x'" /></td></tr>
-					<tr><td>WEIGHT				</td><td><input type="text" style="width: 100%;" ng-model="demo.weight" ng-change="delivery.validateWeight(demo); demo.setWeight()" placeholder="Weight in pounds" ng-class="demo.weight==='' ? 'error' : 'x'" /></td></tr>
+					<tr><td>CONTENTS			</td><td><input type="text" style="width: 100%;" ng-model="demo.data.content" ng-change="demo.setContent()" placeholder="Content description" ng-class="demo.data.content==='' ? 'error' : 'x'" /></td></tr>
+					<tr><td>WEIGHT				</td><td><input type="text" style="width: 100%;" ng-model="demo.data.weight" ng-change="delivery.validateWeight(demo); demo.setWeight()" placeholder="Weight in pounds" ng-class="demo.data.weight==='' ? 'error' : 'x'" /></td></tr>
 				</table>
 			</div>
 			<div class="short"></div>
@@ -32,7 +32,7 @@
 					<table style="width: 99%;">
 						<tr>
 							<td>INSTRUCTIONS	</td>
-							<td><textarea style="width: 100%;" ng-model="demo.instructions" ng-change="demo.setInstructions()"></textarea></td>
+							<td><textarea style="width: 100%;" ng-model="demo.data.instructions" ng-change="demo.setInstructions()"></textarea></td>
 						</tr>
 					</table>
 				</div>

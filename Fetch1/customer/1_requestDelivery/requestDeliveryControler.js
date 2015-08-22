@@ -5,40 +5,71 @@ function (mapService, $q) {
 	c.win = {};
 
 	var checkDistance = function (form) {
-		mapService.calculateRoute(form.pickup, form.delivery)
+		mapService.calculateRoute(form.data.pickup, form.data.delivery)
 		.then(function (rout) {
-			form.distance = (rout.meters / 1609.34).toFixed(2) + ' miles';
+			form.data.distance = (rout.meters / 1609.34).toFixed(2) + ' miles';
 		}, function (reason) {
-			form.distance = '';
+			form.data.distance = '';
+		});
+	};
+
+	c.getLatLng = function (address, lat, long) {
+		mapService.getGeo(address)
+		.then(function (latLng) {
+			console.log(latLng);
+			//lat = latLng;
+			//long = latLng;
 		});
 	};
 
 	c.cleanPickupAddress = function (form) {
-		mapService.cleanAddress(form.pickup)
-		.then(function (clean) {
-			form.pickup = clean;
+		mapService.cleanAddress(form.data.pickup)
+		.then(function (result) {
+			var results = result.split('|');
+			form.data.pickup = results[0];
+			form.data.pickUpLat = results[1];
+			form.data.pickUpLong = results[2];
+			
+			form.setPickUpLat();
+			form.setPickUpLong();
 		}, function (reason) {
-			form.pickup = '';
+			form.data.pickup = '';
+			form.data.pickUpLat = '';
+			form.data.pickUpLong = '';
+
+			form.setPickUpLat();
+			form.setPickUpLong();
 		});
 
 		checkDistance(form);
 	};
 
 	c.cleanDeliveryAddress = function (form) {
-		mapService.cleanAddress(form.delivery)
-		.then(function (clean) {
-			form.delivery = clean;
+		mapService.cleanAddress(form.data.delivery)
+		.then(function (result) {
+			var results = result.split('|');
+			form.data.delivery = results[0];
+			form.data.dropLat = results[1];
+			form.data.dropLong = results[2];
+
+			form.setDropLat();
+			form.setDropLong();
 		}, function (reason) {
-			form.delivery = '';
+			form.data.delivery = '';
+			form.data.dropLat = '';
+			form.data.dropLong = '';
+
+			form.setDropLat();
+			form.setDropLong();
 		});
 
 		checkDistance(form);
 	};
 
 	c.validateWeight = function (form) {
-		if(parseFloat(form.weight) != form.weight)
+		if (parseFloat(form.data.weight) != form.data.weight)
 		{
-			form.weight = '';
+			form.data.weight = '';
 		}
 	};
 

@@ -1,6 +1,6 @@
 ﻿<div class="hidden">{{ page.theme = 'darker'; }}</div>
 <div ng-controller="MapController as map">
-	<div ng-controller="DemoCtrl as demo" ng-init="map.calculateRoute(demo.pickup, demo.delivery)">
+	<div ng-controller="DeliveryCtrl as demo" ng-init="map.calculateRoute(demo.data.pickup, demo.data.delivery)">
 		<div class="short"></div>
 		<div id="map-canvas"></div>
 		<br />

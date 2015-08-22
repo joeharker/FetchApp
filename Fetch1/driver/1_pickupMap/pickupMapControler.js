@@ -5,13 +5,13 @@ function (mapService) {
 
 	c.init = function (form, page) {
 		mapService.addPin( 
-			form.pickup
+			form.data.pickup
 			, function() { 
 				page.load('driver/takeDelivery/takeDelivery.html');
 			}
 		);
 		mapService.addPin(
-			form.delivery
+			form.data.delivery
 			, function () {
 				page.load('driver/takeDelivery/takeDelivery.html');
 			}

@@ -1,15 +1,15 @@
 ﻿/// <reference path="../3_trackMap/trackMap.html" />
 /*global app */
-app.controller('DeliveryVerificationCtrl', ['mapService', '$q', 'DemoSrvc', '$interval',
-function (mapService, $q, DemoSrvc, $interval) {
+app.controller('DeliveryVerificationCtrl', ['mapService', '$q', 'DeliverySrvc', '$interval',
+function (mapService, $q, DeliverySrvc, $interval) {
 	var c = this;
 
 	c.calculateCost = function (form) {
-		mapService.calculateRoute(form.pickup, form.delivery)
+		mapService.calculateRoute(form.data.pickup, form.data.delivery)
 		.then(function (rout) {
 			var price = 0.0;
 
-			switch(form.size) {
+			switch (form.data.size) {
 				case 'small':
 					price = 0.99;
 					price += 0.0007 * rout.meters;
@@ -32,11 +32,11 @@ function (mapService, $q, DemoSrvc, $interval) {
 
 					break;
 				default:
-					console.log('Unknown size: ' + form.size);
+					console.log('Unknown size: ' + form.data.size);
 			}
 
-			form.price = price.toFixed(2);
-			DemoSrvc.set('price', form.price);
+			form.data.price = price.toFixed(2);
+			DeliverySrvc.set('price', form.data.price);
 		}, function (reason) {
 			console.log(['Failed', reason]);
 		});

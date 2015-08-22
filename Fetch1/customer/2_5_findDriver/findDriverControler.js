@@ -5,7 +5,16 @@ function ($q, $scope, $http, $interval) {
 
 	c.message = 'Waiting for a driver';
 
-	//TODO post the delivery request
+	c.init = function (json) {
+		console.log(json);
+		//$http.post('http://fetch001.azurewebsites.net/api/delivery', json)
+		$http.post('http://localhost:3175/api/delivery', json)
+			.then(function (response) {
+				console.log(response);
+			}, function (e) {
+				console.log(e);
+		});
+	};
 
 	var thisToken = {};
 	var handler = StripeCheckout.configure({
@@ -14,7 +23,7 @@ function ($q, $scope, $http, $interval) {
 		locale: 'auto',
 		token: function (token) {
 			// Use the token to create the charge with a server-side script.
-			// You can access the token ID with `token.id`
+			// You can access the token ID with 'token.id'
 			thisToken = token;
 		}
 	})
