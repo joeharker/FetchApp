@@ -44,7 +44,7 @@ app.controller('PageCtrl', [
         if (match !== null) {
             c.template = match[1];
         } else {
-        	c.template = root + 'app/clientType/clientType.html' + ver;
+        	c.template = root + 'app/page/start.html' + ver;
         }
 
         return c;

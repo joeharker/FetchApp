@@ -1,18 +1,17 @@
 ﻿/*global app */
-app.controller('FindDriverCtrl', ['$q', '$scope', '$http', '$interval',
-function ($q, $scope, $http, $interval) {
+app.controller('FindDriverCtrl', ['$q', '$scope', '$http', '$interval','ConfigSrvc',
+function ($q, $scope, $http, $interval, ConfigSrvc) {
 	var c = this;
 
-	c.message = 'Waiting for a driver';
+	c.message = 'Posting your request';
 
 	c.init = function (json) {
-		console.log(json);
-		//$http.post('http://fetch001.azurewebsites.net/api/delivery', json)
-		$http.post('http://localhost:3175/api/delivery', json)
+		$http.post(ConfigSrvc.serviceUrl + '/api/delivery', json)
 			.then(function (response) {
 				console.log(response);
+				c.message = 'Waiting for a Deliverer';
 			}, function (e) {
-				console.log(e);
+				c.message = 'An error has occured';
 		});
 	};
 
@@ -43,7 +42,6 @@ function ($q, $scope, $http, $interval) {
 		ticker = $interval(function () {
 			if (thisToken.id !== undefined) {
 				$interval.cancel(ticker);
-				console.log(thisToken);
 				page.load('customer/3_trackMap/trackMap.html');
 			}
 		}, 1000);
