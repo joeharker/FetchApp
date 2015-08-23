@@ -13,15 +13,6 @@ function (mapService, $q) {
 		});
 	};
 
-	c.getLatLng = function (address, lat, long) {
-		mapService.getGeo(address)
-		.then(function (latLng) {
-			console.log(latLng);
-			//lat = latLng;
-			//long = latLng;
-		});
-	};
-
 	c.cleanPickupAddress = function (form) {
 		mapService.cleanAddress(form.data.pickup)
 		.then(function (result) {
@@ -80,14 +71,6 @@ function (mapService, $q) {
 
 	c.verifyWindow = function () {
 		c.win = window.open('customer/2.5_payment/payment.html');
-	};
-
-	c.test = function () {
-		console.log(c.win.location.href);
-	};
-
-	c.close = function () {
-		c.win.close();
 	};
 
 	return c;

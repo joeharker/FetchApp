@@ -4,12 +4,14 @@ function ($q, $scope, $http, $interval, ConfigSrvc) {
 	var c = this;
 
 	c.message = 'Posting your request';
+	c.ready = false;
 
 	c.init = function (json) {
 		$http.post(ConfigSrvc.serviceUrl + '/api/delivery', json)
 			.then(function (response) {
-				console.log(response);
 				c.message = 'Waiting for a Deliverer';
+				//TODO interval wait for driver offer
+				//	c.ready = true;
 			}, function (e) {
 				c.message = 'An error has occured';
 		});

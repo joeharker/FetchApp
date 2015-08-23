@@ -7,7 +7,7 @@ function (mapService, $q) {
 		mapService.getGeo(form.data.delivery)
 		.then(function (latLng) {
 			form.data.latLng = latLng;
-			console.log(latLng);
+			//console.log(latLng);
 		});
 	};
 
