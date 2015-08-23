@@ -1,12 +1,12 @@
 ﻿/*global app */
-app.controller('AuthCtrl', ['guidService', 'ConfigSrvc','DeliverySrvc','$interval','$http',
+app.controller('AuthCtrl', ['GuidService', 'ConfigSrvc','DeliverySrvc','$interval','$http',
 	//TODO turn into strip service
-    function (guidService, ConfigSrvc, DeliverySrvc, $interval, $http) {
+    function (GuidService, ConfigSrvc, DeliverySrvc, $interval, $http) {
         'use strict';
         var c = this;
         var ticker;
 
-        c.guid = guidService.guid();
+        c.guid = GuidService.guid();
         c.win = {};
 
         c.oauth = function (page) {

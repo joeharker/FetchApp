@@ -1,5 +1,5 @@
 ﻿/*global app */
-app.factory('guidService', [
+app.factory('GuidService', [
 function () {
 	var s = this;
 
