@@ -11,7 +11,14 @@ app.controller('AuthCtrl', ['GuidService', 'ConfigSrvc','DeliverySrvc','$interva
 
         c.oauth = function (page) {
         	console.log('https://connect.stripe.com/oauth/authorize?response_type=code&client_id=' + ConfigSrvc.stripeClientId + '&state=' + c.guid);
-        	c.win = window.open('https://connect.stripe.com/oauth/authorize?response_type=code&client_id=' + ConfigSrvc.stripeClientId + '&state=' + c.guid);
+        	c.win = window.open('https://connect.stripe.com/oauth/authorize?response_type=code&client_id=' + ConfigSrvc.stripeClientId + '&state=' + c.guid, '_blank');
+
+			////just for phone gap
+        	//c.win.addEventListener('loadstop', function (event) {
+        	//	if (event.url.match("mobile/close")) {
+        	//		c.win.close();
+        	//	}
+        	//});
 
         	//wait for confirmation
         	ticker = $interval(function () {
