@@ -1,21 +1,57 @@
 ﻿/*global app */
-app.controller('PickupMapControler', ['mapService',
-function (mapService) {
+app.controller('PickupMapControler', ['mapService', 'locationService', '$interval', '$http', 'ConfigSrvc', 'DeliverySrvc',
+function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrvc) {
 	var c = this;
+	var ticker = {};
+	c.form = {};
+	c.page = {};
+	c.message = 'Finding your location';
+	c.mapMarkers = [];
 
 	c.init = function (form, page) {
-		mapService.addPin( 
-			form.data.pickup
-			, function() { 
-				page.load('driver/takeDelivery/takeDelivery.html');
+		c.form = form;
+		c.page = page;
+		ticker = $interval(function () {
+			if (locationService.position.latitude !== locationService.initLat && locationService.position.longitude !== locationService.initLon) {
+				$interval.cancel(ticker);
+				c.message = 'Finding delivery opertoonities';
+				startUpdates();
 			}
-		);
-		mapService.addPin(
-			form.data.delivery
-			, function () {
-				page.load('driver/takeDelivery/takeDelivery.html');
-			}
-		);
+		}, 1000);
+	};
+
+	var startUpdates = function () {
+		ticker = $interval(function () {
+			$http.get(ConfigSrvc.serviceUrl + '/api/delivery?lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude)
+				.then(function (response) {
+					c.message = 'Click a pickup to view the request';
+
+					//clear old markers
+					angular.forEach(c.mapMarkers, function (pin, i) {
+						pin.setMap(null);
+					});
+					c.mapMarkers = [];
+
+					//add new markers
+					angular.forEach(response.data, function (pin, i) {
+						c.mapMarkers.push(
+							mapService.addPin(
+								pin.address
+								, function () {
+									$interval.cancel(ticker);
+									DeliverySrvc.set('deliveryId', pin.id);
+									c.page.load('driver/takeDelivery/takeDelivery.html');
+								}
+							)
+						);
+					});
+
+					//center
+					mapService.centerMap(locationService.position.latitude, locationService.position.longitude);
+				}, function (e) {
+					c.message = 'An error has occured';
+				});
+		}, 5000);
 	};
 
 	return c;

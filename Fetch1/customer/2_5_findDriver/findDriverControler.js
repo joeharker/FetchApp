@@ -11,7 +11,7 @@ function ($q, $scope, $http, $interval, ConfigSrvc) {
 			.then(function (response) {
 				c.message = 'Waiting for a Deliverer';
 				//TODO interval wait for driver offer
-				//	c.ready = true;
+														c.ready = true;
 			}, function (e) {
 				c.message = 'An error has occured';
 		});

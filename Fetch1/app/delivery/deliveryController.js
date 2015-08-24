@@ -19,6 +19,7 @@ app.controller('DeliveryCtrl', ['DeliverySrvc',
   	c.data.dropLong = DeliverySrvc.get('dropLong');
   	c.data.size = (DeliverySrvc.get('size') === '') ? 'small' : DeliverySrvc.get('size');
   	c.myId = DeliverySrvc.get('myId');
+  	c.deliveryId = DeliverySrvc.get('deliveryId');
 
   	c.setPickup = function () { DeliverySrvc.set('pickup', c.data.pickup); };
   	c.setDelivery = function () { DeliverySrvc.set('delivery', c.data.delivery); };
@@ -34,6 +35,7 @@ app.controller('DeliveryCtrl', ['DeliverySrvc',
   	c.setDropLong = function () { DeliverySrvc.set('dropLong', c.data.dropLong); };
   	c.setSize = function (size) { c.data.size = size; DeliverySrvc.set('size', size); };
   	c.setMyId = function () { DeliverySrvc.set('myId', c.myId); };
+  	c.setDeliveryId = function () { DeliverySrvc.set('deliveryId', c.deliveryId); };
 
   	return c;
   }]);

@@ -4,9 +4,12 @@ function (ErrorService) {
 	var s = this;
 	var watchPositionOptions = { enableHighAccuracy: true };
 
+	s.initLat = 39.738911;
+	s.initLon = -104.990311;
+
 	s.position = {	//initialization is the denver city building and ends in 911 and 311
-		latitude: 39.738911,
-		longitude: -104.990311
+		latitude: s.initLat,
+		longitude: s.initLon
 	};
 
 	var watchPositionSuccess = function (position) {

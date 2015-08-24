@@ -101,11 +101,12 @@ function (ErrorService, locationService, $q, $rootScope) {
 
 	s.addPin = function (address, callback) {
 		var geocoder = new google.maps.Geocoder();
+		var marker = new google.maps.Marker();
 
 		geocoder.geocode({ 'address': address }, function (results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				if (s.googleMap !== undefined) {
-					var marker = new google.maps.Marker({
+					marker = new google.maps.Marker({
 						map: s.googleMap,
 						position: results[0].geometry.location
 					});
@@ -116,6 +117,8 @@ function (ErrorService, locationService, $q, $rootScope) {
 				}
 			}
 		});
+
+		return marker;
 	};
 
 	return s;
