@@ -36,11 +36,15 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrv
 					angular.forEach(response.data, function (pin, i) {
 						c.mapMarkers.push(
 							mapService.addPin(
-								pin.address
+								pin.pickup
 								, function () {
 									$interval.cancel(ticker);
-									DeliverySrvc.set('deliveryId', pin.id);
-									c.page.load('driver/takeDelivery/takeDelivery.html');
+									for (var key in pin) {
+										if (key in c.form.data) {
+											DeliverySrvc.set(key, pin[key]);
+										}
+									}
+									c.page.load('driver/2_viewDeliver/viewDelivery.html');
 								}
 							)
 						);

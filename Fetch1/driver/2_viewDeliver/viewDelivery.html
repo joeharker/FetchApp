@@ -1,6 +1,6 @@
 ﻿<div class="hidden">{{ page.theme = 'lighter'; page.title = 'DELIVERY' }}</div>
 	<div ng-controller="DeliveryCtrl as demo">
-		<div ng-controller="TakeDeliveryCtrl as delivery" ng-init="delivery.getLatLng(demo);">
+		<div ng-controller="ViewDeliveryCtrl as delivery" ng-init="delivery.getLatLng(demo);">
 			<div class="short"></div>
 			DELIVERY INFO {{demo.deliveryId}}
 			<div class="short"></div>
@@ -35,8 +35,8 @@
 				REJECT
 			</button>
 			<span class="skinniest"></span>
-			<a ng-href="{{ demo.data.latLng }}" target="_blank" class="medium wide light">
-			ACCEPT
-			</a>
+			<button ng-click="page.load('driver/3_startDelivery/startDelivery.html');" class="medium wide light">
+				ACCEPT
+			</button>
 		</div>
 </div>

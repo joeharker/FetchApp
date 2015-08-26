@@ -23,7 +23,7 @@ app.controller('AuthCtrl', ['GuidService', 'ConfigSrvc','DeliverySrvc','$interva
 							page.load('driver/1_pickupMap/pickupMap.html');
 						}
 					}, function (e) {
-						console.log(e);
+						//This happens first try if the service is sleeping
 				});
         	}, 1000);
         };

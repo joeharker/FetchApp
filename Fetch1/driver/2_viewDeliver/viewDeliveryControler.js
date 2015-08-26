@@ -1,5 +1,5 @@
 ﻿/*global app */
-app.controller('TakeDeliveryCtrl', ['mapService', '$q',
+app.controller('ViewDeliveryCtrl', ['mapService', '$q',
 function (mapService, $q) {
 	var c = this;
 
