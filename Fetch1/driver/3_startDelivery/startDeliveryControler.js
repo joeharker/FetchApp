@@ -7,7 +7,7 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService) {
 	c.latLngUrl = "";
 	
 	c.init = function (form) {
-		mapService.getGeoUrl(form.data.delivery)
+		mapService.getGeoUrl(form.data.pickup)
 		.then(function (latLngUrl) {
 			c.latLngUrl = latLngUrl;
 		});
