@@ -69,7 +69,7 @@ function (ErrorService, locationService, $q, $rootScope) {
 		return deferred.promise;
 	};
 
-	s.getGeo = function (address) {
+	s.getGeoUrl = function (address) {
 		var geocoder = new google.maps.Geocoder();
 		var deferred = $q.defer();
 

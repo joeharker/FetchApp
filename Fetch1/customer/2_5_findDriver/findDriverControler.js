@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.controller('FindDriverCtrl', ['$q', '$scope', '$http', '$interval','ConfigSrvc','DeliverySrvc',
-function ($q, $scope, $http, $interval, ConfigSrvc, DeliverySrvc) {
+app.controller('FindDriverCtrl', ['$q', '$scope', '$http', '$interval','ConfigSrvc','DeliverySrvc','EnumSrvc',
+function ($q, $scope, $http, $interval, ConfigSrvc, DeliverySrvc, EnumSrvc) {
 	var c = this;
 
 	c.message = 'Posting your request';
@@ -15,10 +15,9 @@ function ($q, $scope, $http, $interval, ConfigSrvc, DeliverySrvc) {
 
 				//wait for driver offer
 				ticker = $interval(function () {
-					$http.post(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId='+ deliveryResponse.data)
+					$http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId='+ deliveryResponse.data)
 						.then(function (driverResponse) {
-							console.log(driverResponse.data);
-							if (driverResponse.data === 1) {	//TODO make an ENUM service
+							if (driverResponse.data === EnumSrvc.NextNeed.Payment) {
 								$interval.cancel(ticker);
 								c.message = 'A deliverer is ready. Please pay to start the delivery';
 								c.ready = true;
@@ -51,6 +50,7 @@ function ($q, $scope, $http, $interval, ConfigSrvc, DeliverySrvc) {
 		//wait for confirmation
 		ticker = $interval(function () {
 			if (thisToken.id !== undefined) {
+				console.log(thisToken);
 				$interval.cancel(ticker);
 				page.load('customer/3_trackMap/trackMap.html');
 			}

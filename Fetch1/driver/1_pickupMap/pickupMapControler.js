@@ -39,6 +39,8 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrv
 								pin.pickup
 								, function () {
 									$interval.cancel(ticker);
+
+									//auto map
 									for (var key in pin) {
 										if (key in c.form.data) {
 											DeliverySrvc.set(key, pin[key]);

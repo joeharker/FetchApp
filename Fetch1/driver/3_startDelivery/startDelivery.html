@@ -1,8 +1,12 @@
 ﻿<div class="hidden">{{ page.theme = 'darker'; }}</div>
 <div ng-controller="DeliveryCtrl as demo">
 	<div ng-controller="startControler as start" ng-init="start.init(demo)">
-		<a ng-href="{{ demo.data.latLng }}" target="_blank" class="medium wide light">
-			Start Driving Instructions
+		<div class="short"></div>
+		{{ start.message }}
+		<div class="short"></div>
+		<a ng-href="{{ start.latLngUrl }}" target="_blank" class="medium wide light" ng-show="start.latLngUrl">
+			Get Driving Instructions to the pickup address<br />
+			{{ demo.data.pickup }}
 		</a>
 	</div>
 </div>

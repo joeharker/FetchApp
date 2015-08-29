@@ -5,6 +5,7 @@ app.controller('DeliveryCtrl', ['DeliverySrvc',
   	var c = this;
 
   	c.data = {};
+  	c.data.deliveryId = DeliverySrvc.get('deliveryId');
   	c.data.pickup = DeliverySrvc.get('pickup');
   	c.data.delivery = DeliverySrvc.get('delivery');
   	c.data.weight = DeliverySrvc.get('weight');
@@ -20,8 +21,8 @@ app.controller('DeliveryCtrl', ['DeliverySrvc',
   	c.data.size = (DeliverySrvc.get('size') === '') ? 'small' : DeliverySrvc.get('size');
 
   	c.myId = DeliverySrvc.get('myId');
-  	c.deliveryId = DeliverySrvc.get('deliveryId');
 
+  	c.setDeliveryId = function () { DeliverySrvc.set('deliveryId', c.data.deliveryId); };
   	c.setPickup = function () { DeliverySrvc.set('pickup', c.data.pickup); };
   	c.setDelivery = function () { DeliverySrvc.set('delivery', c.data.delivery); };
   	c.setWeight = function () { DeliverySrvc.set('weight', c.data.weight); };
@@ -37,7 +38,6 @@ app.controller('DeliveryCtrl', ['DeliverySrvc',
   	c.setSize = function (size) { c.data.size = size; DeliverySrvc.set('size', size); };
 
   	c.setMyId = function () { DeliverySrvc.set('myId', c.myId); };
-  	c.setDeliveryId = function () { DeliverySrvc.set('deliveryId', c.deliveryId); };
 
   	return c;
   }]);
