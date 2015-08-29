@@ -76,7 +76,7 @@ function ($q, $scope, $http, $interval, ConfigSrvc, DeliverySrvc, EnumSrvc) {
 				payment.livemode = thisToken.livemode;
 				payment.type = thisToken.type;
 				payment.used = thisToken.used;
-				$http.post(/*ConfigSrvc.serviceUrl +*/ 'http://localhost:3175/api/pay', payment)
+				$http.post(ConfigSrvc.serviceUrl + '/api/pay', payment)
 				.then(function (payResponse) {
 					page.load('customer/3_trackMap/trackMap.html');
 				}, function (e) {
