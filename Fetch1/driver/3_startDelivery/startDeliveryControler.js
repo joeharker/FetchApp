@@ -18,8 +18,8 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService) {
 
 				ticker = $interval(function () {
 					$http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + form.data.deliveryId)
-						.then(function (driverResponse) {
-							if (driverResponse.data === EnumSrvc.NextNeed.Pickup) {
+						.then(function (status) {
+							if (status.data.nextNeed === EnumSrvc.NextNeed.Pickup) {
 								$interval.cancel(ticker);
 								c.message = 'Payment is in holding account Please pick up the package';
 							}

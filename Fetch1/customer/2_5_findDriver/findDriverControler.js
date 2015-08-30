@@ -16,8 +16,8 @@ function ($q, $scope, $http, $interval, ConfigSrvc, DeliverySrvc, EnumSrvc) {
 				//wait for driver offer
 				ticker = $interval(function () {
 					$http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId='+ deliveryResponse.data)
-						.then(function (driverResponse) {
-							if (driverResponse.data === EnumSrvc.NextNeed.Payment) {
+						.then(function (status) {
+							if (status.data.nextNeed === EnumSrvc.NextNeed.Payment) {
 								$interval.cancel(ticker);
 								c.message = 'A deliverer is ready. Please pay to start the delivery';
 								c.ready = true;

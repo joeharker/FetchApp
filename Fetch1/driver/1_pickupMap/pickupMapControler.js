@@ -22,6 +22,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrv
 
 	var startUpdates = function () {
 		ticker = $interval(function () {
+			mapService.centerMap(locationService.position.latitude, locationService.position.longitude);
 			$http.get(ConfigSrvc.serviceUrl + '/api/delivery?lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude)
 				.then(function (response) {
 					c.message = 'Click a pickup to view the request';
@@ -51,9 +52,6 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrv
 							)
 						);
 					});
-
-					//center
-					mapService.centerMap(locationService.position.latitude, locationService.position.longitude);
 				}, function (e) {
 					c.message = 'An error has occured';
 				});
