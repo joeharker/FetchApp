@@ -1,13 +1,11 @@
 ﻿<div class="hidden">{{ page.theme = 'darker'; }}</div>
 <div ng-controller="MapController as map">
 	<div ng-controller="DeliveryCtrl as demo" ng-init="map.calculateRoute(demo.data.pickup, demo.data.delivery)">
-		<div class="short"></div>
-		<div id="map-canvas"></div>
-		<br />
-		<button class="wide dark" ng-click="page.load('customer/4_deliveredVerification/deliveredVerification.html');" ng-hide="special">
-			Click here when
+		<div ng-controller="TrackControler as track" ng-init="track.init(demo, page)">
+			{{ track.message }}
+			<div class="short"></div>
+			<div id="map-canvas"></div>
 			<br />
-			Delivery Arrives
-		</button>
+		</div>
 	</div>
 </div>

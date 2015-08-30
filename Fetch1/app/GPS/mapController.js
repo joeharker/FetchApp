@@ -13,8 +13,8 @@ function (locationService, $interval, $timeout, mapService) {
 		});
 	};
 
-	c.addPin = function (address, ngexperession) {
-		mapService.addPin(address, ngexperession);
+	c.addPinAddress = function (address, ngexperession) {
+		mapService.addPinAddress(address, ngexperession);
 	};
 
 	return c;

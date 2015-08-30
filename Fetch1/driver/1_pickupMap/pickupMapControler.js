@@ -36,7 +36,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrv
 					//add new markers
 					angular.forEach(response.data, function (pin, i) {
 						c.mapMarkers.push(
-							mapService.addPin(
+							mapService.addPinAddress(
 								pin.pickup
 								, function () {
 									$interval.cancel(ticker);

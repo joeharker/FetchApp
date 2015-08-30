@@ -53,7 +53,6 @@ function ($q, $scope, $http, $interval, ConfigSrvc, DeliverySrvc, EnumSrvc) {
 		//wait for confirmation
 		ticker = $interval(function () {
 			if (thisToken.id !== undefined) {
-				console.log(thisToken);
 				$interval.cancel(ticker);
 
 				DeliverySrvc.set('myId', thisToken.email);

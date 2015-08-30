@@ -1,6 +1,6 @@
 ﻿<div class="hidden">{{ page.theme = 'darker'; }}</div>
 <div ng-controller="DeliveryCtrl as demo">
-	<div ng-controller="startControler as start" ng-init="start.init(demo)">
+	<div ng-controller="startControler as start" ng-init="start.init(demo, page)">
 		<div class="short"></div>
 		{{ start.message }}
 		<div class="short"></div>

@@ -99,11 +99,18 @@ function (ErrorService, locationService, $q, $rootScope) {
 		return deferred.promise;
 	};
 
-	s.addPin = function (address, callback) {
+	var addPin = function (geoType, location, callback) {
 		var geocoder = new google.maps.Geocoder();
 		var marker = new google.maps.Marker();
+		var geo = {};
 
-		geocoder.geocode({ 'address': address }, function (results, status) {
+		if (geoType === 'address') {
+			geo = { 'address': location };
+		} else {
+			geo = { 'location': location };
+		}
+
+		geocoder.geocode(geo, function (results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				if (s.googleMap !== undefined) {
 					marker = new google.maps.Marker({
@@ -119,6 +126,15 @@ function (ErrorService, locationService, $q, $rootScope) {
 		});
 
 		return marker;
+	};
+
+	s.addPinAddress = function (address, callback) {
+		return addPin('address', address, callback);
+	};
+
+	s.addPinLatLon = function (lat, lon, callback) {
+		var latlng = { lat: parseFloat(lat), lng: parseFloat(lon) };
+		return addPin('location', latlng, callback);
 	};
 
 	return s;
