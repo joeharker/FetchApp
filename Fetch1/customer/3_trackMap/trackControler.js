@@ -1,12 +1,14 @@
 ﻿/*global app */
-app.controller('TrackControler', ['mapService', 'locationService', '$interval', '$http', 'ConfigSrvc', 'DeliverySrvc',
-function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrvc) {
+app.controller('TrackControler', ['mapService', 'locationService', '$interval', '$http', 'ConfigSrvc', 'DeliverySrvc','cameraService',
+function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrvc, cameraService) {
 	var c = this;
 	var ticker = {};
 	c.message = 'Finding your location';
 	c.mapMarkers = [];
 	c.form = {};
 	c.page = {};
+	c.pickSrc = cameraService.transparent;
+	c.dropSrc = cameraService.transparent;
 
 	c.init = function (form, page) {
 		c.form = form;
@@ -38,6 +40,14 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrv
 							break;
 						case 3:
 							c.message = 'Aproaching drop off';
+							if (c.pickSrc === cameraService.transparent) {
+								$http.get(ConfigSrvc.serviceUrl + '/api/pickup?deliveryId=' + c.form.data.deliveryId)
+									.then(function (photo) {
+										c.pickSrc = photo.data;
+									}, function (x) {
+										c.message = 'Internet connection error';
+									});
+							}
 							break;
 						default:
 							c.page.load('customer/4_deliveredVerification/deliveredVerification.html');

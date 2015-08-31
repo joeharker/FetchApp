@@ -53,10 +53,18 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 		cameraService.quality = 0;
 		cameraService.takePhoto()
 		.then(function (photo) {
-			console.log(photo);
 			c.pickSrc = photo;
 			c.pickup = false;
 			c.drop = true;
+			$http.get(ConfigSrvc.serviceUrl + '/api/pickup?deliveryId=' + c.form.data.deliveryId + '&photo=' + photo)
+				.then(function (status) {
+					if (status.data.nextNeed === EnumSrvc.NextNeed.Pickup) {
+						$interval.cancel(ticker);
+						c.track();
+					}
+				}, function (x) {
+					c.message = 'net work error';
+				});
 		}, function (e) {
 			c.message = e;
 		});
