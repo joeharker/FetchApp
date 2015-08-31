@@ -9,6 +9,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrv
 	c.page = {};
 	c.pickSrc = cameraService.transparent;
 	c.dropSrc = cameraService.transparent;
+	c.accept = false;
 
 	c.init = function (form, page) {
 		c.form = form;
@@ -49,6 +50,18 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrv
 									});
 							}
 							break;
+						case 3:
+							c.message = 'Delivery has arived';
+							if (c.dropSrc === cameraService.transparent) {
+								c.accept = true;
+								$http.get(ConfigSrvc.serviceUrl + '/api/drop?deliveryId=' + c.form.data.deliveryId)
+									.then(function (photo) {
+										c.dropSrc = photo.data;
+									}, function (x) {
+										c.message = 'Internet connection error';
+									});
+							}
+							break;
 						default:
 							c.page.load('customer/4_deliveredVerification/deliveredVerification.html');
 					}
@@ -59,6 +72,10 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrv
 					c.message = 'Internet connection error';
 				});
 		}, 5000);
+	};
+
+	c.AcceptDelivery = function () {
+		$http.get(ConfigSrvc.serviceUrl + '/api/complete?deliveryId=' + c.form.data.deliveryId);
 	};
 
 	return c;

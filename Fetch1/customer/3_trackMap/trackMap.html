@@ -3,11 +3,16 @@
 	<div ng-controller="DeliveryCtrl as demo" ng-init="map.calculateRoute(demo.data.pickup, demo.data.delivery)">
 		<div ng-controller="TrackControler as track" ng-init="track.init(demo, page)">
 			{{ track.message }}
+
 			<div class="short"></div>
+			<button class="medium widest dark" ng-click="track.AcceptDelivery()" ng-show="track.accept">
+				Click to accept delivery
+			</button>
+			<img ng-src="{{track.dropSrc}}" class="widest" />
 			<div id="map-canvas"></div>
+			
 			<div class="short"></div>
 			<img ng-src="{{track.pickSrc}}" class="widest" />
-			<img ng-src="{{track.dropSrc}}" class="widest" />
 		</div>
 	</div>
 </div>

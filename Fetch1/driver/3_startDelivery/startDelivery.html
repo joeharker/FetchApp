@@ -3,18 +3,20 @@
 	<div ng-controller="startControler as start" ng-init="start.init(demo, page)">
 		<div class="short"></div>
 		{{ start.message }}
+		
 		<div class="short"></div>
 		<a ng-href="{{ start.latLngUrl }}" target="_blank" class="medium widest light" ng-show="start.latLngUrl">
-			Get Driving Instructions to the pickup address<br />
-			{{ demo.data.pickup }}
+			{{ start.addressMessage }}
 		</a>
+		
 		<div class="short"></div>
 		<button class="medium widest dark" ng-click="start.pickPhoto()" ng-show="start.pickup">
 			Take photo: proof of pick up
 		</button>
 		<img ng-src="{{start.pickSrc}}" class="widest" />
+		
 		<div class="short"></div>
-		<button class="medium widest dark" ng-click="" ng-show="start.drop">
+		<button class="medium widest dark" ng-click="start.dropPhoto()" ng-show="start.drop">
 			Take photo: proof of drop off
 		</button>
 		<img ng-src="{{start.dropSrc}}" class="widest" />

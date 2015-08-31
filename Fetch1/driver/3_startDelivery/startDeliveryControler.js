@@ -6,6 +6,7 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 	c.form = {};
 	c.page = {};
 	c.latLngUrl = "";
+	c.addressMessage = '';
 	c.pickup = false;
 	c.drop = false;
 	c.pickSrc = cameraService.transparent;
@@ -14,6 +15,7 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 	c.init = function (form, page) {
 		c.form = form;
 		c.page = page;
+		c.addressMessage = 'Get directions to Pickup<br />' + c.form.data.pickup;
 
 		mapService.getGeoUrl(form.data.pickup)
 		.then(function (latLngUrl) {
@@ -56,15 +58,35 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 			c.pickSrc = photo;
 			c.pickup = false;
 			c.drop = true;
-			$http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': c.form.data.deliveryId, 'photo': photo })
-				.then(function (status) {
-					if (status.data.nextNeed === EnumSrvc.NextNeed.Pickup) {
-						$interval.cancel(ticker);
-						c.track();
-					}
-				}, function (x) {
-					c.message = 'net work error';
-				});
+			c.addressMessage = 'Get directions to Drop off<br />' + c.form.data.delivery;
+			$http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': c.form.data.deliveryId, 'photo': photo });
+		}, function (e) {
+			c.message = e;
+		});
+	};
+
+	c.dropPhoto = function () {
+		cameraService.quality = 0;
+		cameraService.takePhoto()
+		.then(function (photo) {
+			c.dropSrc = photo;
+			c.pickup = false;
+			c.drop = false;
+			$http.post(ConfigSrvc.serviceUrl + '/api/drop', { 'deliveryId': c.form.data.deliveryId, 'photo': photo });
+			c.message = 'Waiting for customer to confirm pick up';
+
+			$interval.cancel(ticker);
+			ticker = $interval(function () {
+				$http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + c.form.data.deliveryId)
+					.then(function (status) {
+						if (status.data.nextNeed === EnumSrvc.NextNeed.Done) {
+							$interval.cancel(ticker);
+							c.page.load('../../customer/4_deliveredVerification/deliveredVerification.html');
+						}
+					}, function (x) {
+						c.message = 'net work error';
+					});
+			}, 5000);
 		}, function (e) {
 			c.message = e;
 		});
