@@ -75,15 +75,15 @@ button:disabled {
 .hidden { display: none; }
 
 .tall{
-	height: 88px;
+	min-height: 88px;
 }
 
 .medium{
-	height: 44px;
+	min-height: 44px;
 }
 
 .short{
-	height: 22px;
+	min-height: 22px;
 }
 
 .skinniest{

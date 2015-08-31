@@ -4,19 +4,19 @@
 		<div class="short"></div>
 		{{ start.message }}
 		<div class="short"></div>
-		<a ng-href="{{ start.latLngUrl }}" target="_blank" class="medium wide light" ng-show="start.latLngUrl">
+		<a ng-href="{{ start.latLngUrl }}" target="_blank" class="medium light" ng-show="start.latLngUrl">
 			Get Driving Instructions to the pickup address<br />
 			{{ demo.data.pickup }}
 		</a>
 		<br />
-		<button class="wide dark" ng-click="start.pickPhoto()" ng-show="start.pickup">
+		<button class="medium wide dark" ng-click="start.pickPhoto()" ng-show="start.pickup">
 			Take photo: proof of pick up
 		</button>
-		<img ng-src="{{start.pickSrc}}" />
+		<img ng-src="{{start.pickSrc}}" class="wide" />
 		<br />
-		<button class="wide dark" ng-click="" ng-show="start.drop">
+		<button class="medium wide dark" ng-click="" ng-show="start.drop">
 			Take photo: proof of drop off
 		</button>
-		<img ng-src="{{start.dropSrc}}" />
+		<img ng-src="{{start.dropSrc}}" class="wide" />
 	</div>
 </div>
