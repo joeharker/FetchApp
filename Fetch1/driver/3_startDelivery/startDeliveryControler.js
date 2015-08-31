@@ -50,7 +50,7 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 	};
 
 	c.pickPhoto = function () {
-		cameraService.quality = 10;
+		cameraService.quality = 0;
 		cameraService.takePhoto()
 		.then(function (photo) {
 			console.log(photo);
