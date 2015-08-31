@@ -32,15 +32,13 @@ function (mapService, $q, DeliverySrvc, $interval) {
 
 					break;
 				default:
-					//TODO Error handler
-					console.log('Unknown size: ' + form.data.size);
+					ErrorService.reportError('Unknown size:', form.data.size);
 			}
 
 			form.data.price = price.toFixed(2);
 			DeliverySrvc.set('price', form.data.price);
 		}, function (reason) {
-			//TODO Error handler
-			console.log(['Failed', reason]);
+			ErrorService.reportError('calculateCost Failed:', reason);
 		});
 	};
 

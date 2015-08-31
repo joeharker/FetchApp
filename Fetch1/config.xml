@@ -48,6 +48,7 @@
     <gap:plugin name="org.apache.cordova.device" />			<!-- core api -->
     <gap:plugin name="org.apache.cordova.geolocation" />	<!-- gps -->
 	<gap:plugin name="org.apache.cordova.inappbrowser" />	<!-- needed for authentication -->
+	<gap:plugin name="org.apache.cordova.camera" />			<!-- photos -->
 	<!--
     <gap:plugin name="org.apache.cordova.battery-status" />
     <gap:plugin name="org.apache.cordova.camera" />
