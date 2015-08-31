@@ -3,6 +3,7 @@ app.factory('cameraService', ['ErrorService','$q',
 function (ErrorService, $q) {
 	var s = this;
 
+	s.quality = 50;
 	s.transparent = 'data:image/gif;base64,R0lGODlhAQABALMAALu7uwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAwQCEEQAOw==';
 	s.deferred = $q.defer();
 	
