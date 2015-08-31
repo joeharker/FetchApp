@@ -52,7 +52,7 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 	};
 
 	c.pickPhoto = function () {
-		cameraService.quality = 0;
+		cameraService.quality = 10;
 		cameraService.takePhoto()
 		.then(function (photo) {
 			c.pickSrc = photo;
@@ -66,7 +66,6 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 	};
 
 	c.dropPhoto = function () {
-		cameraService.quality = 0;
 		cameraService.takePhoto()
 		.then(function (photo) {
 			c.dropSrc = photo;
@@ -82,7 +81,7 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 						c.message = status.data.nextNeed;
 						if (status.data.nextNeed === EnumSrvc.NextNeed.Transfer) {	//TODO change to Done
 							$interval.cancel(ticker);
-							c.page.load('../../customer/4_deliveredVerification/deliveredVerification.html');
+							c.page.load('../../../customer/4_deliveredVerification/deliveredVerification.html');
 						}
 					}, function (x) {
 						c.message = 'net work error';
