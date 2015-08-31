@@ -5,7 +5,7 @@ function (ErrorService, $q) {
 
 	s.quality = 50;
 	s.transparent = 'data:image/gif;base64,R0lGODlhAQABALMAALu7uwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAwQCEEQAOw==';
-	s.deferred = $q.defer();
+	s.deferred = {};
 	
 	var onSuccess = function (imageData) {
 		s.deferred.resolve("data:image/jpeg;base64," + imageData);
@@ -16,6 +16,8 @@ function (ErrorService, $q) {
 	};
 
 	s.takePhoto = function () {
+		s.deferred = $q.defer();
+
 		if (navigator.camera === undefined) {
 			alert("your phone does not appear to suport photos");
 		} else {
