@@ -15,7 +15,7 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 	c.init = function (form, page) {
 		c.form = form;
 		c.page = page;
-		c.addressMessage = 'Get directions to Pickup<br />' + c.form.data.pickup;
+		c.addressMessage = 'Get directions to Pickup ' + c.form.data.pickup;
 
 		mapService.getGeoUrl(form.data.pickup)
 		.then(function (latLngUrl) {
@@ -58,7 +58,7 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 			c.pickSrc = photo;
 			c.pickup = false;
 			c.drop = true;
-			c.addressMessage = 'Get directions to Drop off<br />' + c.form.data.delivery;
+			c.addressMessage = 'Get directions to Drop off ' + c.form.data.delivery;
 			$http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': c.form.data.deliveryId, 'photo': photo });
 		}, function (e) {
 			c.message = e;

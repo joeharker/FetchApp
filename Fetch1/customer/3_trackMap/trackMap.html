@@ -8,7 +8,7 @@
 			<button class="medium widest dark" ng-click="track.AcceptDelivery()" ng-show="track.accept">
 				Click to accept delivery
 			</button>
-			<img ng-src="{{track.dropSrc}}" class="widest" />
+			<img ng-src="{{track.dropSrc}}" class="widest" ng-show="track.accept" />
 			<div id="map-canvas"></div>
 			
 			<div class="short"></div>
