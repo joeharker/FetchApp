@@ -50,7 +50,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrv
 									});
 							}
 							break;
-						case 3:
+						case 4:
 							c.message = 'Delivery has arived';
 							if (c.dropSrc === cameraService.transparent) {
 								c.accept = true;
