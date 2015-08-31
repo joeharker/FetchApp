@@ -73,7 +73,7 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 			c.pickup = false;
 			c.drop = false;
 			$http.post(ConfigSrvc.serviceUrl + '/api/drop', { 'deliveryId': c.form.data.deliveryId, 'photo': photo });
-			c.message = 'Waiting for customer to confirm pick up';
+			c.message = 'Waiting for customer to confirm drop off';
 
 			$interval.cancel(ticker);
 			ticker = $interval(function () {
