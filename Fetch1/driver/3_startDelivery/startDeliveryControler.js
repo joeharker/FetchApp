@@ -8,8 +8,8 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 	c.latLngUrl = "";
 	c.pickup = false;
 	c.drop = false;
-	c.pickSrc = "";
-	c.dropSrc = "";
+	c.pickSrc = cameraService.transparent;
+	c.dropSrc = cameraService.transparent;
 	
 	c.init = function (form, page) {
 		c.form = form;
@@ -52,6 +52,7 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 	c.pickPhoto = function () {
 		cameraService.takePhoto()
 		.then(function (photo) {
+			console.log(photo);
 			c.pickSrc = photo;
 			c.pickup = false;
 			c.drop = true;
