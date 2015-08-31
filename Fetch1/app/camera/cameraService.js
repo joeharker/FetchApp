@@ -6,11 +6,9 @@ function (ErrorService, $q) {
 	s.quality = 50;
 	s.transparent = 'data:image/gif;base64,R0lGODlhAQABALMAALu7uwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAwQCEEQAOw==';
 	s.deferred = $q.defer();
-	s.lastImage = "";
 	
 	s.onSuccess = function (imageData) {
-		s.lastImage = imageData;
-		s.deferred.resolve("data:image/jpeg;base64," + s.lastImage);
+		s.deferred.resolve("data:image/jpeg;base64," + imageData);
 	};
 
 	s.onFail = function (message) {
@@ -21,7 +19,6 @@ function (ErrorService, $q) {
 		if (navigator.camera === undefined) {
 			alert("your phone does not appear to suport photos");
 		} else {
-			s.lastImage = "";
 			navigator.camera.getPicture(s.onSuccess, s.onFail, {
 				quality: 50,
 				destinationType: Camera.DestinationType.DATA_URL
