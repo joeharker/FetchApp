@@ -79,7 +79,8 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 			ticker = $interval(function () {
 				$http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + c.form.data.deliveryId)
 					.then(function (status) {
-						if (status.data.nextNeed === EnumSrvc.NextNeed.Done) {
+						c.message = status.data.nextNeed;
+						if (status.data.nextNeed === EnumSrvc.NextNeed.Transfer) {	//TODO change to Done
 							$interval.cancel(ticker);
 							c.page.load('../../customer/4_deliveredVerification/deliveredVerification.html');
 						}
