@@ -56,7 +56,7 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 			c.pickSrc = photo;
 			c.pickup = false;
 			c.drop = true;
-			$http.get(ConfigSrvc.serviceUrl + '/api/pickup?deliveryId=' + c.form.data.deliveryId + '&photo=' + photo)
+			$http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': c.form.data.deliveryId, 'photo': photo })
 				.then(function (status) {
 					if (status.data.nextNeed === EnumSrvc.NextNeed.Pickup) {
 						$interval.cancel(ticker);
