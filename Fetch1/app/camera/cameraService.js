@@ -21,7 +21,7 @@ function (ErrorService, $q) {
 		} else {
 			navigator.camera.getPicture(s.onSuccess, s.onFail, {
 				quality: 50,
-				destinationType: Camera.DestinationType.DATA_URL
+				destinationType: Camera.DestinationType.FILE_URI
 			});
 		}
 
