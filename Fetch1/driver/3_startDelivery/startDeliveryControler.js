@@ -78,10 +78,9 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 			ticker = $interval(function () {
 				$http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + c.form.data.deliveryId)
 					.then(function (status) {
-						c.message = status.data.nextNeed;
 						if (status.data.nextNeed === EnumSrvc.NextNeed.Done) {
 							$interval.cancel(ticker);
-							c.page.load('../../customer/4_deliveredVerification/deliveredVerification.html');
+							c.page.load('customer/4_deliveredVerification/deliveredVerification.html');
 						}
 					}, function (x) {
 						c.message = 'net work error';
