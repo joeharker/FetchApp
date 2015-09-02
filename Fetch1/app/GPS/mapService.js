@@ -84,11 +84,11 @@ function (ErrorService, locationService, $q, $rootScope) {
 				}
 				var root = '';
 				if (navigator.userAgent.search(/(iPad)|(iPhone)|(iPod)/i) != -1) {
-					root = 'http://maps.apple.com/?q=';
-				} else if (navigator.userAgent.search(/(Android)|(Chrome)/i) != -1) {
+					root = 'maps://?q=';
+				} else if (navigator.userAgent.search(/(Android)/i) != -1) {
 					root = 'geo:';
 				} else {
-					root = 'http://maps.google.com/?q=';
+					root = 'http://www.google.com/maps?q=39.470659,-105.067905';
 				}
 				console.log(root + results[0].geometry.location.G.toFixed(6) + ',' + results[0].geometry.location.K.toFixed(6));
 				deferred.resolve(root + results[0].geometry.location.G.toFixed(6) + ',' + results[0].geometry.location.K.toFixed(6));

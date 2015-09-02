@@ -1,5 +1,5 @@
-﻿
-if (navigator.userAgent.search(/(Android)|(Chrome)/i) != -1) {
+﻿//in this case any not iOS device
+if (navigator.userAgent.search(/iPhone|iPad|iPod/i) === -1) {
 	var tag = document.createElement('style');
 
 	tag.type = 'text/css';
