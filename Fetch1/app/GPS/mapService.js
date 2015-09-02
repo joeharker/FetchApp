@@ -82,8 +82,16 @@ function (ErrorService, locationService, $q, $rootScope) {
 						position: results[0].geometry.location
 					});
 				}
-				console.log('geo:' + results[0].geometry.location.G + ',' + results[0].geometry.location.K);
-				deferred.resolve('geo:' + results[0].geometry.location.G + ',' + results[0].geometry.location.K);
+				var root = '';
+				if (navigator.userAgent.search(/(iPad)|(iPhone)|(iPod)/i) != -1) {
+					root = 'http://maps.apple.com/?q=';
+				} else if (navigator.userAgent.search(/(Android)|(Chrome)/i) != -1) {
+					root = 'geo:';
+				} else {
+					root = 'http://maps.google.com/?q=';
+				}
+				console.log(root + results[0].geometry.location.G.toFixed(6) + ',' + results[0].geometry.location.K.toFixed(6));
+				deferred.resolve(root + results[0].geometry.location.G.toFixed(6) + ',' + results[0].geometry.location.K.toFixed(6));
 			} else {
 				deferred.reject(status);
 			}
