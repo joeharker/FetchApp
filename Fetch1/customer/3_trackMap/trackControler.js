@@ -75,7 +75,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrv
 	};
 
 	c.AcceptDelivery = function () {
-		$http.get(/*ConfigSrvc.serviceUrl +*/ 'http://localhost:3175/api/complete?deliveryId=' + c.form.data.deliveryId);
+		$http.get(ConfigSrvc.serviceUrl + '/api/complete?deliveryId=' + c.form.data.deliveryId);
 		c.page.load('customer/4_deliveredVerification/deliveredVerification.html');
 	};
 
