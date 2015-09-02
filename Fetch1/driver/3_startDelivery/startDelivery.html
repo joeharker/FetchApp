@@ -5,7 +5,7 @@
 		{{ start.message }}
 		
 		<div class="short"></div>
-		<a ng-href="{{ start.latLngUrl }}" target="_blank" class="medium widest light" ng-show="start.latLngUrl">
+		<a ng-href="{{ start.latLngUrl }}" target="_system" class="medium widest light" ng-show="start.latLngUrl">
 			{{ start.addressMessage }}
 		</a>
 		
@@ -18,7 +18,7 @@
 		</button>
 
 		<div class="short"></div>
-		<img ng-src="{{start.dropSrc}}" class="widest" />
-		<img ng-src="{{start.pickSrc}}" class="widest" />
+		<img ng-src="{{ start.dropSrc }}" class="widest" />
+		<img ng-src="{{ start.pickSrc }}" class="widest" />
 	</div>
 </div>

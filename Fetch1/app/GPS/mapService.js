@@ -82,15 +82,7 @@ function (ErrorService, locationService, $q, $rootScope) {
 						position: results[0].geometry.location
 					});
 				}
-				var root = '';
-				if (navigator.userAgent.search(/(iPad)|(iPhone)|(iPod)/i) != -1) {
-					root = 'maps:q=';
-				//} else if (navigator.userAgent.search(/(Android)|(Chrome)/i) != -1) {
-				//	root = 'geo:';	//looks like this only works with lat long
-				} else {
-					root = 'http://maps.google.com?q=';
-				}
-				deferred.resolve(root + results[0].formatted_address.replace(/ /g, '+'));
+				deferred.resolve('maps://?q=' + results[0].geometry.location.G + ',' + results[0].geometry.location.K);
 			} else {
 				deferred.reject(status);
 			}
