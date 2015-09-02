@@ -111,6 +111,7 @@
     -->
     <access origin="*"/>
 	<access origin="geo:*" launch-external="yes"/>
+	<access origin="maps:*" launch-external="yes"/>
     <!--
         <access origin="http://phonegap.com" />                    - allow any secure requests to http://phonegap.com/
         <access origin="http://phonegap.com" subdomains="true" />  - same as above, but including subdomains, such as http://build.phonegap.com/
