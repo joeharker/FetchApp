@@ -52,6 +52,11 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 	};
 
 	c.pickPhoto = function () {
+		mapService.getGeoUrl(form.data.delivery)
+		.then(function (latLngUrl) {
+			c.latLngUrl = latLngUrl;
+		});
+
 		cameraService.quality = 10;
 		cameraService.takePhoto()
 		.then(function (photo) {
