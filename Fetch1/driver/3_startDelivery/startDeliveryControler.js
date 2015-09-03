@@ -52,7 +52,7 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 	};
 
 	c.pickPhoto = function () {
-		mapService.getGeoUrl(form.data.delivery)
+		mapService.getGeoUrl(c.form.data.delivery)
 		.then(function (latLngUrl) {
 			c.latLngUrl = latLngUrl;
 		});
