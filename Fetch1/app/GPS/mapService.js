@@ -105,7 +105,7 @@ function (ErrorService, locationService, $q, $rootScope) {
 
 	s.clearPins = function () {
 		angular.forEach(s.mapMarkers, function (pin, i) {
-			if (pin.setMap !== undefined) {
+			if (typeof pin.setMap === 'function') {
 				pin.setMap(null);
 			}
 		});
