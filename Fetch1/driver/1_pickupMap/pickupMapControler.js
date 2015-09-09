@@ -14,7 +14,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrv
 		ticker = $interval(function () {
 			if (locationService.position.latitude !== locationService.initLat && locationService.position.longitude !== locationService.initLon) {
 				$interval.cancel(ticker);
-				c.message = 'Finding delivery opertoonities';
+				c.message = 'Finding delivery opportunities';
 				startUpdates();
 			}
 		}, 1000);

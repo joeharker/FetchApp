@@ -1,4 +1,4 @@
-﻿<div class="hidden">{{ page.theme = 'darker'; }}</div>
+﻿<div class="hidden">{{ page.disableBack = true; page.theme = 'darker'; }}</div>
 <div ng-controller="DeliveryCtrl as demo">
 	<div ng-controller="startControler as start" ng-init="start.init(demo, page)">
 		<div class="short"></div>
@@ -18,7 +18,7 @@
 		</button>
 
 		<div class="short"></div>
-		<img ng-src="{{ start.dropSrc }}" class="widest" />
-		<img ng-src="{{ start.pickSrc }}" class="widest" />
+		<img ng-src="{{ start.dropSrc }}" class="wide" />
+		<img ng-src="{{ start.pickSrc }}" class="wide" />
 	</div>
 </div>

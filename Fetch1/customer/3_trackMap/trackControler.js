@@ -37,7 +37,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrv
 
 					switch(status.data.nextNeed) {
 						case 2:
-							c.message = 'Aproaching pickup';
+							c.message = 'Approaching pickup';
 							break;
 						case 3:
 							c.message = 'Aproaching drop off';

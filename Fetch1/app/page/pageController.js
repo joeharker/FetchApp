@@ -1,15 +1,15 @@
 ﻿/*global app */
-app.controller('PageCtrl', [
-    function () {
+app.controller('PageCtrl', [ 'ConfigSrvc',
+    function (ConfigSrvc) {
         'use strict';
         var c = this,
             regex,
             match,
-            ver = '?ver=' + new Date().getTime(),
             history = [],
 			root = window.location.href.replace('index.html', '');
         ;
         
+    	c.ver = ConfigSrvc.version,
         c.template = '';
         c.animateMore = '';
         c.disableBack = true;
@@ -25,7 +25,7 @@ app.controller('PageCtrl', [
 
             history.push(c.template);
             c.disableBack = false;
-            c.template = root + template + ver;
+            c.template = root + template +'?version='+ c.ver;
         };
 
         c.back = function () {
@@ -44,7 +44,7 @@ app.controller('PageCtrl', [
         if (match !== null) {
             c.template = match[1];
         } else {
-        	c.template = root + 'app/page/start.html' + ver;
+        	c.template = root + 'app/page/start.html?version=' + c.ver;
         }
 
         return c;

@@ -4,6 +4,7 @@ function () {
     'use strict';
     var s = {};
     	
+    s.version = '1.0.1';
     s.stripeClientId = 'ca_5oSXm50hso4vFBv5IvDHVVklCiUkdP8R';
     s.serviceUrl = 'http://fetch001.azurewebsites.net';
     s.driverCut = 0.90;

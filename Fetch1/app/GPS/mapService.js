@@ -9,14 +9,14 @@ function (ErrorService, locationService, $q, $rootScope) {
 		var mapOptions = {
 			mapTypeId: google.maps.MapTypeId.ROADMAP,
 			zoom: 12,
-			center: new google.maps.LatLng(latitude, longitude)
+			center: new google.maps.LatLng(parseFloat(latitude).toFixed(6), parseFloat(longitude).toFixed(6))
 		};
 		s.googleMap = new google.maps.Map(canvasElement, mapOptions);
 		s.directionsDisplay.setMap(s.googleMap);
 	};
 
 	s.centerMap = function (latitude, longitude) {
-		s.googleMap.setCenter(new google.maps.LatLng(latitude, longitude));
+		s.googleMap.setCenter(new google.maps.LatLng(parseFloat(latitude).toFixed(6), parseFloat(longitude).toFixed(6)));
 	};
 
 	s.calculateRoute = function (start, end) {
@@ -60,7 +60,7 @@ function (ErrorService, locationService, $q, $rootScope) {
 						position: results[0].geometry.location
 					});
 				}
-				deferred.resolve(results[0].formatted_address + '|' + results[0].geometry.location.G + '|' + results[0].geometry.location.K);
+				deferred.resolve(results[0].formatted_address + '|' + parseFloat(results[0].geometry.location.G).toFixed(6) + '|' + parseFloat(results[0].geometry.location.K).toFixed(6));
 			} else {
 				deferred.reject(status);
 			}
@@ -91,7 +91,7 @@ function (ErrorService, locationService, $q, $rootScope) {
 					root = 'http://www.google.com/maps?q=';
 				}
 				console.log(root + results[0].geometry.location.G.toFixed(6) + ',' + results[0].geometry.location.K.toFixed(6));
-				deferred.resolve(root + results[0].geometry.location.G.toFixed(6) + ',' + results[0].geometry.location.K.toFixed(6));
+				deferred.resolve(root + parseFloat(results[0].geometry.location.G).toFixed(6) + ',' + parseFloat(results[0].geometry.location.K).toFixed(6));
 			} else {
 				deferred.reject(status);
 			}
