@@ -28,29 +28,26 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrv
 					c.message = 'Click a pickup to view the request';
 
 					//clear old markers
-					angular.forEach(c.mapMarkers, function (pin, i) {
-						pin.setMap(null);
-					});
-					c.mapMarkers = [];
+					mapService.clearPins();
 
 					//add new markers
 					angular.forEach(response.data, function (pin, i) {
-						c.mapMarkers.push(
-							mapService.addPinAddress(
-								pin.pickup
-								, function () {
-									$interval.cancel(ticker);
+						
+						mapService.addPinAddress(
+							pin.pickup
+							, function () {
+								$interval.cancel(ticker);
 
-									//auto map
-									for (var key in pin) {
-										if (key in c.form.data) {
-											DeliverySrvc.set(key, pin[key]);
-										}
+								//auto map
+								for (var key in pin) {
+									if (key in c.form.data) {
+										DeliverySrvc.set(key, pin[key]);
 									}
-									c.page.load('driver/2_viewDeliver/viewDelivery.html');
 								}
-							)
+								c.page.load('driver/2_viewDeliver/viewDelivery.html');
+							}
 						);
+						
 					});
 				}, function (e) {
 					c.message = 'An error has occured';
