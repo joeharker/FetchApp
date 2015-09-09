@@ -4,7 +4,6 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrv
 	var c = this;
 	var ticker = {};
 	c.message = 'Finding your location';
-	c.mapMarkers = [];
 	c.form = {};
 	c.page = {};
 	c.pickSrc = cameraService.transparent;
@@ -19,20 +18,15 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrv
 			$http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + c.form.data.deliveryId)
 				.then(function (status) {
 					//clear old markers
-					angular.forEach(c.mapMarkers, function (pin, i) {
-						pin.setMap(null);
-					});
-					c.mapMarkers = [];
+					mapService.clearPins();
 
 					//update the driver location
-					c.mapMarkers.push(
-						mapService.addPinLatLon(
-							status.data.lat
-							,status.data.lon
-							, function () {
-								//no click function for now
-							}
-						)
+					mapService.addPinLatLon(
+						status.data.lat
+						,status.data.lon
+						, function () {
+							//no click function for now
+						}
 					);
 
 					switch(status.data.nextNeed) {

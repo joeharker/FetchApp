@@ -2,6 +2,10 @@
 app.factory('mapService', ['ErrorService', 'locationService','$q', '$rootScope',
 function (ErrorService, locationService, $q, $rootScope) {
 	var s = this;
+
+	var cleanFloat = function (num) {
+		return parseFloat(parseFloat(num).toFixed(6));
+	};
 	
 	s.initMap = function (canvasElement, latitude, longitude) {
 		s.directionsDisplay = new google.maps.DirectionsRenderer();
@@ -9,14 +13,14 @@ function (ErrorService, locationService, $q, $rootScope) {
 		var mapOptions = {
 			mapTypeId: google.maps.MapTypeId.ROADMAP,
 			zoom: 12,
-			center: new google.maps.LatLng(parseFloat(latitude).toFixed(6), parseFloat(longitude).toFixed(6))
+			center: new google.maps.LatLng(cleanFloat(latitude), cleanFloat(longitude))
 		};
 		s.googleMap = new google.maps.Map(canvasElement, mapOptions);
 		s.directionsDisplay.setMap(s.googleMap);
 	};
 
 	s.centerMap = function (latitude, longitude) {
-		s.googleMap.setCenter(new google.maps.LatLng(parseFloat(latitude).toFixed(6), parseFloat(longitude).toFixed(6)));
+		s.googleMap.setCenter(new google.maps.LatLng(cleanFloat(latitude), cleanFloat(longitude)));
 	};
 
 	s.calculateRoute = function (start, end) {
@@ -60,7 +64,7 @@ function (ErrorService, locationService, $q, $rootScope) {
 						position: results[0].geometry.location
 					});
 				}
-				deferred.resolve(results[0].formatted_address + '|' + parseFloat(results[0].geometry.location.G).toFixed(6) + '|' + parseFloat(results[0].geometry.location.K).toFixed(6));
+				deferred.resolve(results[0].formatted_address + '|' + cleanFloat(results[0].geometry.location.G) + '|' + cleanFloat(results[0].geometry.location.K));
 			} else {
 				deferred.reject(status);
 			}
@@ -90,8 +94,7 @@ function (ErrorService, locationService, $q, $rootScope) {
 				} else {
 					root = 'http://www.google.com/maps?q=';
 				}
-				console.log(root + results[0].geometry.location.G.toFixed(6) + ',' + results[0].geometry.location.K.toFixed(6));
-				deferred.resolve(root + parseFloat(results[0].geometry.location.G).toFixed(6) + ',' + parseFloat(results[0].geometry.location.K).toFixed(6));
+				deferred.resolve(root + cleanFloat(results[0].geometry.location.G) + ',' + cleanFloat(results[0].geometry.location.K));
 			} else {
 				deferred.reject(status);
 			}
@@ -100,9 +103,16 @@ function (ErrorService, locationService, $q, $rootScope) {
 		return deferred.promise;
 	};
 
+	s.clearPins = function () {
+		angular.forEach(s.mapMarkers, function (pin, i) {
+			pin.setMap(null);
+		});
+		//s.mapMarkers = [];
+	};
+
 	var addPin = function (geoType, location, callback) {
 		var geocoder = new google.maps.Geocoder();
-		var marker = new google.maps.Marker();
+		var marker = {};
 		var geo = {};
 
 		if (geoType === 'address') {
@@ -118,6 +128,7 @@ function (ErrorService, locationService, $q, $rootScope) {
 						map: s.googleMap,
 						position: results[0].geometry.location
 					});
+					s.mapMarkers.push(marker);
 
 					google.maps.event.addListener(marker, 'click', function () {
 						callback();
@@ -134,7 +145,7 @@ function (ErrorService, locationService, $q, $rootScope) {
 	};
 
 	s.addPinLatLon = function (lat, lon, callback) {
-		var latlng = { lat: parseFloat(lat), lng: parseFloat(lon) };
+		var latlng = { lat: cleanFloat(lat), lng: cleanFloat(lon) };
 		return addPin('location', latlng, callback);
 	};
 
