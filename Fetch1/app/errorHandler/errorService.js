@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.factory('ErrorService', ['$log',
-    function ($log) {
+app.factory('ErrorService', ['$log','ConfigSrvc',
+    function ($log, ConfigSrvc) {
         'use strict';
         var s = {},
             onErrorCallbacks= [],
@@ -38,7 +38,7 @@ app.factory('ErrorService', ['$log',
 
                     //old school get to prevent circular reference error message
                     //and yes i am OK with ancent browsers dropping the ball here
-                    xmlHttp.open('GET', rootErrorUrl + message + '&details=' + s.device + details, true);
+                    xmlHttp.open('GET', rootErrorUrl + message + '&details=' + ConfigSrvc.version +' '+ s.device +' '+ details, true);
                     xmlHttp.send(null);
                     $log.info('message reported to server: ' + message + '\r\n' + details);
                 }

@@ -19,5 +19,9 @@ app.factory('DeliverySrvc', [
     		return val;
     	};
 
+    	s.reset = function () {
+    		hashe = {};
+    	};
+
         return s;
     }]);

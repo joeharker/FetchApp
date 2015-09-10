@@ -33,7 +33,7 @@ function ($q, $scope, $http, $interval, ConfigSrvc, DeliverySrvc, EnumSrvc) {
 
 	var thisToken = {};
 	var handler = StripeCheckout.configure({
-		key: 'pk_test_LDonp15qE0gZigryIcfweU23',
+		key: ConfigSrvc.stripeCheckoutKey,
 		image: '../../resources/icon/icon.png',
 		locale: 'auto',
 		token: function (token) {

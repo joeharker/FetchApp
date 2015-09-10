@@ -18,14 +18,14 @@ function (mapService, $q, DeliverySrvc, $interval) {
 
 					break;
 				case 'medium':
-					price = 14.95;
+					price = 0.99;
 					price += 0.0007 * rout.meters;
 					price += 0.0025 * rout.seconds;
 					price = price < 25 ? 25 : price;
 
 					break;
 				case 'large':
-					price = 39.95;
+					price = 0.99;
 					price += 0.0021 * rout.meters;
 					price += 0.0083 * rout.seconds;
 					price = price < 75 ? 75 : price;
