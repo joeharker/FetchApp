@@ -1,9 +1,9 @@
 ﻿/*global app */
-app.controller('DeliveredControler', ['DeliverySrvc',
-function (DeliverySrvc) {
+app.controller('DeliveredControler', ['MemorySrvc',
+function (MemorySrvc) {
 	var c = this;
 	
-	DeliverySrvc.reset();
+	MemorySrvc.reset();
 
 	return c;
 }]);

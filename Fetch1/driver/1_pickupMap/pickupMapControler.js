@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.controller('PickupMapControler', ['mapService', 'locationService', '$interval', '$http', 'ConfigSrvc', 'DeliverySrvc',
-function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrvc) {
+app.controller('PickupMapControler', ['mapService', 'locationService', '$interval', '$http', 'ConfigSrvc', 'MemorySrvc',
+function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc) {
 	var c = this;
 	var ticker = {};
 	c.form = {};
@@ -41,7 +41,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrv
 								//auto map
 								for (var key in pin) {
 									if (key in c.form.data) {
-										DeliverySrvc.set(key, pin[key]);
+										MemorySrvc.set(key, pin[key]);
 									}
 								}
 								c.page.load('driver/2_viewDeliver/viewDelivery.html');

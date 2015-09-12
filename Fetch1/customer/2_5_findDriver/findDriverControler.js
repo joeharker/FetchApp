@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.controller('FindDriverCtrl', ['$q', '$scope', '$http', '$interval','ConfigSrvc','DeliverySrvc','EnumSrvc',
-function ($q, $scope, $http, $interval, ConfigSrvc, DeliverySrvc, EnumSrvc) {
+app.controller('FindDriverCtrl', ['$q', '$scope', '$http', '$interval', 'ConfigSrvc', 'MemorySrvc', 'EnumSrvc',
+function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc) {
 	var c = this;
 
 	c.message = 'Posting your request';
@@ -11,7 +11,7 @@ function ($q, $scope, $http, $interval, ConfigSrvc, DeliverySrvc, EnumSrvc) {
 		$http.post(ConfigSrvc.serviceUrl + '/api/delivery', json)
 			.then(function (deliveryResponse) {
 				c.message = 'Waiting for a Deliverer';
-				DeliverySrvc.set('deliveryId', deliveryResponse.data);
+				MemorySrvc.set('deliveryId', deliveryResponse.data);
 
 				//wait for driver offer
 				ticker = $interval(function () {
@@ -55,11 +55,11 @@ function ($q, $scope, $http, $interval, ConfigSrvc, DeliverySrvc, EnumSrvc) {
 			if (thisToken.id !== undefined) {
 				$interval.cancel(ticker);
 
-				DeliverySrvc.set('myId', thisToken.email);
+				MemorySrvc.set('myId', thisToken.email);
 
 				//record payment
 				payment.id = thisToken.id;
-				payment.deliveryId = DeliverySrvc.get('deliveryId');
+				payment.deliveryId = MemorySrvc.get('deliveryId');
 				payment.customerId = thisToken.email;
 				payment.brand = thisToken.card.brand;
 				payment.country = thisToken.card.country;

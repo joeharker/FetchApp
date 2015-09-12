@@ -1,7 +1,7 @@
 ﻿/// <reference path="../3_trackMap/trackMap.html" />
 /*global app */
-app.controller('DeliveryVerificationCtrl', ['mapService', '$q', 'DeliverySrvc', '$interval',
-function (mapService, $q, DeliverySrvc, $interval) {
+app.controller('DeliveryVerificationCtrl', ['mapService', '$q', 'MemorySrvc', '$interval',
+function (mapService, $q, MemorySrvc, $interval) {
 	var c = this;
 
 	c.calculateCost = function (form) {
@@ -36,7 +36,7 @@ function (mapService, $q, DeliverySrvc, $interval) {
 			}
 
 			form.data.price = price.toFixed(2);
-			DeliverySrvc.set('price', form.data.price);
+			MemorySrvc.set('price', form.data.price);
 		}, function (reason) {
 			ErrorService.reportError('calculateCost Failed:', reason);
 		});

@@ -14,8 +14,8 @@ describe('demo tests', function () {
     beforeEach(function () {
         module('Fetch1App');
         inject(function ($injector, $controller) {
-            service = $injector.get('DeliverySrvc');
-            controller = $controller('DeliveryCtrl', { DeliverySrvc: service });
+        	service = $injector.get('MemorySrvc');
+        	controller = $controller('DeliveryCtrl', { MemorySrvc: service });
         });
     });
 

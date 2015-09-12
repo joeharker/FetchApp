@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.controller('TrackControler', ['mapService', 'locationService', '$interval', '$http', 'ConfigSrvc', 'DeliverySrvc','cameraService',
-function (mapService, locationService, $interval, $http, ConfigSrvc, DeliverySrvc, cameraService) {
+app.controller('TrackControler', ['mapService', 'locationService', '$interval', '$http', 'ConfigSrvc', 'MemorySrvc', 'cameraService',
+function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc, cameraService) {
 	var c = this;
 	var ticker = {};
 	c.message = 'Finding your location';

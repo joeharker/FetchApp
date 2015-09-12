@@ -1,13 +1,15 @@
 ﻿/*global app */
-app.controller('AuthCtrl', ['GuidService', 'ConfigSrvc','DeliverySrvc','$interval','$http',
+app.controller('AuthCtrl', ['GuidService', 'ConfigSrvc', 'MemorySrvc', '$interval', '$http','DeviceSrvc',
 	//TODO turn into strip service
-    function (GuidService, ConfigSrvc, DeliverySrvc, $interval, $http) {
+    function (GuidService, ConfigSrvc, MemorySrvc, $interval, $http, DeviceSrvc) {
         'use strict';
         var c = this;
         var ticker;
 
         c.guid = GuidService.guid();
         c.win = {};
+        c.newer = false;
+        c.next = '';
 
         c.oauth = function (page) {
         	c.win = window.open('https://connect.stripe.com/oauth/authorize?response_type=code&scope=read_write&client_id=' + ConfigSrvc.stripeClientId + '&state=' + c.guid + '&stripe_user[business_name]=Neighborhood driver&stripe_user[business_type]=sole_prop&stripe_user[physical_product]=false&stripe_user[url]=http://www.fetch1.com/', '_blank');
@@ -18,7 +20,7 @@ app.controller('AuthCtrl', ['GuidService', 'ConfigSrvc','DeliverySrvc','$interva
 					.then(function (response) {
 						if (response.data !== "") {
 							$interval.cancel(ticker);
-							DeliverySrvc.set('myId', response.data);
+							MemorySrvc.set('myId', response.data);
 							c.win.close();
 							page.load('driver/1_pickupMap/pickupMap.html');
 						}
@@ -28,8 +30,23 @@ app.controller('AuthCtrl', ['GuidService', 'ConfigSrvc','DeliverySrvc','$interva
         	}, 1000);
         };
 
-        c.test = function () {
-        	c.win.close();
+    	//check version
+        c.checkVersion = function (ver) {
+        	$http.get(ConfigSrvc.serviceUrl + '/api/app')
+				.then(function (response) {
+					if (response.data !== ver) {
+						c.next = response.data;
+						c.newer = true;
+					}
+				}, function (e) {
+					//This happens first try if the service is sleeping
+				}
+			);
+        };
+
+        c.upgrade = function () {
+        	window.open('https://build.phonegap.com/apps/1076244/install', '_blank');
+        	DeviceSrvc.exit();
         };
 
         return c;
