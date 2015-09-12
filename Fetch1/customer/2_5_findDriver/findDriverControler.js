@@ -3,32 +3,41 @@ app.controller('FindDriverCtrl', ['$q', '$scope', '$http', '$interval', 'ConfigS
 function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc) {
 	var c = this;
 
-	c.message = 'Posting your request';
+	c.message = '';
 	c.ready = false;
 	var ticker;
 
-	c.init = function (json) {
-		$http.post(ConfigSrvc.serviceUrl + '/api/delivery', json)
-			.then(function (deliveryResponse) {
-				c.message = 'Waiting for a Deliverer';
-				MemorySrvc.set('deliveryId', deliveryResponse.data);
+	var waitForDriver = function () {
+		deliveryId = MemorySrvc.get('deliveryId');
+		c.message = 'Waiting for a Deliverer';
+		console.log(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + deliveryId);
+		ticker = $interval(function () {
+			$http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + deliveryId)
+				.then(function (status) {
+					if (status.data.nextNeed === EnumSrvc.NextNeed.Payment) {
+						$interval.cancel(ticker);
+						c.message = 'A deliverer is ready. Please pay to start the delivery';
+						c.ready = true;
+					}
+				}, function (e) {
+					c.message = 'An error has occured at wait for offer';
+				});
+		}, 5000);
+	};
 
-				//wait for driver offer
-				ticker = $interval(function () {
-					$http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId='+ deliveryResponse.data)
-						.then(function (status) {
-							if (status.data.nextNeed === EnumSrvc.NextNeed.Payment) {
-								$interval.cancel(ticker);
-								c.message = 'A deliverer is ready. Please pay to start the delivery';
-								c.ready = true;
-							}
-						}, function (e) {
-							c.message = 'An error has occured at wait for offer';
-					});
-				}, 5000);
-			}, function (e) {
-				c.message = 'An error has occured at post delivery';
-		});
+	c.init = function (json) {
+		if (MemorySrvc.get('deliveryId') === '') {
+			c.message = 'Posting your request';
+			$http.post(ConfigSrvc.serviceUrl + '/api/delivery', json)
+				.then(function (deliveryResponse) {
+					MemorySrvc.set('deliveryId', deliveryResponse.data);
+					waitForDriver();
+				}, function (e) {
+					c.message = 'An error has occured at post delivery';
+				});
+		} else {
+			waitForDriver();
+		}
 	};
 
 	var thisToken = {};
