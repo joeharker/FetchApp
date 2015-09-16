@@ -45,10 +45,11 @@ app.controller('PageCtrl', ['ConfigSrvc', 'MemorySrvc',
     		c.load(match[1]);
     	} else {
     		var current = MemorySrvc.get('pageTemplate');
-    		if (current !== '' && (current.indexOf('requestDelivery.html') !== -1 || current.indexOf('pickupMap.html') !== -1)) {
-    			c.load(MemorySrvc.get('pageTemplate'));
-    		}else{
+    		console.log(current.toLowerCase().indexOf('requestdelivery.html'));
+    		if (current === '' || current.toLowerCase().indexOf('requestdelivery.html') !== -1 || current.toLowerCase().indexOf('pickupmap.html') !== -1) {
     			c.load(root + 'app/page/start.html?version=' + c.ver);
+    		}else{
+    			c.load(MemorySrvc.get('pageTemplate'));
     		}
     	}
 
