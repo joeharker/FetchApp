@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.controller('PickupMapControler', ['mapService', 'locationService', '$interval', '$http', 'ConfigSrvc', 'MemorySrvc',
-function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc) {
+app.controller('PickupMapControler', ['mapService', 'locationService', '$interval', '$http', 'ConfigSrvc', 'MemorySrvc','DeviceSrvc',
+function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc, DeviceSrvc) {
 	var c = this;
 	var ticker = {};
 	c.form = {};
@@ -32,6 +32,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc)
 
 					//add new markers
 					angular.forEach(response.data, function (pin, i) {
+						//TODO DeviceSrvc.buzz(); if there is a new pin
 						
 						mapService.addPinAddress(
 							pin.pickup

@@ -1,11 +1,11 @@
 ﻿/*global app */
-app.controller('startControler', ['locationService', '$interval', '$http', 'ConfigSrvc','EnumSrvc','mapService','cameraService',
-function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, cameraService) {
+app.controller('startControler', ['locationService', '$interval', '$http', 'ConfigSrvc','EnumSrvc','mapService','cameraService','DeviceSrvc',
+function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, cameraService, DeviceSrvc) {
 	var c = this;
 	var ticker = {};
 	c.form = {};
 	c.page = {};
-	c.latLngUrl = "";
+	c.latLngUrl = '';
 	c.addressMessage = '';
 	c.pickup = false;
 	c.drop = false;
@@ -49,6 +49,8 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 		ticker = $interval(function () {
 			$http.get(ConfigSrvc.serviceUrl + '/api/delivery?driverId=' + c.form.myId + '&lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude);
 		}, 5000);
+
+		DeviceSrvc.buzz();
 	};
 
 	c.pickPhoto = function () {

@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.controller('FindDriverCtrl', ['$q', '$scope', '$http', '$interval', 'ConfigSrvc', 'MemorySrvc', 'EnumSrvc',
-function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc) {
+app.controller('FindDriverCtrl', ['$q', '$scope', '$http', '$interval', 'ConfigSrvc', 'MemorySrvc', 'EnumSrvc','DeviceSrvc',
+function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, DeviceSrvc) {
 	var c = this;
 
 	c.message = '';
@@ -18,6 +18,7 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc) {
 						$interval.cancel(ticker);
 						c.message = 'A deliverer is ready. Please pay to start the delivery';
 						c.ready = true;
+						DeviceSrvc.buzz();
 					}
 				}, function (e) {
 					c.message = 'An error has occured at wait for offer';

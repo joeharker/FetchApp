@@ -10,5 +10,12 @@ function () {
 		}
 	};
 
+	s.buzz = function () {
+		if (navigator.notification !== undefined) {
+			navigator.notification.beep(3);
+			navigator.notification.vibrate(2000);
+		}
+	};
+
 	return s;
 }]);

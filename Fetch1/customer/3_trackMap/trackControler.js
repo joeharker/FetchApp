@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.controller('TrackControler', ['mapService', 'locationService', '$interval', '$http', 'ConfigSrvc', 'MemorySrvc', 'cameraService',
-function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc, cameraService) {
+app.controller('TrackControler', ['mapService', 'locationService', '$interval', '$http', 'ConfigSrvc', 'MemorySrvc', 'cameraService','DeviceSrvc',
+function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc, cameraService, DeviceSrvc) {
 	var c = this;
 	var ticker = {};
 	c.message = 'Finding your location';
@@ -39,6 +39,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 								$http.get(ConfigSrvc.serviceUrl + '/api/pickup?deliveryId=' + c.form.data.deliveryId)
 									.then(function (photo) {
 										c.pickSrc = photo.data;
+										DeviceSrvc.buzz();
 									}, function (x) {
 										c.message = 'Internet connection error';
 									});
@@ -51,6 +52,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 								$http.get(ConfigSrvc.serviceUrl + '/api/drop?deliveryId=' + c.form.data.deliveryId)
 									.then(function (photo) {
 										c.dropSrc = photo.data;
+										DeviceSrvc.buzz();
 									}, function (x) {
 										c.message = 'Internet connection error';
 									});
