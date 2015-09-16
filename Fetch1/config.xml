@@ -50,7 +50,7 @@
 	<gap:plugin name="org.apache.cordova.inappbrowser" />	<!-- needed for authentication -->
 	<gap:plugin name="org.apache.cordova.camera" />			<!-- photos -->
 	<gap:plugin name="org.apache.cordova.vibration" />		<!-- buzz -->
-	<gap:plugin name="org.apache.cordova.Notification"/>	<!-- buzz -->
+	<gap:plugin name="org.apache.cordova.dialogs" />		<!-- buzz -->
 	<!--
     <gap:plugin name="org.apache.cordova.battery-status" />
     <gap:plugin name="org.apache.cordova.camera" />
