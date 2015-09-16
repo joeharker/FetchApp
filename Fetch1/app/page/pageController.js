@@ -45,7 +45,7 @@ app.controller('PageCtrl', ['ConfigSrvc', 'MemorySrvc',
     		c.load(match[1]);
     	} else {
     		var current = MemorySrvc.get('pageTemplate');
-    		if (current !== '' && current.indexOf('requestDelivery.html') !== -1 && current.indexOf('pickupMap.html') !== -1) {
+    		if (current !== '' && (current.indexOf('requestDelivery.html') !== -1 || current.indexOf('pickupMap.html') !== -1)) {
     			c.load(MemorySrvc.get('pageTemplate'));
     		}else{
     			c.load(root + 'app/page/start.html?version=' + c.ver);
