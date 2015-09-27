@@ -22,35 +22,36 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 			c.latLngUrl = latLngUrl;
 		});
 
-		$http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + form.data.deliveryId + '&driverId=' + form.myId)
-			.then(function (response) {
-				c.message = 'Waiting for customer payment';
-
-				ticker = $interval(function () {
-					$http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + c.form.data.deliveryId)
-						.then(function (status) {
-							if (status.data.nextNeed === EnumSrvc.NextNeed.Pickup) {
-								$interval.cancel(ticker);
-								c.track();
-							}
-						}, function (x) {
-							c.message = 'net work error';
-						});
-				}, 5000);
-			}, function (e) {
-				c.message = 'net work error';
-		});
-	};
-
-	c.track = function () {
-		c.message = 'Payment is in holding account Please pick up the package';
-		c.pickup = true;
-
 		ticker = $interval(function () {
-			$http.get(ConfigSrvc.serviceUrl + '/api/delivery?driverId=' + c.form.myId + '&lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude);
+			$http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + c.form.data.deliveryId)
+				.then(function (status) {
+				    switch (status.data.nextNeed) {
+				        case EnumSrvc.NextNeed.Driver:
+				            $http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + form.data.deliveryId + '&driverId=' + form.myId);
+				            break;
+				        case EnumSrvc.NextNeed.Payment:
+				            c.message = 'Waiting for customer payment';
+				            break;
+				        case EnumSrvc.NextNeed.Pickup:
+				            c.pickup = true;
+				            $http.get(ConfigSrvc.serviceUrl + '/api/delivery?driverId=' + c.form.myId + '&lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude);
+				            break;
+				        case EnumSrvc.NextNeed.Dropoff:
+				            $http.get(ConfigSrvc.serviceUrl + '/api/delivery?driverId=' + c.form.myId + '&lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude);
+				            break;
+				        case EnumSrvc.NextNeed.Transfer:
+				            c.message = 'Waiting for customer to confirm drop off';
+				            break;
+				        case EnumSrvc.NextNeed.Done:
+				            $interval.cancel(ticker);
+				            c.page.load('customer/4_deliveredVerification/deliveredVerification.html');
+				            break;
+				        default:
+				    }
+				}, function (x) {
+					c.message = 'net work error';
+				});
 		}, 5000);
-
-		DeviceSrvc.buzz();
 	};
 
 	c.pickPhoto = function () {
@@ -59,7 +60,7 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 			c.latLngUrl = latLngUrl;
 		});
 
-		cameraService.quality = 10;
+		cameraService.quality = 5;
 		cameraService.takePhoto()
 		.then(function (photo) {
 			c.pickSrc = photo;
@@ -80,19 +81,6 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 			c.drop = false;
 			$http.post(ConfigSrvc.serviceUrl + '/api/drop', { 'deliveryId': c.form.data.deliveryId, 'photo': photo });
 			c.message = 'Waiting for customer to confirm drop off';
-
-			$interval.cancel(ticker);
-			ticker = $interval(function () {
-				$http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + c.form.data.deliveryId)
-					.then(function (status) {
-						if (status.data.nextNeed === EnumSrvc.NextNeed.Done) {
-							$interval.cancel(ticker);
-							c.page.load('customer/4_deliveredVerification/deliveredVerification.html');
-						}
-					}, function (x) {
-						c.message = 'net work error';
-					});
-			}, 5000);
 		}, function (e) {
 			c.message = e;
 		});

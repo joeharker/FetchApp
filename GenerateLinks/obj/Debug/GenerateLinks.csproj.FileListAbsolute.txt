@@ -10,3 +10,9 @@ C:\source\Fetch1App\GenerateLinks\obj\Debug\GenerateLinks.pdb
 C:\source\Fetch1App\GenerateLinks\bin\Debug\GenerateLinks.exe
 C:\source\Fetch1App\GenerateLinks\bin\Debug\GenerateLinks.pdb
 C:\source\Fetch1App\GenerateLinks\obj\Debug\GenerateLinks.csprojResolveAssemblyReference.cache
+C:\Users\Joe\Source\Repos\fetchapp\GenerateLinks\bin\Debug\GenerateLinks.exe.config
+C:\Users\Joe\Source\Repos\fetchapp\GenerateLinks\bin\Debug\GenerateLinks.exe
+C:\Users\Joe\Source\Repos\fetchapp\GenerateLinks\bin\Debug\GenerateLinks.pdb
+C:\Users\Joe\Source\Repos\fetchapp\GenerateLinks\obj\Debug\GenerateLinks.csprojResolveAssemblyReference.cache
+C:\Users\Joe\Source\Repos\fetchapp\GenerateLinks\obj\Debug\GenerateLinks.exe
+C:\Users\Joe\Source\Repos\fetchapp\GenerateLinks\obj\Debug\GenerateLinks.pdb
