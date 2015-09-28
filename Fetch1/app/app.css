@@ -167,6 +167,7 @@ button:disabled {
 .window {
 	vertical-align: top;
 	background: #FFFFFF;
+    color: black;
 	border: 1px solid gray;
 	border-radius: 4px;
 	overflow: auto;
