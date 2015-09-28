@@ -128,6 +128,10 @@ button:disabled {
 	border-color: black;
 }
 
+.darker > input {
+    color: black;
+}
+
 .light{
 	background-color: #51B009;
 	color: #FFFFFF;
