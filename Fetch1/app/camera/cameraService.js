@@ -12,6 +12,7 @@ function (ErrorService, $q) {
 	};
 
 	var onFail = function (message) {
+	    ErrorService.reportError(message);
 		s.deferred.reject("photo error "+ message);
 	};
 

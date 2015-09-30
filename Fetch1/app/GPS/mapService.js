@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.factory('mapService', ['ErrorService', 'locationService','$q', '$rootScope',
-function (ErrorService, locationService, $q, $rootScope) {
+app.factory('mapService', ['ErrorService', 'locationService','$q',
+function (ErrorService, locationService, $q) {
 	var s = this;
 
 	var cleanFloat = function (num) {
