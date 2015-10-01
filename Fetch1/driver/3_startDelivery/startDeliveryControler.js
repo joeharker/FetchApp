@@ -38,12 +38,12 @@ function (/*                            */ locationService, $interval, $http, Co
 				            $http.get(ConfigSrvc.serviceUrl + '/api/delivery?driverId=' + c.form.myId + '&lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude);
 				            break;
 				        case EnumSrvc.NextNeed.Dropoff:
-				            c.pickup = false;
-				            c.drop = true;
+				            //c.pickup = false;
+				            //c.drop = true;
 				            $http.get(ConfigSrvc.serviceUrl + '/api/delivery?driverId=' + c.form.myId + '&lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude);
 				            break;
 				        case EnumSrvc.NextNeed.Transfer:
-				            c.drop = false;
+				            //c.drop = false;
 				            c.message = 'Waiting for customer to confirm drop off';
 				            break;
 				        case EnumSrvc.NextNeed.Done:
@@ -55,7 +55,7 @@ function (/*                            */ locationService, $interval, $http, Co
 				}, function (x) {
 					c.message = 'net work error';
 				});
-		}, 10000);
+		}, 5000);
 	};
 
 	c.pickPhoto = function () {
@@ -68,14 +68,14 @@ function (/*                            */ locationService, $interval, $http, Co
 		ErrorService.reportMessage("test","startphoto");
 		cameraService.takePhoto()
 		.then(function (photo) {
-		    ErrorService.reportMessage("test","photo="+ photo);
+		    ErrorService.reportMessage("test", "photo=" + photo.substring(1, 10));
 			c.pickSrc = photo;
 			c.pickup = false;
 			c.drop = true;
 			c.addressMessage = 'Get directions to Drop off ' + c.form.data.delivery;
 			$http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': c.form.data.deliveryId, 'photo': photo });
 		}, function (e) {
-		    ErrorService.reportMessage("test photo error", e);
+		    ErrorService.reportMessage("test photo error", "e "+e);
 			c.message = e;
 		});
 	};
@@ -84,14 +84,14 @@ function (/*                            */ locationService, $interval, $http, Co
 	    ErrorService.reportMessage("test","startphoto2");
 		cameraService.takePhoto()
 		.then(function (photo) {
-		    ErrorService.reportMessage("test","photo2="+ photo);
+		    ErrorService.reportMessage("test", "photo2=" + photo.substring(1, 10));
 			c.dropSrc = photo;
 			c.pickup = false;
 			c.drop = false;
 			$http.post(ConfigSrvc.serviceUrl + '/api/drop', { 'deliveryId': c.form.data.deliveryId, 'photo': photo });
 			c.message = 'Waiting for customer to confirm drop off';
 		}, function (e) {
-		    ErrorService.reportMessage("test photo2 error", e);
+		    ErrorService.reportMessage("test photo2 error", "e"+ e);
 			c.message = e;
 		});
 	};
