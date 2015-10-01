@@ -1,23 +1,26 @@
 ﻿<div class="hidden">{{ page.disableBack = true; page.theme = 'darker'; }}</div>
 <div ng-controller="DeliveryCtrl as demo">
-	<div ng-controller="startControler as start" ng-init="start.init(demo, page)">
-		<div class="short"></div>
-		{{ start.message }}
-		
-		<div class="short"></div>
-		<a ng-href="{{ start.latLngUrl }}" target="_system" class="medium widest light" ng-show="start.latLngUrl">
-			{{ start.addressMessage }}
-		</a>
-		
-		<div class="short"></div>
-		<button class="medium widest dark" ng-click="start.pickPhoto()" ng-show="start.pickup">
-			Take photo: proof of pick up
-		</button>
-		<button class="medium widest dark" ng-click="start.dropPhoto()" ng-show="start.drop">
-			Take photo: proof of drop off
-		</button>
+    <div ng-controller="startControler as start" ng-init="start.init(demo, page)">
+        <div class="short"></div>
+        {{ start.message }}
 
-		<div class="short"></div>
-		<img ng-src="{{ start.pickSrc }}" class="wide" /><img ng-src="{{ start.dropSrc }}" class="wide" />
-	</div>
+        <div class="short"></div>
+        <a ng-href="{{ start.latLngUrl }}" target="_system" class="medium widest light" ng-show="start.latLngUrl">
+            {{ start.addressMessage }}
+        </a>
+
+        <div class="short"></div>
+        <button class="medium widest dark" ng-click="start.pickPhoto()" ng-show="start.pickup">
+            Take photo: proof of pick up
+        </button>
+        <button class="medium widest dark" ng-click="start.dropPhoto()" ng-show="start.drop">
+            Take photo: proof of drop off
+        </button>
+
+        <div class="short"></div>
+        <img ng-src="{{ start.pickSrc }}" class="wide"/><img ng-src="{{ start.dropSrc }}" class="wide"/>
+    </div>
+    <button ng-click="start.restart()">
+        X
+    </button>
 </div>

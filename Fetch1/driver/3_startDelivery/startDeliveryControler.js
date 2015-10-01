@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.controller('startControler', ['locationService', '$interval', '$http', 'ConfigSrvc','EnumSrvc','mapService','cameraService','ErrorService',
-function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, cameraService, ErrorService) {
+app.controller('startControler', ['locationService', '$interval', '$http', 'ConfigSrvc', 'EnumSrvc', 'mapService', 'cameraService', 'ErrorService', 'DeviceSrvc','MemorySrvc',
+function (/*                            */ locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, cameraService, ErrorService, DeviceSrvc, MemorySrvc) {
 	var c = this;
 	var ticker = {};
 	c.form = {};
@@ -38,9 +38,12 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 				            $http.get(ConfigSrvc.serviceUrl + '/api/delivery?driverId=' + c.form.myId + '&lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude);
 				            break;
 				        case EnumSrvc.NextNeed.Dropoff:
+				            c.pickup = false;
+				            c.drop = true;
 				            $http.get(ConfigSrvc.serviceUrl + '/api/delivery?driverId=' + c.form.myId + '&lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude);
 				            break;
 				        case EnumSrvc.NextNeed.Transfer:
+				            c.drop = false;
 				            c.message = 'Waiting for customer to confirm drop off';
 				            break;
 				        case EnumSrvc.NextNeed.Done:
@@ -92,6 +95,11 @@ function (locationService, $interval, $http, ConfigSrvc, EnumSrvc, mapService, c
 			c.message = e;
 		});
 	};
+
+	c.restart = function () {
+	    MemorySrvc.reset();
+        DeviceSrvc.exit();
+    };
 
 	return c;
 }]);

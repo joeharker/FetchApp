@@ -45,7 +45,8 @@ app.controller('AuthCtrl', ['GuidService', 'ConfigSrvc', 'MemorySrvc', '$interva
         };
 
         c.upgrade = function () {
-        	window.open('https://build.phonegap.com/apps/1076244/install', '_system');
+            window.open('https://build.phonegap.com/apps/1076244/install', '_system');
+            MemorySrvc.reset();
         	DeviceSrvc.exit();
         };
 
