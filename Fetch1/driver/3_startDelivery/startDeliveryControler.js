@@ -25,7 +25,7 @@ function (/*                            */ locationService, $interval, $http, Co
 		ticker = $interval(function () {
 			$http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + c.form.data.deliveryId)
 				.then(function (status) {
-				    ErrorService.reportMessage("test", status.data.nextNeed);
+				    ErrorService.reportMessage("test", status);
 				    switch (status.data.nextNeed) {
 				        case EnumSrvc.NextNeed.Driver:
 				            $http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + form.data.deliveryId + '&driverId=' + form.myId);
