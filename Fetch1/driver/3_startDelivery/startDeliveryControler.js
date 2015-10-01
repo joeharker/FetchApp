@@ -68,12 +68,16 @@ function (/*                            */ locationService, $interval, $http, Co
 		ErrorService.reportMessage("test","startphoto");
 		cameraService.takePhoto()
 		.then(function (photo) {
-		    ErrorService.reportMessage("test", "photo=" + photo.substring(1, 10));
 			c.pickSrc = photo;
-			c.pickup = false;
-			c.drop = true;
-			c.addressMessage = 'Get directions to Drop off ' + c.form.data.delivery;
-			$http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': c.form.data.deliveryId, 'photo': photo });
+			
+			$http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': c.form.data.deliveryId, 'photo': photo })
+		    .then(function (response) {
+		        c.pickup = false;
+		        c.drop = true;
+		        c.addressMessage = 'Get directions to Drop off ' + c.form.data.delivery;
+			    }, function(e) {
+			        ErrorService.reportMessage("test photo error", e);
+			    });
 		}, function (e) {
 		    ErrorService.reportMessage("test photo error", "e "+e);
 			c.message = e;
