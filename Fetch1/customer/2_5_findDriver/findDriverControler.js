@@ -95,5 +95,10 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 		}, 1000);
 	};
 
+	c.restart = function () {
+	    MemorySrvc.reset();
+	    DeviceSrvc.exit();
+	};
+
 	return c;
 }]);
