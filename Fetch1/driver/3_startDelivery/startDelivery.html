@@ -18,9 +18,9 @@
         </button>
 
         <div class="short"></div>
-        <img ng-src="{{ start.pickSrc }}" class="wide"/><img ng-src="{{ start.dropSrc }}" class="wide"/>
+        <img id="pickImg" ng-src="{{ start.pickSrc }}" class="wide"/><img ng-src="{{ start.dropSrc }}" class="wide"/>
 
-        <button ng-click="start.restart()">
+        <button ng-click="page.load('app/page/start.html');">
             !RESET!
         </button>
     </div>

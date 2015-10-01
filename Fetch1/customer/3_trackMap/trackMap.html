@@ -9,7 +9,10 @@
 				Click to accept delivery
 			</button>
 			<img ng-src="{{track.pickSrc}}" class="wide" /><img ng-src="{{track.dropSrc}}" class="wide" ng-show="track.accept" />
-			<div id="map-canvas"></div>
+		    <div id="map-canvas"></div>
+            <button ng-click="page.load('app/page/start.html');">
+                !RESET!
+            </button>
 		</div>
 	</div>
 </div>

@@ -67,8 +67,8 @@ function (/*                            */ locationService, $interval, $http, Co
 		cameraService.quality = 1;
 		cameraService.takePhoto()
 		.then(function (photo) {
-		    photo = cameraService.resizePhoto(photo, 100, 100);
-			c.pickSrc = photo;
+		    c.pickSrc = photo;
+		    photo = cameraService.resizePhoto(document.getElementById("pickImg"), 100, 100);
 			$http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': c.form.data.deliveryId, 'photo': photo.sub })
 		    .then(function (response) {
 		        c.pickup = false;
@@ -99,11 +99,6 @@ function (/*                            */ locationService, $interval, $http, Co
 			c.message = e;
 		});
 	};
-
-	c.restart = function () {
-	    MemorySrvc.reset();
-        DeviceSrvc.exit();
-    };
 
 	return c;
 }]);
