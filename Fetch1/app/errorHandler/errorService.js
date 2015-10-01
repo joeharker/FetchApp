@@ -30,6 +30,8 @@ app.factory('ErrorService', ['$log','ConfigSrvc',
             var xmlHttp = new XMLHttpRequest();
             var rootErrorUrl = 'http://fetch001.azurewebsites.net/api/Log?message=';
 
+            console.log([message, details]);
+
             if (message !== lastError) {
                 //test to prevent circular reference web calls
                 if (details !== null && details !== undefined && details.indexOf !== undefined && details.indexOf(rootErrorUrl) === -1) {
