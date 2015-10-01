@@ -64,7 +64,7 @@ function (/*                            */ locationService, $interval, $http, Co
 			c.latLngUrl = latLngUrl;
 		});
 
-		cameraService.quality = 5;
+		cameraService.quality = 1;
 		cameraService.takePhoto()
 		.then(function (photo) {
 			c.pickSrc = photo;
