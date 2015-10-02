@@ -52,8 +52,8 @@ function (/*                            */ locationService, $interval, $http, Co
 				        default:
 				    }
 				}, function (x) {
-				    ErrorService.reportMessage("test photo error", x);
-					c.message = 'net work error '+ x;
+				    ErrorService.reportMessage("test photo error", JSON.stringify(x));
+				    c.message = 'net work error '+ JSON.stringify(x);
 				});
 		}, 5000);
 	};
@@ -77,12 +77,11 @@ function (/*                            */ locationService, $interval, $http, Co
 		        c.drop = true;
 		        c.addressMessage = 'Get directions to Drop off ' + c.form.data.delivery;
 		    }, function (e) {
-		        c.message = e;
-		        ErrorService.reportMessage("test photo error", e);
-		        c.message = e;
+		        ErrorService.reportMessage("post photo error", JSON.stringify(e));
+                c.message = JSON.stringify(e);
 			});
 		}, function (x) {
-		    ErrorService.reportMessage("test photo error", x);
+		    ErrorService.reportMessage("take photo error", JSON.stringify(x));
 			c.message = x;
 		});
 	};
@@ -96,8 +95,8 @@ function (/*                            */ locationService, $interval, $http, Co
 			$http.post(ConfigSrvc.serviceUrl + '/api/drop', { 'deliveryId': c.form.data.deliveryId, 'photo': photo });
 			c.message = 'Waiting for customer to confirm drop off';
 		}, function (e) {
-		    ErrorService.reportMessage("photo error", e);
-			c.message = e;
+		    ErrorService.reportMessage("photo error", JSON.stringify(e));
+		    c.message = JSON.stringify(e);
 		});
 	};
 
