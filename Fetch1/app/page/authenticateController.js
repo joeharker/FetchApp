@@ -17,10 +17,7 @@ app.controller('AuthCtrl', ['GuidService', 'ConfigSrvc', 'MemorySrvc', '$interva
             if (cordova !== null && cordova !== undefined && cordova.InAppBrowser !== undefined) {
                 window.open = cordova.InAppBrowser.open;
             }
-            c.win = window.open('https://connect.stripe.com/oauth/authorize?response_type=code&scope=read_write&client_id=' + ConfigSrvc.stripeClientId + '&state=' + c.guid + '&stripe_user[business_name]=Neighborhood driver&stripe_user[business_type]=sole_prop&stripe_user[physical_product]=false&stripe_user[url]=http://www.fetch1.com/', '_blank');
-            if (cordova !== null && cordova !== undefined && cordova.InAppBrowser !== undefined) {
-                delete window.open;
-            }
+            c.win = window.open('https://connect.stripe.com/oauth/authorize?response_type=code&scope=read_write&client_id=' + ConfigSrvc.stripeClientId + '&state=' + c.guid + '&stripe_user[business_name]=Neighborhood driver&stripe_user[business_type]=sole_prop&stripe_user[physical_product]=false&stripe_user[url]=http://www.fetch1.com/', '_system');
 
             //wait for confirmation
         	ticker = $interval(function () {
@@ -30,6 +27,10 @@ app.controller('AuthCtrl', ['GuidService', 'ConfigSrvc', 'MemorySrvc', '$interva
 							$interval.cancel(ticker);
 							MemorySrvc.set('myId', response.data);
 							c.win.close();
+
+							if (cordova !== null && cordova !== undefined && cordova.InAppBrowser !== undefined) {
+							    delete window.open;
+							}
 							page.load('driver/1_pickupMap/pickupMap.html');
 						}
 					}, function (e) {
