@@ -4,10 +4,9 @@ app.factory('ErrorService', ['$log','ConfigSrvc',
         'use strict';
         var s = {},
             onErrorCallbacks= [],
-            lastError,
-            onError;
+            lastError;
 
-        onError = function (message) {
+        var onError = function (message) {
             angular.forEach(onErrorCallbacks, function (callback) {
                 callback(message);
             });
@@ -23,7 +22,11 @@ app.factory('ErrorService', ['$log','ConfigSrvc',
 
         //using $q would cause a circular dependancy so we set up an observer pattern
         s.reportError = function (error) {
-            s.reportMessage(error.message, error.stack);
+            var stack = "";
+            if (error.stack !== undefined) {
+                stack = error.stack;
+            }
+            s.reportMessage(error.message, stack);
         };
 
         s.reportMessage = function (message, details) {
