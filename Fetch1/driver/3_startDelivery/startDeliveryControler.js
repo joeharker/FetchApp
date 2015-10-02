@@ -71,7 +71,7 @@ function (/*                            */ locationService, $interval, $http, Co
 		    c.pickSrc = photo;
 		    photo = cameraService.resizePhoto(document.getElementById("pickImg"), 100, 100);
 		    ErrorService.reportMessage("photo length after", photo.length);
-			$http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': c.form.data.deliveryId, 'photo': photo })
+		    $http.post(ConfigSrvc.serviceUrl + '/api/drop', { 'deliveryId': c.form.data.deliveryId, 'photo': photo })
 		    .then(function (response) {
 		        c.pickup = false;
 		        c.drop = true;
