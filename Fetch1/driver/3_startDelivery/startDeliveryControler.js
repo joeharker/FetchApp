@@ -64,7 +64,7 @@ function (/*                            */ locationService, $interval, $http, Co
 			c.latLngUrl = latLngUrl;
 		});
 
-		cameraService.quality = 1;
+		cameraService.quality = 5;
 		cameraService.takePhoto()
 		.then(function (photo) {
 		    ErrorService.reportMessage("photo length before", photo.length);
