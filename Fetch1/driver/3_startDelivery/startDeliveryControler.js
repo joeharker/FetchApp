@@ -68,10 +68,10 @@ function (/*                            */ locationService, $interval, $http, Co
 		cameraService.takePhoto()
 		.then(function (photo) {
 		    ErrorService.reportMessage("photo length before", photo.length);
-		    c.pickSrc = photo;
-		    photo = cameraService.resizePhoto(document.getElementById("pickImg"), 100, 100);
+		    //c.pickSrc = photo;
+		    //photo = cameraService.resizePhoto(document.getElementById("pickImg"), 100, 100);
 		    ErrorService.reportMessage("photo length after", photo.length);
-		    $http.post(ConfigSrvc.serviceUrl + '/api/drop', { 'deliveryId': c.form.data.deliveryId, 'photo': photo })
+			$http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': c.form.data.deliveryId, 'photo': photo })
 		    .then(function (response) {
 		        c.pickup = false;
 		        c.drop = true;
@@ -82,7 +82,7 @@ function (/*                            */ locationService, $interval, $http, Co
 			});
 		}, function (x) {
 		    ErrorService.reportMessage("take photo error", JSON.stringify(x));
-			c.message = x;
+		    c.message = JSON.stringify(x);
 		});
 	};
 
