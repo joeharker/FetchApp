@@ -37,7 +37,7 @@ app.factory('ErrorService', ['$log','ConfigSrvc',
 
             if (message !== lastError) {
                 //test to prevent circular reference web calls
-                if (details !== null && details !== undefined && details.indexOf(rootErrorUrl) === -1) {
+                if (details !== null && details !== undefined && (details.indexOf === undefined || details.indexOf(rootErrorUrl) === -1)) {
                     lastError = message;
                     onError(message + ': ' + details);
 
