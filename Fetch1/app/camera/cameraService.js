@@ -48,7 +48,7 @@ function (ErrorService, $q) {
 	    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
 	    // encode image to data-uri with base64 version of compressed image
-	    return canvas.toDataURL("image/jpeg", 0.5);
+	    return canvas.toDataURL("image/jpeg", 1.0);
 	};
 
 	return s;
