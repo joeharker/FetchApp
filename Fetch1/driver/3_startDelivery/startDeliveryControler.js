@@ -58,10 +58,10 @@ function (/*                            */ locationService, $interval, $http, Co
 		}, 5000);
 	};
 
-    c.ready = false;
+    c.pready = false;
     c.onPickLoad = function () {
-        if (!c.ready) {
-            c.ready = true; //quick hack to not record the first blank image that loads with the page
+        if (!c.pready) {
+            //c.pready = true; //quick hack to not record the first blank image that loads with the page
         } else {
             var photo = cameraService.resizePhoto("pickImg", 200);
             ErrorService.reportMessage("photo length after", photo.length);
@@ -87,6 +87,7 @@ function (/*                            */ locationService, $interval, $http, Co
 		cameraService.takePhoto()
 		.then(function (photo) {
 		    ErrorService.reportMessage("photo length before", photo.length);
+		    c.pready = true; //quick hack to not record the first blank image that loads with the page
 		    c.pickSrc = photo;  //this will trigger onPickLoad when the image is loaded
 		    
 		}, function (x) {
@@ -95,9 +96,10 @@ function (/*                            */ locationService, $interval, $http, Co
 		});
 	};
 
+	c.dready = false;
 	c.onDropLoad = function () {
-	    if (!c.ready) {
-	        c.ready = true; //quick hack to not record the first blank image that loads with the page
+	    if (!c.dready) {
+	        //c.dready = true; //quick hack to not record the first blank image that loads with the page
 	    } else {
 	        var photo = cameraService.resizePhoto("dropImg", 200);
 	        
@@ -116,6 +118,7 @@ function (/*                            */ locationService, $interval, $http, Co
 	c.dropPhoto = function () {
 		cameraService.takePhoto()
 		.then(function (photo) {
+		    c.dready = true; //quick hack to not record the first blank image that loads with the page
 		    c.dropSrc = photo;  //this will trigger onDropLoad when the image is loaded
 			
 		}, function (e) {
