@@ -58,18 +58,23 @@ function (/*                            */ locationService, $interval, $http, Co
 		}, 5000);
 	};
 
-    c.onPickLoad = function() {
-        var photo = cameraService.resizePhoto("pickImg", 1000);
-        ErrorService.reportMessage("photo length after", photo.length);
-        $http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': c.form.data.deliveryId, 'photo': photo })
-        .then(function (response) {
-            c.pickup = false;
-            c.drop = true;
-            c.addressMessage = 'Get directions to Drop off ' + c.form.data.delivery;
-        }, function (e) {
-            ErrorService.reportMessage("post photo error", JSON.stringify(e));
-            c.message = JSON.stringify(e);
-        });
+    c.ready = false;
+    c.onPickLoad = function () {
+        if (!c.ready) {
+            c.ready = true; //quick hack to not record the first blank image that loads with the page
+        } else {
+            var photo = cameraService.resizePhoto("pickImg", 1000);
+            ErrorService.reportMessage("photo length after", photo.length);
+            $http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': c.form.data.deliveryId, 'photo': photo })
+                .then(function(response) {
+                    c.pickup = false;
+                    c.drop = true;
+                    c.addressMessage = 'Get directions to Drop off ' + c.form.data.delivery;
+                }, function(e) {
+                    ErrorService.reportMessage("post photo error", JSON.stringify(e));
+                    c.message = JSON.stringify(e);
+                });
+        }
     };
 
 	c.pickPhoto = function () {

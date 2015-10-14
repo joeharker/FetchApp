@@ -4,8 +4,7 @@
         link: function (scope, element, attrs) {
             element.bind('load', function () {
                 try {
-                    alert(JSON.stringify(attrs.imageonloadfunction));
-                    scope.$eval(attrs.imageonloadfunction);
+                    scope.$eval(attrs.imageonloadfunction); //NOTE: this comes in all lowercase
                 } catch (e) {
                     alert(e.message);
                 }
