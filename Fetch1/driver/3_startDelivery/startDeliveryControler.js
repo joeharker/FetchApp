@@ -58,6 +58,20 @@ function (/*                            */ locationService, $interval, $http, Co
 		}, 5000);
 	};
 
+    c.onPickLoad = function() {
+        var photo = cameraService.resizePhoto("pickImg", 1000);
+        ErrorService.reportMessage("photo length after", photo.length);
+        $http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': c.form.data.deliveryId, 'photo': photo })
+        .then(function (response) {
+            c.pickup = false;
+            c.drop = true;
+            c.addressMessage = 'Get directions to Drop off ' + c.form.data.delivery;
+        }, function (e) {
+            ErrorService.reportMessage("post photo error", JSON.stringify(e));
+            c.message = JSON.stringify(e);
+        });
+    };
+
 	c.pickPhoto = function () {
 		mapService.getGeoUrl(c.form.data.delivery)
 		.then(function (latLngUrl) {
@@ -69,17 +83,7 @@ function (/*                            */ locationService, $interval, $http, Co
 		.then(function (photo) {
 		    ErrorService.reportMessage("photo length before", photo.length);
 		    c.pickSrc = photo;
-		    photo = cameraService.resizePhoto("pickImg", 1000);
-		    ErrorService.reportMessage("photo length after", photo.length);
-			$http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': c.form.data.deliveryId, 'photo': photo })
-		    .then(function (response) {
-		        c.pickup = false;
-		        c.drop = true;
-		        c.addressMessage = 'Get directions to Drop off ' + c.form.data.delivery;
-		    }, function (e) {
-		        ErrorService.reportMessage("post photo error", JSON.stringify(e));
-                c.message = JSON.stringify(e);
-			});
+		    
 		}, function (x) {
 		    ErrorService.reportMessage("take photo error", JSON.stringify(x));
 		    c.message = JSON.stringify(x);
