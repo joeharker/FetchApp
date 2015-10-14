@@ -31,17 +31,21 @@ function (ErrorService, $q) {
 		return s.deferred.promise;
 	};
 
-	s.resizePhoto = function (img, width, height) {
+	s.resizePhoto = function (imgId, width) {
 	    // create an off-screen canvas
 	    var canvas = document.createElement('canvas'),
-            ctx = canvas.getContext('2d');
+            ctx = canvas.getContext('2d'),
+			img = document.getElementById(imgId),
+			oWidth = img.width,
+			oHeight = img.height,
+			ratio = oWidth / width;
 
 	    // set its dimension to target size
 	    canvas.width = width;
-	    canvas.height = height;
+	    canvas.height = oHeight / ratio;
 
 	    // draw source image into the off-screen canvas:
-	    ctx.drawImage(img, 0, 0, width, height);
+	    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
 	    // encode image to data-uri with base64 version of compressed image
 	    return canvas.toDataURL();
