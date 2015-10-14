@@ -71,7 +71,7 @@ function (/*                            */ locationService, $interval, $http, Co
                     c.drop = true;
                     c.addressMessage = 'Get directions to Drop off ' + c.form.data.delivery;
                 }, function(e) {
-                    ErrorService.reportMessage("post photo error", JSON.stringify(e));
+                    ErrorService.reportMessage("post pick photo error", JSON.stringify(e));
                     c.message = JSON.stringify(e);
                 });
         }
@@ -87,24 +87,39 @@ function (/*                            */ locationService, $interval, $http, Co
 		cameraService.takePhoto()
 		.then(function (photo) {
 		    ErrorService.reportMessage("photo length before", photo.length);
-		    c.pickSrc = photo;
+		    c.pickSrc = photo;  //this will trigger onPickLoad when the image is loaded
 		    
 		}, function (x) {
-		    ErrorService.reportMessage("take photo error", JSON.stringify(x));
+		    ErrorService.reportMessage("take pick photo error", JSON.stringify(x));
 		    c.message = JSON.stringify(x);
 		});
+	};
+
+	c.onDropLoad = function () {
+	    if (!c.ready) {
+	        c.ready = true; //quick hack to not record the first blank image that loads with the page
+	    } else {
+	        var photo = cameraService.resizePhoto("dropImg", 200);
+	        
+	        $http.post(ConfigSrvc.serviceUrl + '/api/drop', { 'deliveryId': c.form.data.deliveryId, 'photo': photo })
+                .then(function (response) {
+                    c.pickup = false;
+                    c.drop = false;
+                    c.message = 'Waiting for customer to confirm drop off';
+                }, function (e) {
+                    ErrorService.reportMessage("post drop photo error", JSON.stringify(e));
+                    c.message = JSON.stringify(e);
+                });
+	    }
 	};
 
 	c.dropPhoto = function () {
 		cameraService.takePhoto()
 		.then(function (photo) {
-			c.dropSrc = photo;
-			c.pickup = false;
-			c.drop = false;
-			$http.post(ConfigSrvc.serviceUrl + '/api/drop', { 'deliveryId': c.form.data.deliveryId, 'photo': photo });
-			c.message = 'Waiting for customer to confirm drop off';
+		    c.dropSrc = photo;  //this will trigger onDropLoad when the image is loaded
+			
 		}, function (e) {
-		    ErrorService.reportMessage("photo error", JSON.stringify(e));
+		    ErrorService.reportMessage("take drop photo error", JSON.stringify(e));
 		    c.message = JSON.stringify(e);
 		});
 	};
