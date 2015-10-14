@@ -15,6 +15,7 @@ function (/*                            */ locationService, $interval, $http, Co
 	c.init = function (form, page) {
 		c.form = form;
 		c.page = page;
+		c.message = 'Connecting with server';
 		c.addressMessage = 'Get directions to Pickup ' + c.form.data.pickup;
 
 		mapService.getGeoUrl(form.data.pickup)
