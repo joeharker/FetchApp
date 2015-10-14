@@ -33,8 +33,8 @@ function (ErrorService, $q) {
 
 	s.resizePhoto = function (imgId, width) {
 	    // create an off-screen canvas
-	    var canvas = document.createElement('canvas'),
-            ctx = canvas.getContext('2d'),
+	    var canvas = document.createElement("canvas"),
+            ctx = canvas.getContext("2d"),
 			img = document.getElementById(imgId),
 			oWidth = img.width,
 			oHeight = img.height,
