@@ -69,7 +69,7 @@ function (/*                            */ locationService, $interval, $http, Co
 		.then(function (photo) {
 		    ErrorService.reportMessage("photo length before", photo.length);
 		    c.pickSrc = photo;
-		    photo = cameraService.resizePhoto("pickImg", 500);
+		    photo = cameraService.resizePhoto("pickImg", 1000);
 		    ErrorService.reportMessage("photo length after", photo.length);
 			$http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': c.form.data.deliveryId, 'photo': photo })
 		    .then(function (response) {
