@@ -63,7 +63,7 @@ function (/*                            */ locationService, $interval, $http, Co
         if (!c.ready) {
             c.ready = true; //quick hack to not record the first blank image that loads with the page
         } else {
-            var photo = cameraService.resizePhoto("pickImg", 1000);
+            var photo = cameraService.resizePhoto("pickImg", 200);
             ErrorService.reportMessage("photo length after", photo.length);
             $http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': c.form.data.deliveryId, 'photo': photo })
                 .then(function(response) {
