@@ -6,7 +6,7 @@
         },
         link: function (scope, element, attrs) {
             element.bind('load', function () {
-                scope.callback();
+                alert(scope.callback());
             });
         }
     };
