@@ -48,6 +48,7 @@
   <gap:plugin name="org.apache.cordova.device" source="npm" />			  <!-- core api -->
   <gap:plugin name="org.apache.cordova.geolocation" source="npm" />	  <!-- gps -->
 	<gap:plugin name="org.apache.cordova.inappbrowser" source="npm" />	<!-- needed for authentication -->
+  <gap:plugin name="org.apache.cordova-plugin-whitelist" source="npm" />	<!-- needed for authentication -->
 	<gap:plugin name="org.apache.cordova.camera" source="npm" />			  <!-- photos -->
 	<gap:plugin name="org.apache.cordova.vibration" source="npm" />		  <!-- buzz -->
 	<gap:plugin name="org.apache.cordova.dialogs" source="npm" />       <!-- buzz -->
@@ -111,9 +112,9 @@
 
         Otherwise, you can specify specific domains:
     -->
-    <access origin="*"/>
-	<access origin="geo:*" launch-external="yes"/>
-	<access origin="maps:*" launch-external="yes"/>
+  <access origin="*" />
+	<access origin="geo:*" launch-external="yes" />
+	<access origin="maps:*" launch-external="yes" />
   <access origin="https://connect.stripe.com" subdomains="true" />
   <access origin="http://fetch001.azurewebsites.net" subdomains="true" />
   <!--
