@@ -14,11 +14,13 @@ app.controller('AuthCtrl', ['GuidService', 'ConfigSrvc', 'MemorySrvc', '$interva
         MemorySrvc.reset();
 
         c.oauth = function (page) {
+            //atempt confirmation
+            c.win = window.open('https://connect.stripe.com/oauth/authorize?response_type=code&scope=read_write&client_id=' + ConfigSrvc.stripeClientId + '&state=' + c.guid + '&stripe_user[business_name]=Neighborhood driver&stripe_user[business_type]=sole_prop&stripe_user[physical_product]=false&stripe_user[url]=http://www.fetch1.com/', '_blank');
+
             //wait for confirmation
             ticker = $interval(function () {
                 $http.get(ConfigSrvc.serviceUrl + '/api/auth?guid=' + c.guid)
 					.then(function (response) {
-					    alert(response.data);
 					    if (response.data !== "") {
 					        $interval.cancel(ticker);
 					        MemorySrvc.set('myId', response.data);
@@ -29,9 +31,6 @@ app.controller('AuthCtrl', ['GuidService', 'ConfigSrvc', 'MemorySrvc', '$interva
 					    //This happens first try if the service is sleeping
 					});
             }, 1000);
-
-            //atempt confirmation
-        	c.win = window.open('https://connect.stripe.com/oauth/authorize?response_type=code&scope=read_write&client_id=' + ConfigSrvc.stripeClientId + '&state=' + c.guid + '&stripe_user[business_name]=Neighborhood driver&stripe_user[business_type]=sole_prop&stripe_user[physical_product]=false&stripe_user[url]=http://www.fetch1.com/', '_blank');
         };
 
     	//check version
