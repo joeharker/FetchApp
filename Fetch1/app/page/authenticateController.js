@@ -14,7 +14,7 @@ app.controller('AuthCtrl', ['GuidService', 'ConfigSrvc', 'MemorySrvc', '$interva
         MemorySrvc.reset();
 
         c.oauth = function (page) {
-        	c.win = window.open('https://connect.stripe.com/oauth/authorize?response_type=code&scope=read_write&client_id=' + ConfigSrvc.stripeClientId + '&state=' + c.guid + '&stripe_user[business_name]=Neighborhood driver&stripe_user[business_type]=sole_prop&stripe_user[physical_product]=false&stripe_user[url]=http://www.fetch1.com/', '_blank');
+            c.win = window.open('https://connect.stripe.com/oauth/authorize?response_type=code&scope=read_write&client_id=' + ConfigSrvc.stripeClientId + '&state=' + c.guid + '&stripe_user[business_name]=Neighborhood driver&stripe_user[business_type]=sole_prop&stripe_user[physical_product]=false&stripe_user[url]=http://www.fetch1.com/', '_system');
 
         	//wait for confirmation
         	ticker = $interval(function () {
