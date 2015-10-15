@@ -18,6 +18,7 @@ app.controller('AuthCtrl', ['GuidService', 'ConfigSrvc', 'MemorySrvc', '$interva
             ticker = $interval(function () {
                 $http.get(ConfigSrvc.serviceUrl + '/api/auth?guid=' + c.guid)
 					.then(function (response) {
+					    alert(response.data);
 					    if (response.data !== "") {
 					        $interval.cancel(ticker);
 					        MemorySrvc.set('myId', response.data);
