@@ -34,19 +34,19 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 							c.message = 'Approaching pickup';
 							break;
 						case 3:
-							c.message = 'Aproaching drop off';
+						    c.message = 'Approaching drop off';
 							if (c.pickSrc === cameraService.transparent) {
 								$http.get(ConfigSrvc.serviceUrl + '/api/pickup?deliveryId=' + c.form.data.deliveryId)
 									.then(function (photo) {
 										c.pickSrc = photo.data;
 										DeviceSrvc.buzz();
 									}, function (x) {
-										c.message = 'Internet connection error';
+										c.message = 'Network connection error';
 									});
 							}
 							break;
 						case 4:
-							c.message = 'Delivery has arived';
+						    c.message = 'Delivery has arrived';
 							if (c.dropSrc === cameraService.transparent) {
 								c.accept = true;
 								$http.get(ConfigSrvc.serviceUrl + '/api/drop?deliveryId=' + c.form.data.deliveryId)

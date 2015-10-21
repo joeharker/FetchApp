@@ -48,7 +48,7 @@ function (/*                            */ locationService, $interval, $http, Co
 				            break;
 				        case EnumSrvc.NextNeed.Done:
 				            $interval.cancel(ticker);
-				            c.page.load('customer/4_deliveredVerification/deliveredVerification.html');
+				            c.page.load('driver/4_drivenVerification/drivenVerification.html');
 				            break;
 				        default:
 				    }
@@ -65,7 +65,6 @@ function (/*                            */ locationService, $interval, $http, Co
             //c.pready = true; //quick hack to not record the first blank image that loads with the page
         } else {
             var photo = cameraService.resizePhoto("pickImg", 200);
-            ErrorService.reportMessage("photo length after", photo.length);
             $http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': c.form.data.deliveryId, 'photo': photo })
                 .then(function(response) {
                     c.pickup = false;
@@ -87,7 +86,6 @@ function (/*                            */ locationService, $interval, $http, Co
 		cameraService.quality = 5;
 		cameraService.takePhoto()
 		.then(function (photo) {
-		    ErrorService.reportMessage("photo length before", photo.length);
 		    c.pready = true; //quick hack to not record the first blank image that loads with the page
 		    c.pickSrc = photo;  //this will trigger onPickLoad when the image is loaded
 		    
