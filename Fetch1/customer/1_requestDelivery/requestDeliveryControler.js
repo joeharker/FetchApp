@@ -64,14 +64,14 @@ function (mapService, $q) {
 		}
 	};
 
-	c.validatePage = function () {
-		var result = document.getElementsByClassName('error');
-		return result.length == 0;
-	};
+	//c.validatePage = function () {
+	//	var result = document.getElementsByClassName('error');
+	//	return result.length == 0;
+	//};
 
-	c.verifyWindow = function () {
-		c.win = window.open('customer/2.5_payment/payment.html');
-	};
+	//c.verifyWindow = function () {
+	//	c.win = window.open('customer/2.5_payment/payment.html');
+	//};
 
 	return c;
 }]);
