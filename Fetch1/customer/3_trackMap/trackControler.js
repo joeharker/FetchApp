@@ -58,7 +58,8 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 									});
 							}
 							break;
-						default:
+					    default:
+					        $interval.cancel(ticker);
 							c.message = '';
 					}
 

@@ -28,7 +28,7 @@ function (/*                            */ locationService, $interval, $http, Co
 				.then(function (status) {
 				    switch (status.data.nextNeed) {
 				        case EnumSrvc.NextNeed.Driver:
-				            $http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + form.data.deliveryId + '&driverId=' + form.myId);
+				            //some times we get here before the status updates
 				            break;
 				        case EnumSrvc.NextNeed.Payment:
 				            c.message = 'Waiting for customer payment';
@@ -51,6 +51,7 @@ function (/*                            */ locationService, $interval, $http, Co
 				            c.page.load('driver/4_drivenVerification/drivenVerification.html');
 				            break;
 				        default:
+				            $interval.cancel(ticker);
 				    }
 				}, function (x) {
 				    ErrorService.reportMessage("test photo error", JSON.stringify(x));

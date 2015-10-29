@@ -1,7 +1,9 @@
 ﻿<div class="hidden">{{ page.theme = 'darker'; page.title = 'DELIVERY' }}</div>
 	<div ng-controller="DeliveryCtrl as demo">
-		<div ng-controller="ViewDeliveryControler as config">
-			<div class="short"></div>
+		<div ng-controller="ViewDeliveryControler as config" ng-init="config.init(demo, page)">
+		    <div class="short"></div>
+		    {{ config.message }}
+		    <br/>
 			DELIVERY {{ demo.data.deliveryId }} INFO
 			<div class="short"></div>
 			<button class="skinnier medium dark fa fa-archive"></button>
@@ -35,7 +37,7 @@
 				REJECT
 			</button>
 			<span class="skinniest"></span>
-			<button ng-click="page.load('driver/3_startDelivery/startDelivery.html');" class="medium wide light">
+			<button ng-click="config.accept();" class="medium wide light">
 				ACCEPT
 			</button>
 		</div>
