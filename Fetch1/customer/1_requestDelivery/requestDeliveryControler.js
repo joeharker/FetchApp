@@ -7,9 +7,20 @@ function (mapService) {
 	var checkDistance = function (form) {
 		mapService.calculateRoute(form.data.pickup, form.data.delivery)
 		.then(function (rout) {
-			form.data.distance = (rout.meters / 1609.34).toFixed(2) + ' miles';
-		}, function (reason) {
-			form.data.distance = '';
+		        form.data.distance = (rout.meters / 1609.34).toFixed(2) + ' miles';
+		        form.setDelivery();
+		        form.setPickup();
+		        form.setDropLat();
+		        form.setDropLong();
+		        form.setPickUpLat();
+		        form.setPickUpLong();
+		    }, function (reason) {
+		        form.data.distance = '';
+		        form.setDelivery();
+		        form.setPickup();
+		        form.setDropLat();
+		        form.setDropLong();
+		        form.setPickUpLat();
 		});
 	};
 

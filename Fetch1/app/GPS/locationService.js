@@ -20,7 +20,7 @@ function (ErrorService) {
 	};
 
 	var watchPositionFail = function (error) {
-		ErrorService.reportError("getCurrentPosition error", error.message);
+	    ErrorService.reportError("getCurrentPosition error", JSON.stringify(error));
 	};
 
 	navigator.geolocation.watchPosition(watchPositionSuccess, watchPositionFail, watchPositionOptions);

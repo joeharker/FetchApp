@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.controller('ViewDeliveryControler', ['ConfigSrvc', '$interval', '$http','EnumSrvc',
-function (ConfigSrvc, $interval, $http, EnumSrvc) {
+app.controller('ViewDeliveryControler', ['ConfigSrvc', '$interval', '$http','EnumSrvc','ErrorService',
+function (ConfigSrvc, $interval, $http, EnumSrvc, ErrorService) {
 	var c = this;
 
 	c.driverCut = ConfigSrvc.driverCut;

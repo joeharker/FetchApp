@@ -12,8 +12,8 @@ function (ErrorService, $q) {
 	};
 
 	var onFail = function (message) {
-	    ErrorService.reportError(message);
-		s.deferred.reject("photo error "+ message);
+	    ErrorService.reportError("photo error", JSON.stringify(message));
+	    s.deferred.reject("photo error "+ JSON.stringify(message));
 	};
 
 	s.takePhoto = function () {

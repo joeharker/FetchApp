@@ -1,7 +1,7 @@
 ﻿/// <reference path="../3_trackMap/trackMap.html" />
 /*global app */
-app.controller('DeliveryVerificationCtrl', ['mapService', '$q', 'MemorySrvc', '$interval',
-function (mapService, $q, MemorySrvc, $interval) {
+app.controller('DeliveryVerificationCtrl', ['mapService', '$q', 'MemorySrvc', 'ErrorService',
+function (mapService, $q, MemorySrvc, ErrorService) {
 	var c = this;
 
 	c.calculateCost = function (form) {
@@ -32,14 +32,15 @@ function (mapService, $q, MemorySrvc, $interval) {
 
 					break;
 				default:
-					ErrorService.reportError('Unknown size:', form.data.size);
+					//ErrorService.reportError('Unknown size:', form.data.size);
 			}
 
 			form.data.price = price.toFixed(2);
 			MemorySrvc.set('price', form.data.price);
 		}, function (reason) {
-			ErrorService.reportError('calculateCost Failed:', reason);
-		});
+		    console.log([form.data.pickup, form.data.delivery]);
+		        ErrorService.reportError('calculateCost Failed:', JSON.stringify(reason));
+		    });
 	};
 
 	return c;
