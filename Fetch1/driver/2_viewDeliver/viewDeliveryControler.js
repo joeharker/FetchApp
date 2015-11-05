@@ -40,9 +40,9 @@ function (ConfigSrvc, $interval, $http, EnumSrvc, ErrorService) {
                             //sometimes we get here before the startDelivery page loads
                             break;
                         default:
-                            $interval.cancel(ticker);
-                            c.message = 'Someone else has taken this delivery';
-                            c.page.load('driver/1_pickupMap/pickupMap.html');
+                            //$interval.cancel(ticker);
+                            //c.message = 'Someone else has taken this delivery';
+                            //c.page.load('driver/1_pickupMap/pickupMap.html');
                     }
                 }, function (x) {
                     ErrorService.reportMessage("test photo error", JSON.stringify(x));
