@@ -21,8 +21,8 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 	};
 
 	var startUpdates = function () {
+	    mapService.centerMap(locationService.position.latitude, locationService.position.longitude);
 		ticker = $interval(function () {
-			mapService.centerMap(locationService.position.latitude, locationService.position.longitude);
 			$http.get(ConfigSrvc.serviceUrl + '/api/delivery?lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude)
 				.then(function (response) {
 					c.message = 'Click a pickup to view the request';
@@ -45,6 +45,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 										MemorySrvc.set(key, pin[key]);
 									}
 								}
+
 								c.page.load('driver/2_viewDeliver/viewDelivery.html');
 							}
 						);

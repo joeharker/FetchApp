@@ -12,8 +12,10 @@ function (ErrorService, $q) {
 	};
 
 	var onFail = function (message) {
-	    ErrorService.reportError("photo error", JSON.stringify(message));
-	    s.deferred.reject("photo error "+ JSON.stringify(message));
+	    if (message.indexOf("has no") === -1) { //this means the photo was canceled
+	        ErrorService.reportError("photo error", JSON.stringify(message));
+	        s.deferred.reject("photo error " + JSON.stringify(message));
+	    }
 	};
 
 	s.takePhoto = function () {
