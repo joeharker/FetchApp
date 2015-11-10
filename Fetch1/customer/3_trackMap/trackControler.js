@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.controller('TrackControler', ['mapService', 'locationService', '$interval', '$http', 'ConfigSrvc', 'MemorySrvc', 'cameraService','DeviceSrvc',
-function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc, cameraService, DeviceSrvc) {
+app.controller('TrackControler', ['mapService', 'locationService', '$interval', '$http', 'ConfigSrvc', 'MemorySrvc', 'cameraService','DeviceSrvc','EnumSrvc',
+function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc, cameraService, DeviceSrvc, EnumSrvc) {
 	var c = this;
 	var ticker = {};
 	c.message = 'Finding your location';
@@ -29,11 +29,17 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 						}
 					);
 
-					switch(status.data.nextNeed) {
-						case 2:
+					switch (status.data.nextNeed) {
+					    case EnumSrvc.NextNeed.Driver:
+					        c.message = 'Waiting';
+					        break;
+					    case EnumSrvc.NextNeed.Payment:
+					        c.message = 'Waiting';
+					        break;
+					    case EnumSrvc.NextNeed.Pickup:
 							c.message = 'Approaching pickup';
 							break;
-						case 3:
+					    case EnumSrvc.NextNeed.Dropoff:
 						    c.message = 'Approaching drop off';
 							if (c.pickSrc === cameraService.transparent) {
 								$http.get(ConfigSrvc.serviceUrl + '/api/pickup?deliveryId=' + c.form.data.deliveryId)
@@ -45,8 +51,9 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 									});
 							}
 							break;
-						case 4:
-						    c.message = 'Delivery has arrived';
+					    case EnumSrvc.NextNeed.Transfer:
+					        c.message = 'Delivery has arrived';
+					        $interval.cancel(ticker);
 							if (c.dropSrc === cameraService.transparent) {
 								c.accept = true;
 								$http.get(ConfigSrvc.serviceUrl + '/api/drop?deliveryId=' + c.form.data.deliveryId)
@@ -58,9 +65,11 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 									});
 							}
 							break;
+					    case EnumSrvc.NextNeed.Done:
+					        c.message = 'Delivery has arrived';
+					        break;
 					    default:
-					        $interval.cancel(ticker);
-							c.message = '';
+					        c.message = status.data.nextNeed;
 					}
 
 					//center map on driver

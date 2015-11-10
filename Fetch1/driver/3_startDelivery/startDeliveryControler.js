@@ -28,7 +28,7 @@ function (/*                            */ locationService, $interval, $http, Co
 				.then(function (status) {
 				    switch (status.data.nextNeed) {
 				        case EnumSrvc.NextNeed.Driver:
-				            //some times we get here before the status updates
+				            c.message = 'Waiting';
 				            break;
 				        case EnumSrvc.NextNeed.Payment:
 				            c.message = 'Waiting for customer payment';
@@ -38,12 +38,9 @@ function (/*                            */ locationService, $interval, $http, Co
 				            $http.get(ConfigSrvc.serviceUrl + '/api/delivery?driverId=' + c.form.myId + '&lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude);
 				            break;
 				        case EnumSrvc.NextNeed.Dropoff:
-				            //c.pickup = false;
-				            //c.drop = true;
 				            $http.get(ConfigSrvc.serviceUrl + '/api/delivery?driverId=' + c.form.myId + '&lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude);
 				            break;
 				        case EnumSrvc.NextNeed.Transfer:
-				            //c.drop = false;
 				            c.message = 'Waiting for customer to confirm drop off';
 				            break;
 				        case EnumSrvc.NextNeed.Done:
@@ -51,7 +48,7 @@ function (/*                            */ locationService, $interval, $http, Co
 				            c.page.load('driver/4_drivenVerification/drivenVerification.html');
 				            break;
 				        default:
-				            $interval.cancel(ticker);
+				            c.message = status.data.nextNeed;
 				    }
 				}, function (x) {
 				    ErrorService.reportMessage("test photo error", JSON.stringify(x));
@@ -66,6 +63,7 @@ function (/*                            */ locationService, $interval, $http, Co
             //c.pready = true; //quick hack to not record the first blank image that loads with the page
         } else {
             var photo = cameraService.resizePhoto("pickImg", 200);
+            alert(JSON.stringify(photo));
             $http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': c.form.data.deliveryId, 'photo': photo })
                 .then(function(response) {
                     c.pickup = false;
