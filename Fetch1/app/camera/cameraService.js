@@ -12,7 +12,7 @@ function (ErrorService, $q) {
 	};
 
 	var onFail = function (message) {
-	    if (message.indexOf("has no") === -1) { //this means the photo was canceled
+	    if (message.indexOf("has no") === -1 && message.indexOf("cancelled") === -1) { //this means the photo was canceled
 	        ErrorService.reportError("photo error", JSON.stringify(message));
 	        s.deferred.reject("photo error " + JSON.stringify(message));
 	    }
@@ -26,12 +26,18 @@ function (ErrorService, $q) {
 		} else {
 			navigator.camera.getPicture(onSuccess, onFail, {
 				quality: s.quality,
-				destinationType: Camera.DestinationType.DATA_URL
+				destinationType: Camera.DestinationType.DATA_URL,
+				correctOrientation: true
 			});
 		}
 
 		return s.deferred.promise;
 	};
+
+	var rotate = function (ctx, degrees) {
+	    ctx.translate(ctx.width / 2, ctx.height / 2);
+	    ctx.rotate(degrees * Math.PI / 180);
+	}
 
 	s.resizePhoto = function (imgId, width) {
 	    // create an off-screen canvas
