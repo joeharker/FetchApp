@@ -47,7 +47,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 										c.pickSrc = photo.data;
 										DeviceSrvc.buzz();
 									}, function (x) {
-										c.message = 'Network connection error';
+										c.message = 'Finding Network C';
 									});
 							}
 							break;
@@ -61,7 +61,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 										c.dropSrc = photo.data;
 										DeviceSrvc.buzz();
 									}, function (x) {
-										c.message = 'Internet connection error';
+										c.message = 'Finding Network D';
 									});
 							}
 							break;
@@ -75,7 +75,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 					//center map on driver
 					mapService.centerMap(status.data.lat, status.data.lon);
 				}, function (e) {
-					c.message = 'Internet connection error';
+					c.message = 'Finding Network E';
 				});
 		}, 5000);
 	};

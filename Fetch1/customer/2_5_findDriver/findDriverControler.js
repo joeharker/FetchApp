@@ -21,7 +21,7 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 						DeviceSrvc.buzz();
 					}
 				}, function (e) {
-					c.message = 'An error has occured at wait for offer';
+					c.message = 'Finding Network A';
 				});
 		}, 5000);
 	};
@@ -44,8 +44,8 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 	var thisToken = {};
 	var handler = StripeCheckout.configure({
 		key: ConfigSrvc.stripeCheckoutKey,
-		image: '../../resources/icon/icon.png',
-		locale: 'auto',
+		image: "../../resources/icon/box128.png",
+		locale: "auto",
 		token: function (token) {
 			thisToken = token;
 		}
@@ -89,7 +89,7 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 				.then(function (payResponse) {
 					page.load('customer/3_trackMap/trackMap.html');
 				}, function (e) {
-					c.message = 'An error has occured at post payment';
+					c.message = 'Finding Network B';
 				});
 			}
 		}, 1000);

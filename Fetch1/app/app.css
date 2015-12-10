@@ -156,7 +156,7 @@ button:disabled {
 
 .city {
 	height: 100%;
-	background-image: url(../../resources/screen/startscreen.png);
+	background-image: url(../resources/screen/city.png);
 	background-size: auto 100%;
 	background-repeat: no-repeat;
 	background-position: center;

@@ -48,11 +48,12 @@ function (/*                            */ locationService, $interval, $http, Co
 				            c.page.load('driver/4_drivenVerification/drivenVerification.html');
 				            break;
 				        default:
-				            c.message = status.data.nextNeed;
+				            ErrorService.reportMessage("test photo error driver", status.data.nextNeed);
+				            c.message = "Finding Network J";
 				    }
 				}, function (x) {
 				    ErrorService.reportMessage("test photo error", JSON.stringify(x));
-				    c.message = 'net work error '+ JSON.stringify(x);
+				    c.message = "Finding Network K";
 				});
 		}, 5000);
 	};
@@ -70,7 +71,7 @@ function (/*                            */ locationService, $interval, $http, Co
                     c.addressMessage = 'Get directions to Drop off ' + c.form.data.delivery;
                 }, function(e) {
                     ErrorService.reportMessage("post pick photo error", JSON.stringify(e));
-                    c.message = JSON.stringify(e);
+                    c.message = "Post photo error";
                 });
         }
     };
@@ -89,7 +90,7 @@ function (/*                            */ locationService, $interval, $http, Co
 		    
 		}, function (x) {
 		    ErrorService.reportMessage("take pick photo error", JSON.stringify(x));
-		    c.message = JSON.stringify(x);
+		    c.message = "Photo Error";
 		});
 	};
 
@@ -107,7 +108,7 @@ function (/*                            */ locationService, $interval, $http, Co
                     c.message = 'Waiting for customer to confirm drop off';
                 }, function (e) {
                     ErrorService.reportMessage("post drop photo error", JSON.stringify(e));
-                    c.message = JSON.stringify(e);
+                    c.message = "Post photo error";
                 });
 	    }
 	};
@@ -120,7 +121,7 @@ function (/*                            */ locationService, $interval, $http, Co
 			
 		}, function (e) {
 		    ErrorService.reportMessage("take drop photo error", JSON.stringify(e));
-		    c.message = JSON.stringify(e);
+		    c.message = "Photo error";
 		});
 	};
 

@@ -80,29 +80,29 @@
     -->
 
     <!-- Define app icon for each platform. -->
-    <icon src="resources/icon/icon.png" />
-    <icon src="resources/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:qualifier="ldpi" />
-    <icon src="resources/icon/android/icon-48-mdpi.png"   gap:platform="android"    gap:qualifier="mdpi" />
-    <icon src="resources/icon/android/icon-72-hdpi.png"   gap:platform="android"    gap:qualifier="hdpi" />
-    <icon src="resources/icon/android/icon-96-xhdpi.png"  gap:platform="android"    gap:qualifier="xhdpi" />
-    <icon src="resources/icon/ios/icon-57.png"            gap:platform="ios"        width="57" height="57" />
-    <icon src="resources/icon/ios/icon-72.png"            gap:platform="ios"        width="72" height="72" />
-    <icon src="resources/icon/ios/icon-57-2x.png"         gap:platform="ios"        width="114" height="114" />
-    <icon src="resources/icon/ios/icon-72-2x.png"         gap:platform="ios"        width="144" height="144" />
-    <icon src="resources/icon/windows-phone/icon-48.png"  gap:platform="winphone" />
-    <icon src="resources/icon/windows-phone/icon-173.png" gap:platform="winphone"   gap:role="background" />
+    <icon src="resources/icon/box128.png" />
+    <icon src="resources/icon/android/box36.png"   gap:platform="android"    gap:qualifier="ldpi" />
+    <icon src="resources/icon/android/box48.png"   gap:platform="android"    gap:qualifier="mdpi" />
+    <icon src="resources/icon/android/box72.png"   gap:platform="android"    gap:qualifier="hdpi" />
+    <icon src="resources/icon/android/box96.png"  gap:platform="android"     gap:qualifier="xhdpi" />
+    <icon src="resources/icon/ios/box57.png"            gap:platform="ios"        width="57" height="57" />
+    <icon src="resources/icon/ios/box72.png"            gap:platform="ios"        width="72" height="72" />
+    <icon src="resources/icon/ios/box114.png"         gap:platform="ios"        width="114" height="114" />
+    <icon src="resources/icon/ios/box144.png"         gap:platform="ios"        width="144" height="144" />
+    <icon src="resources/icon/windows-phone/box48.png"  gap:platform="winphone" />
+    <icon src="resources/icon/windows-phone/box173.png" gap:platform="winphone"   gap:role="background" />
 
     <!-- Define app splash screen for each platform. -->
-    <gap:splash src="resources/screen/startscreen.png"  gap:platform="android" gap:qualifier="port-ldpi" />
-    <gap:splash src="resources/screen/startscreen.png"  gap:platform="android" gap:qualifier="port-mdpi" />
-    <gap:splash src="resources/screen/startscreen.png"  gap:platform="android" gap:qualifier="port-hdpi" />
-    <gap:splash src="resources/screen/startscreen.png"  gap:platform="android" gap:qualifier="port-xhdpi" />
-    <gap:splash src="resources/screen/startscreen.png"  gap:platform="ios"     width="320" height="480" />
-    <gap:splash src="resources/screen/startscreen.png"  gap:platform="ios"     width="640" height="960" />
-    <gap:splash src="resources/screen/startscreen.png"	gap:platform="ios"     width="640" height="1136" />
-    <gap:splash src="resources/screen/startscreen.png"  gap:platform="ios"     width="768" height="1024" />
-    <gap:splash src="resources/screen/startscreen.png"  gap:platform="ios"     width="1024" height="768" />
-    <gap:splash src="resources/screen/startscreen.png"	gap:platform="winphone" />
+    <gap:splash src="resources/screen/road.png"  gap:platform="android" gap:qualifier="port-ldpi" />
+    <gap:splash src="resources/screen/road.png"  gap:platform="android" gap:qualifier="port-mdpi" />
+    <gap:splash src="resources/screen/road.png"  gap:platform="android" gap:qualifier="port-hdpi" />
+    <gap:splash src="resources/screen/road.png"  gap:platform="android" gap:qualifier="port-xhdpi" />
+    <gap:splash src="resources/screen/road.png"  gap:platform="ios"     width="320" height="480" />
+    <gap:splash src="resources/screen/road.png"  gap:platform="ios"     width="640" height="960" />
+    <gap:splash src="resources/screen/road.png"  gap:platform="ios"     width="640" height="1136" />
+    <gap:splash src="resources/screen/road.png"  gap:platform="ios"     width="768" height="1024" />
+    <gap:splash src="resources/screen/road.png"  gap:platform="ios"     width="1024" height="768" />
+    <gap:splash src="resources/screen/road.png"	 gap:platform="winphone" />
 
     <!--
         Define access to external domains.

@@ -52,7 +52,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 						
 					});
 				}, function (e) {
-					c.message = 'An error has occured';
+					c.message = 'Finding Network F';
 				});
 		}, 5000);
 	};
