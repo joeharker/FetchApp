@@ -38,8 +38,8 @@ app.controller('PageCtrl', ['ConfigSrvc', 'MemorySrvc',
     		c.disableBack = (history.length <= 0);
     	};
 
-    	//onload-complete load a template if listed in a jump url param or page one
-    	regex = new RegExp('(?:\\?|&)jump=([^&]*)(?=&|$)', 'gi');
+    	//onload-complete load a template if listed in a path url param or page one
+    	regex = new RegExp('(?:\\?|&)path=([^&]*)(?=&|$)', 'gi');
     	match = regex.exec(window.document.location.search);
     	if (match !== null) {
     		c.load(match[1]);
