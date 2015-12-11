@@ -27,7 +27,8 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 
 	c.init = function (json) {
 	    if (MemorySrvc.get("deliveryId") === "") {
-			c.message = "Posting your request";
+	        c.message = "Posting your request";
+	        console.log(json);
 			$http.post(ConfigSrvc.serviceUrl + "/api/delivery", json)
 				.then(function (deliveryResponse) {
 					MemorySrvc.set("deliveryId", deliveryResponse.data);
