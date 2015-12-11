@@ -1,40 +1,39 @@
 ﻿/*global app */
-app.controller('FindDriverCtrl', ['$q', '$scope', '$http', '$interval', 'ConfigSrvc', 'MemorySrvc', 'EnumSrvc','DeviceSrvc',
+app.controller("FindDriverCtrl", ["$q", "$scope", "$http", "$interval", "ConfigSrvc", "MemorySrvc", "EnumSrvc","DeviceSrvc",
 function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, DeviceSrvc) {
 	var c = this;
 
-	c.message = '';
+	c.message = "";
 	c.ready = false;
 	var ticker;
 
 	var waitForDriver = function () {
-		deliveryId = MemorySrvc.get('deliveryId');
-		c.message = 'Waiting for a Deliverer';
-		console.log(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + deliveryId);
+		var deliveryId = MemorySrvc.get("deliveryId");
+		c.message = "Waiting for a Deliverer";
 		ticker = $interval(function () {
-			$http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + deliveryId)
+			$http.get(ConfigSrvc.serviceUrl + "/api/delivery?deliveryId=" + deliveryId)
 				.then(function (status) {
 					if (status.data.nextNeed === EnumSrvc.NextNeed.Payment) {
 						$interval.cancel(ticker);
-						c.message = 'A deliverer is ready. Please pay to start the delivery';
+						c.message = "A deliverer is ready. Please pay to start the delivery";
 						c.ready = true;
 						DeviceSrvc.buzz();
 					}
 				}, function (e) {
-					c.message = 'Finding Network A';
+					c.message = "Finding Network A";
 				});
 		}, 5000);
 	};
 
 	c.init = function (json) {
-		if (MemorySrvc.get('deliveryId') === '') {
-			c.message = 'Posting your request';
-			$http.post(ConfigSrvc.serviceUrl + '/api/delivery', json)
+	    if (MemorySrvc.get("deliveryId") === "") {
+			c.message = "Posting your request";
+			$http.post(ConfigSrvc.serviceUrl + "/api/delivery", json)
 				.then(function (deliveryResponse) {
-					MemorySrvc.set('deliveryId', deliveryResponse.data);
+					MemorySrvc.set("deliveryId", deliveryResponse.data);
 					waitForDriver();
 				}, function (e) {
-					c.message = 'An error has occured at post delivery';
+					c.message = "An error has occured at post delivery";
 				});
 		} else {
 			waitForDriver();
@@ -54,7 +53,7 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 	c.submit = function (description, cents, page) {
 		var payment = {};
 		handler.open({
-			name: 'FETCH1 TRANSPORT LLC',
+			name: "FETCH1 TRANSPORT LLC",
 			description: description,
 			zipCode: true,
 			amount: cents
@@ -65,11 +64,11 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 			if (thisToken.id !== undefined) {
 				$interval.cancel(ticker);
 
-				MemorySrvc.set('myId', thisToken.email);
+				MemorySrvc.set("myId", thisToken.email);
 
 				//record payment
 				payment.id = thisToken.id;
-				payment.deliveryId = MemorySrvc.get('deliveryId');
+				payment.deliveryId = MemorySrvc.get("deliveryId");
 				payment.customerId = thisToken.email;
 				payment.brand = thisToken.card.brand;
 				payment.country = thisToken.card.country;
@@ -85,11 +84,11 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 				payment.livemode = thisToken.livemode;
 				payment.type = thisToken.type;
 				payment.used = thisToken.used;
-				$http.post(ConfigSrvc.serviceUrl + '/api/pay', payment)
+				$http.post(ConfigSrvc.serviceUrl + "/api/pay", payment)
 				.then(function (payResponse) {
-					page.load('customer/3_trackMap/trackMap.html');
+					page.load("customer/3_trackMap/trackMap.html");
 				}, function (e) {
-					c.message = 'Finding Network B';
+					c.message = "Finding Network B";
 				});
 			}
 		}, 1000);

@@ -1,6 +1,6 @@
 ﻿/// <reference path="../3_trackMap/trackMap.html" />
 /*global app */
-app.controller('DeliveryVerificationCtrl', ['mapService', '$q', 'MemorySrvc', 'ErrorService',
+app.controller("DeliveryVerificationCtrl", ["mapService", "$q", "MemorySrvc", "ErrorService",
 function (mapService, $q, MemorySrvc, ErrorService) {
 	var c = this;
 
@@ -10,21 +10,21 @@ function (mapService, $q, MemorySrvc, ErrorService) {
 			var price = 0.0;
 
 			switch (form.data.size) {
-				case 'small':
+				case "small":
 					price = 0.99;
 					price += 0.0007 * rout.meters;
 					price += 0.0025 * rout.seconds;
 					price = price < 9.99 ? 9.99 : price;
 
 					break;
-				case 'medium':
+				case "medium":
 					price = 0.99;
 					price += 0.0007 * rout.meters;
 					price += 0.0025 * rout.seconds;
 					price = price < 25 ? 25 : price;
 
 					break;
-				case 'large':
+				case "large":
 					price = 0.99;
 					price += 0.0021 * rout.meters;
 					price += 0.0083 * rout.seconds;
@@ -36,10 +36,9 @@ function (mapService, $q, MemorySrvc, ErrorService) {
 			}
 
 			form.data.price = price.toFixed(2);
-			MemorySrvc.set('price', form.data.price);
+			MemorySrvc.set("price", form.data.price);
 		}, function (reason) {
-		    console.log([form.data.pickup, form.data.delivery]);
-		        ErrorService.reportError('calculateCost Failed:', JSON.stringify(reason));
+		        ErrorService.reportError("calculateCost Failed:", JSON.stringify(reason));
 		    });
 	};
 

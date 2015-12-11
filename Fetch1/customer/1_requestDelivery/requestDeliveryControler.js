@@ -1,5 +1,5 @@
 ﻿/*global app */
-app.controller('RequestDeliveryController', ['mapService',
+app.controller("RequestDeliveryController", ["mapService",
 function (mapService) {
 	var c = this;
 	c.win = {};
@@ -7,7 +7,7 @@ function (mapService) {
 	var checkDistance = function (form) {
 		mapService.calculateRoute(form.data.pickup, form.data.delivery)
 		.then(function (rout) {
-		        form.data.distance = (rout.meters / 1609.34).toFixed(2) + ' miles';
+		        form.data.distance = (rout.meters / 1609.34).toFixed(2) + " miles";
 		        form.setDelivery();
 		        form.setPickup();
 		        form.setDropLat();
@@ -15,7 +15,7 @@ function (mapService) {
 		        form.setPickUpLat();
 		        form.setPickUpLong();
 		    }, function (reason) {
-		        form.data.distance = '';
+		        form.data.distance = "";
 		        form.setDelivery();
 		        form.setPickup();
 		        form.setDropLat();
@@ -27,16 +27,16 @@ function (mapService) {
 	c.cleanPickupAddress = function (form) {
 	    if (form.pnumber !== undefined && form.pstreet !== undefined && form.pzip !== undefined
             && form.pnumber.length > 0 && form.pstreet.length > 0 && form.pzip.length > 4) {
-	        mapService.cleanAddress(form.pnumber + ' ' + form.pstreet + ' ' + form.pzip + ' ' + form.pcity + ' ' + form.pstate + ' ' + form.pcountry)
-	            .then(function(result) {
-	                var results = result.split('|');
+	        mapService.cleanAddress(form.pnumber + " " + form.pstreet + " " + form.pzip + " " + form.pcity + " " + form.pstate + " " + form.pcountry)
+	            .then(function (result) {
+	                var results = result.split("|");
 	                form.data.pickup = results[0];
 	                form.data.pickUpLat = results[1];
 	                form.data.pickUpLong = results[2];
 	                checkDistance(form);
 
                     //                      number   street   city     state   zip      country
-	                var regex = new RegExp('([0-9]+) ([^,]+), ([^,]+), ([^ ]+) ([^,]+), ([^|]+)', 'gi');
+	                var regex = new RegExp("([0-9]+) ([^,]+), ([^,]+), ([^ ]+) ([^,]+), ([^|]+)", "gi");
 	                var matches = regex.exec(results[0]);
 	                if (matches !== null) {
 	                    form.pnumber = matches[1];
@@ -47,9 +47,9 @@ function (mapService) {
 	                    form.pcountry = matches[6];
 	                }
 	            }, function(reason) {
-	                form.data.pickup = '';
-	                form.data.pickUpLat = '';
-	                form.data.pickUpLong = '';
+	                form.data.pickup = "";
+	                form.data.pickUpLat = "";
+	                form.data.pickUpLong = "";
 	                checkDistance(form);
 	            });
 	    }
@@ -58,16 +58,16 @@ function (mapService) {
 	c.cleanDeliveryAddress = function (form) {
 	    if (form.dnumber !== undefined && form.dstreet !== undefined && form.dzip !== undefined
 	        && form.dnumber.length > 0 && form.dstreet.length > 0 && form.dzip.length > 4) {
-	        mapService.cleanAddress(form.dnumber + ' ' + form.dstreet + ' ' + form.dzip + ' ' + form.dcity + ' ' + form.dstate + ' ' + form.dcountry)
+	        mapService.cleanAddress(form.dnumber + " " + form.dstreet + " " + form.dzip + " " + form.dcity + " " + form.dstate + " " + form.dcountry)
 	            .then(function(result) {
-	                var results = result.split('|');
+	                var results = result.split("|");
 	                form.data.delivery = results[0];
 	                form.data.dropLat = results[1];
 	                form.data.dropLong = results[2];
 	                checkDistance(form);
 
 	                //                      number   street   city     state   zip      country
-	                var regex = new RegExp('([0-9]+) ([^,]+), ([^,]+), ([^ ]+) ([^,]+), ([^|]+)', 'gi');
+	                var regex = new RegExp("([0-9]+) ([^,]+), ([^,]+), ([^ ]+) ([^,]+), ([^|]+)", "gi");
 	                var matches = regex.exec(results[0]);
 	                if (matches !== null) {
 	                    form.dnumber = matches[1];
@@ -78,9 +78,9 @@ function (mapService) {
 	                    form.dcountry = matches[6];
 	                }
 	            }, function(reason) {
-	                form.data.delivery = '';
-	                form.data.dropLat = '';
-	                form.data.dropLong = '';
+	                form.data.delivery = "";
+	                form.data.dropLat = "";
+	                form.data.dropLong = "";
 	                checkDistance(form);
 	            });
 	    }
@@ -89,7 +89,7 @@ function (mapService) {
 	c.validateWeight = function (form) {
 		if (parseFloat(form.data.weight) != form.data.weight)
 		{
-			form.data.weight = '';
+			form.data.weight = "";
 		}
 	};
 

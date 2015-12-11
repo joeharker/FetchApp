@@ -64,7 +64,7 @@ function (ErrorService, locationService, $q) {
 						position: results[0].geometry.location
 					});
 				}
-				deferred.resolve(results[0].formatted_address + '|' + cleanFloat(results[0].geometry.location.G) + '|' + cleanFloat(results[0].geometry.location.K));
+				deferred.resolve(results[0].formatted_address + '|' + cleanFloat(results[0].geometry.location.lng()) + '|' + cleanFloat(results[0].geometry.location.lat()));
 			} else {
 				deferred.reject(status);
 			}
@@ -94,7 +94,7 @@ function (ErrorService, locationService, $q) {
 				} else {
 					root = 'http://www.google.com/maps?q=';
 				}
-				deferred.resolve(root + cleanFloat(results[0].geometry.location.G) + ',' + cleanFloat(results[0].geometry.location.K));
+				deferred.resolve(root + cleanFloat(results[0].geometry.location.lng()) + ',' + cleanFloat(results[0].geometry.location.lat()));
 			} else {
 				deferred.reject(status);
 			}

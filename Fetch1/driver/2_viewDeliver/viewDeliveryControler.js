@@ -21,8 +21,6 @@ function (ConfigSrvc, $interval, $http, EnumSrvc, ErrorService) {
 	                case EnumSrvc.NextNeed.Driver:
 	                    $http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + c.form.data.deliveryId + '&driverId=' + c.form.myId)
 	                        .then(function (response) {
-	                            console.log(c.form.myId);
-	                            console.log(JSON.stringify(response));
 	                            if (response.data !== c.form.myId) {
 	                                c.message = 'Someone else has taken this delivery';
 	                                $interval.cancel(ticker);
