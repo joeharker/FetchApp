@@ -18,6 +18,7 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 						c.message = "A deliverer is ready. Please pay to start the delivery";
 						c.ready = true;
 						DeviceSrvc.buzz();
+						
 					}
 				}, function (e) {
 					c.message = "Finding Network A";
@@ -51,6 +52,7 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 	});
 
 	c.submit = function (description, cents, page) {
+	    console.log([description, cents, page]);
 		var payment = {};
 		handler.open({
 			name: "FETCH1 TRANSPORT LLC",
@@ -86,6 +88,7 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 				payment.used = thisToken.used;
 				$http.post(ConfigSrvc.serviceUrl + "/api/pay", payment)
 				.then(function (payResponse) {
+				    console.log(payResponse);
 					page.load("customer/3_trackMap/trackMap.html");
 				}, function (e) {
 					c.message = "Finding Network B";
