@@ -59,7 +59,8 @@ function (ErrorService, $q) {
 	    return canvas.toDataURL("image/jpeg", 0.5);
 	};
 
-    s.hasCamera = function() {
+	s.hasCamera = function () {
+	    console.log(navigator.camera);
         return navigator.camera !== undefined;
     };
 
