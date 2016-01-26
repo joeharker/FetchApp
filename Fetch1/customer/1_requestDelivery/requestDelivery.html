@@ -13,31 +13,21 @@
 			<div class="short"></div>
 			<div class="window">
 				<table style="width: 99%;">
-				    <tr>
-				        <td>Pickup</td>
-                        <td width="19%"><input type="text" placeholder="Number" style="width: 100%;" ng-model="demo.pnumber" ng-class="demo.pnumber === undefined || demo.pnumber === '' ? 'error' : 'x'" ng-change="delivery.cleanPickupAddress(demo)" /></td>
-				        <td width="59%"><input type="text" placeholder="Street" style="width: 100%;" ng-model="demo.pstreet" ng-class="demo.pstreet === undefined || demo.pstreet === '' ? 'error' : 'x'" ng-change="delivery.cleanPickupAddress(demo)" /></td>
-                        <td width="19%"><input type="text" placeholder="Zip" style="width: 100%;" ng-model="demo.pzip" ng-class="demo.pzip === undefined || demo.pzip === '' ? 'error' : 'x'" ng-change="delivery.cleanPickupAddress(demo)" /></td>
-				    </tr>
-				    <tr>
-				        <td>Address</td>
-				        <td><input type="text" placeholder="City" style="width: 100%;" ng-model="demo.pcity" ng-class="demo.pcity === undefined || demo.pcity === '' ? 'error' : 'x'" ng-change="delivery.cleanPickupAddress(demo)"/></td>
-				        <td><input type="text" placeholder="State" style="width: 100%;" ng-model="demo.pstate" ng-class="demo.pstate === undefined || demo.pstate === '' ? 'error' : 'x'" ng-change="delivery.cleanPickupAddress(demo)"/></td>
-				        <td><input type="text" placeholder="Country" style="width: 100%;" ng-model="demo.pcountry" ng-class="demo.pcountry === undefined || demo.pcountry === '' ? 'error' : 'x'" ng-change="delivery.cleanPickupAddress(demo)"/></td>
-				    </tr>
-                    <tr><td colspan="4">&nbsp;</td></tr>
-                    <tr>
-                        <td>Drop off</td>
-                        <td><input type="text" placeholder="Number" style="width: 100%;" ng-model="demo.dnumber" ng-class="demo.dnumber === undefined || demo.dnumber === '' ? 'error' : 'x'" ng-change="delivery.cleanDeliveryAddress(demo)" /></td>
-                        <td><input type="text" placeholder="Street" style="width: 100%;" ng-model="demo.dstreet" ng-class="demo.dstreet === undefined || demo.dstreet === '' ? 'error' : 'x'" ng-change="delivery.cleanDeliveryAddress(demo)" /></td>
-                        <td><input type="text" placeholder="Zip" style="width: 100%;" ng-model="demo.dzip" ng-class="demo.dzip === undefined || demo.dzip === '' ? 'error' : 'x'" ng-change="delivery.cleanDeliveryAddress(demo)" /></td>
-                    </tr>
-                    <tr>
-                        <td>Address</td>
-                        <td><input type="text" placeholder="City" style="width: 100%;" ng-model="demo.dcity" ng-class="demo.dcity === undefined || demo.dcity === '' ? 'error' : 'x'" ng-change="delivery.cleanDeliveryAddress(demo)" /></td>
-                        <td><input type="text" placeholder="State" style="width: 100%;" ng-model="demo.dstate" ng-class="demo.dstate === undefined || demo.dstate === '' ? 'error' : 'x'" ng-change="delivery.cleanDeliveryAddress(demo)" /></td>
-                        <td><input type="text" placeholder="Country" style="width: 100%;" ng-model="demo.dcountry" ng-class="demo.dcountry === undefined || demo.dcountry === '' ? 'error' : 'x'" ng-change="delivery.cleanDeliveryAddress(demo)" /></td>
-                    </tr>
+				    <tr><td colspan="2">Pickup Address</td></tr>
+                    <tr><td width="10%">Number</td><td width="88%"><input type="text" placeholder="Number" style="width: 100%;" ng-model="demo.pnumber" ng-class="demo.pnumber === undefined || demo.pnumber === '' ? 'error' : 'x'" ng-change="delivery.cleanPickupAddress(demo)" /></td></tr>
+                    <tr><td>Street</td><td><input type="text" placeholder="Street" style="width: 100%;" ng-model="demo.pstreet" ng-class="demo.pstreet === undefined || demo.pstreet === '' ? 'error' : 'x'" ng-change="delivery.cleanPickupAddress(demo)" /></td></tr>
+                    <tr><td>Zip</td><td><input type="text" placeholder="Zip" style="width: 100%;" ng-model="demo.pzip" ng-class="demo.pzip === undefined || demo.pzip === '' ? 'error' : 'x'" ng-change="delivery.cleanPickupAddress(demo)" /></td></tr>
+                    <tr><td>City</td><td><input type="text" placeholder="City" style="width: 100%;" ng-model="demo.pcity" ng-class="demo.pcity === undefined || demo.pcity === '' ? 'error' : 'x'" ng-change="delivery.cleanPickupAddress(demo)" /></td></tr>
+                    <tr><td>State</td><td><input type="text" placeholder="State" style="width: 100%;" ng-model="demo.pstate" ng-class="demo.pstate === undefined || demo.pstate === '' ? 'error' : 'x'" ng-change="delivery.cleanPickupAddress(demo)" /></td></tr>
+                    <tr><td>Country</td><td><input type="text" placeholder="Country" style="width: 100%;" ng-model="demo.pcountry" ng-class="demo.pcountry === undefined || demo.pcountry === '' ? 'error' : 'x'" ng-change="delivery.cleanPickupAddress(demo)" /></td></tr>
+                    <tr><td colspan="2">&nbsp;</td></tr>
+                    <tr><td colspan="2">Drop off Address</td></tr>
+                    <tr><td>Number</td><td><input type="text" placeholder="Number" style="width: 100%;" ng-model="demo.dnumber" ng-class="demo.dnumber === undefined || demo.dnumber === '' ? 'error' : 'x'" ng-change="delivery.cleanDeliveryAddress(demo)" /></td></tr>
+                    <tr><td>Street</td><td><input type="text" placeholder="Street" style="width: 100%;" ng-model="demo.dstreet" ng-class="demo.dstreet === undefined || demo.dstreet === '' ? 'error' : 'x'" ng-change="delivery.cleanDeliveryAddress(demo)" /></td></tr>
+                    <tr><td>Zip</td><td><input type="text" placeholder="Zip" style="width: 100%;" ng-model="demo.dzip" ng-class="demo.dzip === undefined || demo.dzip === '' ? 'error' : 'x'" ng-change="delivery.cleanDeliveryAddress(demo)" /></td></tr>
+                    <tr><td>City</td><td><input type="text" placeholder="City" style="width: 100%;" ng-model="demo.dcity" ng-class="demo.dcity === undefined || demo.dcity === '' ? 'error' : 'x'" ng-change="delivery.cleanDeliveryAddress(demo)" /></td></tr>
+                    <tr><td>State</td><td><input type="text" placeholder="State" style="width: 100%;" ng-model="demo.dstate" ng-class="demo.dstate === undefined || demo.dstate === '' ? 'error' : 'x'" ng-change="delivery.cleanDeliveryAddress(demo)" /></td></tr>
+                    <tr><td>Country</td><td><input type="text" placeholder="Country" style="width: 100%;" ng-model="demo.dcountry" ng-class="demo.dcountry === undefined || demo.dcountry === '' ? 'error' : 'x'" ng-change="delivery.cleanDeliveryAddress(demo)" /></td></tr>
 				</table>
 			</div>
 			<div class="short">
