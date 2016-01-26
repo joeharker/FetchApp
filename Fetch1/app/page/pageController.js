@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.controller('PageCtrl', ['ConfigSrvc', 'MemorySrvc',
-    function (ConfigSrvc, MemorySrvc) {
+app.controller('PageCtrl', ['ConfigSrvc', 'MemorySrvc', 'cameraService',
+    function (ConfigSrvc, MemorySrvc, cameraService) {
     	'use strict';
     	var c = this,
             regex,
@@ -37,6 +37,8 @@ app.controller('PageCtrl', ['ConfigSrvc', 'MemorySrvc',
     		}
     		c.disableBack = (history.length <= 0);
     	};
+
+        c.hasCamera = cameraService.hasCamera();
 
     	//onload-complete load a template if listed in a path url param or page one
     	regex = new RegExp('(?:\\?|&)path=([^&]*)(?=&|$)', 'gi');
