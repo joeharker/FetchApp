@@ -38,9 +38,11 @@ app.controller('PageCtrl', ['ConfigSrvc', 'MemorySrvc', 'cameraService',
     		c.disableBack = (history.length <= 0);
     	};
 
-        c.hasCamera = cameraService.hasCamera();
+    	c.hasCamera = function () {
+             cameraService.hasCamera();
+        };
 
-    	//onload-complete load a template if listed in a path url param or page one
+        //onload-complete load a template if listed in a path url param or page one
     	regex = new RegExp('(?:\\?|&)path=([^&]*)(?=&|$)', 'gi');
     	match = regex.exec(window.document.location.search);
     	if (match !== null) {
