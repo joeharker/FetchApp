@@ -5,7 +5,8 @@ app.controller('PageCtrl', ['ConfigSrvc', 'MemorySrvc', 'cameraService', 'Device
     	var c = this,
             regex,
             match,
-            history = [],
+            historyName = 'pagehistory',
+            history = MemorySrvc.get(historyName) === "" ? [] : JSON.parse(MemorySrvc.get(historyName)),
 			root = window.location.href.replace(/index.html.*/, '');
     	;
     	c.ver = ConfigSrvc.version,
@@ -30,6 +31,7 @@ app.controller('PageCtrl', ['ConfigSrvc', 'MemorySrvc', 'cameraService', 'Device
     		c.disableBack = false;
     		MemorySrvc.set('pageTemplate', template + '?version=' + c.ver);
     		c.template = MemorySrvc.get('pageTemplate');
+    		MemorySrvc.set(historyName, JSON.stringify(history));
     	};
 
     	c.back = function () {

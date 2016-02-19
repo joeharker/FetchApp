@@ -5,24 +5,40 @@ function (mapService) {
 	c.win = {};
 
 	var checkDistance = function (form) {
-		mapService.calculateRoute(form.data.pickup, form.data.delivery)
-		.then(function (rout) {
-		        form.data.distance = (rout.meters / 1609.34).toFixed(2) + " miles";
-		        form.setDelivery();
-		        form.setPickup();
-		        form.setDropLat();
-		        form.setDropLong();
-		        form.setPickUpLat();
-		        form.setPickUpLong();
-		    }, function (reason) {
-		        form.data.distance = "";
-		        form.setDelivery();
-		        form.setPickup();
-		        form.setDropLat();
-		        form.setDropLong();
-		        form.setPickUpLat();
-		});
+	    if (form.data.pickup !== undefined && form.data.delivery !== undefined) {
+	        mapService.calculateRoute(form.data.pickup, form.data.delivery)
+	            .then(function(rout) {
+	                form.data.distance = (rout.meters / 1609.34).toFixed(2) + " miles";
+	            }, function(reason) {
+	                form.data.distance = "";
+	            });
+	    }
 	};
+
+	c.init = function (form) {
+	    var regex = new RegExp("([0-9]+) ([^,]+), ([^,]+), ([^ ]+) ([^,]+), ([^|]+)", "gi");
+	    var matches = regex.exec(form.data.pickup);
+	    if (matches !== null) {
+	        form.pnumber = matches[1];
+	        form.pstreet = matches[2];
+	        form.pcity = matches[3];
+	        form.pstate = matches[4];
+	        form.pzip = matches[5];
+	        form.pcountry = matches[6];
+	    }
+
+        //reset the regex
+	    regex = new RegExp("([0-9]+) ([^,]+), ([^,]+), ([^ ]+) ([^,]+), ([^|]+)", "gi");
+	    matches = regex.exec(form.data.delivery);
+        if (matches !== null) {
+            form.dnumber = matches[1];
+            form.dstreet = matches[2];
+            form.dcity = matches[3];
+            form.dstate = matches[4];
+            form.dzip = matches[5];
+            form.dcountry = matches[6];
+        }
+    };
 
 	c.cleanPickupAddress = function (form) {
 	    if (form.pnumber !== undefined && form.pstreet !== undefined && form.pzip !== undefined
@@ -44,7 +60,7 @@ function (mapService) {
                     //                      number   street   city     state   zip      country
 	                var regex = new RegExp("([0-9]+) ([^,]+), ([^,]+), ([^ ]+) ([^,]+), ([^|]+)", "gi");
 	                var matches = regex.exec(results[0]);
-	                if (matches !== null && form.pzip === matches[5]) {
+	                if (matches !== null && form.pzip.indexOf(matches[5]) !== -1) {
 	                    form.pnumber = matches[1];
 	                    form.pstreet = matches[2];
 	                    form.pcity = matches[3];
@@ -81,7 +97,7 @@ function (mapService) {
 	                //                      number   street   city     state   zip      country
 	                var regex = new RegExp("([0-9]+) ([^,]+), ([^,]+), ([^ ]+) ([^,]+), ([^|]+)", "gi");
 	                var matches = regex.exec(results[0]);
-	                if (matches !== null && form.dzip === matches[5]) {
+	                if (matches !== null && form.dzip.indexOf(matches[5]) !== -1) {
 	                    form.dnumber = matches[1];
 	                    form.dstreet = matches[2];
 	                    form.dcity = matches[3];
@@ -98,8 +114,11 @@ function (mapService) {
 	    }
 	};
 
-	c.validateWeight = function (form) {
-		if (parseFloat(form.data.weight) != form.data.weight)
+	c.validateWeight = function (val, form) {
+	    if (
+            val !== undefined
+	        && parseFloat(val).toString().replace(/\./, '') !== val.toString().replace(/\./, '')
+        )
 		{
 			form.data.weight = "";
 		}

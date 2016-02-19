@@ -1,15 +1,15 @@
 ﻿<div class="hidden">{{ page.theme = 'darker'; page.title = 'MY DELIVERY INFORMATION'; }}</div>
 <div ng-controller="DeliveryCtrl as demo">
-	<div ng-controller="RequestDeliveryController as delivery">
+	<div ng-controller="RequestDeliveryController as delivery" ng-init="delivery.init(demo);">
 		<form name="form">
 			<div class="short"></div>
 			PACKAGE SIZE
 			<br />
-			<button class="medium skinnier dark" ng-click="demo.setSize('small');" ng-class="demo.data.size==='small' ? 'selected' : 'x'">Small</button>
+			<button class="medium skinnier dark" ng-click="demo.data.size='small';" ng-class="demo.data.size==='small' ? 'selected' : 'x'">Small</button>
 			<span class="skinniest"></span>
-			<button class="medium skinnier dark" ng-click="demo.setSize('medium');" ng-class="demo.data.size==='medium' ? 'selected' : 'x'">Medium</button>
+			<button class="medium skinnier dark" ng-click="demo.data.size='medium';" ng-class="demo.data.size==='medium' ? 'selected' : 'x'">Medium</button>
 			<span class="skinniest"></span>
-			<button class="medium skinnier dark" ng-click="demo.setSize('large');" ng-class="demo.data.size==='large' ? 'selected' : 'x'">Large</button>
+			<button class="medium skinnier dark" ng-click="demo.data.size='large';" ng-class="demo.data.size==='large' ? 'selected' : 'x'">Large</button>
 			<div class="short"></div>
 			<div class="window">
 				<table style="width: 99%;">
@@ -35,8 +35,8 @@
 			</div>
 			<div class="window">
 				<table style="width: 99%;">
-					<tr><td>CONTENTS			</td><td><input type="text" style="width: 100%;" name="content" ng-model="demo.data.content" ng-change="demo.setContent()" placeholder="Content description" ng-class="demo.data.content==='' ? 'error' : 'x'" required /></td></tr>
-					<tr><td>WEIGHT				</td><td><input type="text" style="width: 100%;" name="weight" ng-model="demo.data.weight" ng-change="delivery.validateWeight(demo); demo.setWeight()" placeholder="Weight in pounds" ng-class="demo.data.weight==='' ? 'error' : 'x'" required /></td></tr>
+					<tr><td>CONTENTS			</td><td><input type="text" style="width: 100%;" name="content" ng-model="demo.data.content" placeholder="Content description" ng-class="demo.data.content==='' ? 'error' : 'x'" required /></td></tr>
+					<tr><td>WEIGHT				</td><td><input type="text" style="width: 100%;" name="weight" ng-model="demo.data.weight" ng-change="delivery.validateWeight(demo.data.weight, demo);" placeholder="Weight in pounds" ng-class="demo.data.weight==='' ? 'error' : 'x'" required /></td></tr>
 				</table>
 			</div>
 			<div class="short"></div>
@@ -45,7 +45,7 @@
 					<table style="width: 99%;">
 						<tr>
 							<td>INSTRUCTIONS	</td>
-							<td><textarea style="width: 100%;" ng-model="demo.data.instructions" ng-change="demo.setInstructions()"></textarea></td>
+							<td><textarea style="width: 100%;" ng-model="demo.data.instructions"></textarea></td>
 						</tr>
 					</table>
 				</div>
@@ -53,7 +53,7 @@
 			</div>
 		    <button ng-disabled="(form.distance.$invalid)
                     || (form.content.$dirty && form.content.$invalid || form.content.$pristine)
-                    || (form.weight.$dirty && form.weight.$invalid || form.weight.$pristine)" ng-click="page.load('customer/2_1_deliveryVerification/deliveryVerification.html');" class="wide light">
+                    || (form.weight.$dirty && form.weight.$invalid || form.weight.$pristine)" ng-click="demo.saveData(); page.load('customer/2_1_deliveryVerification/deliveryVerification.html');" class="wide light">
 				SET
 				<br />
 				DELIVERY

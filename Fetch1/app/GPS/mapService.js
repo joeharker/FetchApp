@@ -64,7 +64,6 @@ function (ErrorService, locationService, $q) {
 						position: results[0].geometry.location
 					});
 				}
-				console.log([address, results]);
 				deferred.resolve(results[0].formatted_address + '|' + cleanFloat(results[0].geometry.location.lat()) + '|' + cleanFloat(results[0].geometry.location.lng()));
 			} else {
 				deferred.reject(status);
