@@ -18,6 +18,7 @@ app.controller('DeliveryCtrl', ['MemorySrvc',
   	c.data.pickUpLong = MemorySrvc.get('pickUpLong');
   	c.data.dropLat = MemorySrvc.get('dropLat');
   	c.data.dropLong = MemorySrvc.get('dropLong');
+  	c.data.suggested = MemorySrvc.get('suggested');
   	c.data.size = (MemorySrvc.get('size') === '') ? 'small' : MemorySrvc.get('size');
 
   	c.myId = MemorySrvc.get('myId');
@@ -35,9 +36,11 @@ app.controller('DeliveryCtrl', ['MemorySrvc',
   	c.setPickUpLong = function () { MemorySrvc.set('pickUpLong', c.data.pickUpLong); };
   	c.setDropLat = function () { MemorySrvc.set('dropLat', c.data.dropLat); };
   	c.setDropLong = function () { MemorySrvc.set('dropLong', c.data.dropLong); };
+  	c.setSuggested = function () { MemorySrvc.set('suggested', c.data.suggested); };
+  	
   	c.setSize = function (size) { c.data.size = size; MemorySrvc.set('size', size); };
 
   	c.setMyId = function () { MemorySrvc.set('myId', c.myId); };
-
+  	console.log(window.localStorage);
   	return c;
   }]);

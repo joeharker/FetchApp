@@ -60,8 +60,7 @@ function (ErrorService, $q) {
 	};
 
 	s.hasCamera = function () {
-	    console.log(navigator.camera);
-        return navigator.camera !== undefined;
+	    return (navigator.camera !== undefined);
     };
 
     return s;

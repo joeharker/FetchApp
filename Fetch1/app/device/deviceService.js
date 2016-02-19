@@ -17,5 +17,15 @@ function () {
 		}
 	};
 
+	s.splash = function (show) {
+	    if (navigator.splashscreen !== undefined) {
+	        if (show) {
+	            navigator.splashscreen.show();
+	        } else {
+	            navigator.splashscreen.hide();
+	        }
+	    }
+	};
+
 	return s;
 }]);

@@ -15,7 +15,7 @@ function () {
     //*/
 
     s.serviceUrl = 'http://fetch001.azurewebsites.net';
-    s.driverCut = 0.90;
+    s.driverCut = 1.00;
 
     return s;
 }]);

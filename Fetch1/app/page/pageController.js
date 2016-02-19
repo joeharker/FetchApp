@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.controller('PageCtrl', ['ConfigSrvc', 'MemorySrvc', 'cameraService',
-    function (ConfigSrvc, MemorySrvc, cameraService) {
+app.controller('PageCtrl', ['ConfigSrvc', 'MemorySrvc', 'cameraService', 'DeviceSrvc','$q',
+    function (ConfigSrvc, MemorySrvc, cameraService, DeviceSrvc, $q) {
     	'use strict';
     	var c = this,
             regex,
@@ -14,6 +14,10 @@ app.controller('PageCtrl', ['ConfigSrvc', 'MemorySrvc', 'cameraService',
     	c.theme = '';
     	c.title = '';
     	c.template = '';
+    	c.deferred = {};
+
+        //init
+        DeviceSrvc.splash(true); //show until the devices have been tested for
 
     	c.load = function (template, direction) {
     		if (direction !== undefined) {
@@ -38,8 +42,12 @@ app.controller('PageCtrl', ['ConfigSrvc', 'MemorySrvc', 'cameraService',
     		c.disableBack = (history.length <= 0);
     	};
 
-    	c.hasCamera = function () {
-             return cameraService.hasCamera();
+    	c.hasCameraAndGPS = function () {
+	        var camera = cameraService.hasCamera();
+
+	        DeviceSrvc.splash(false);
+
+	        return camera;
         };
 
         //onload-complete load a template if listed in a path url param or page one

@@ -36,7 +36,10 @@ function (mapService, $q, MemorySrvc, ErrorService) {
 			}
 
 			form.data.price = price.toFixed(2);
+			form.data.suggested = form.data.price;
+
 			MemorySrvc.set("price", form.data.price);
+			MemorySrvc.set("suggested", form.data.suggested);
 		}, function (reason) {
 		        ErrorService.reportError("calculateCost Failed:", JSON.stringify(reason));
 		    });

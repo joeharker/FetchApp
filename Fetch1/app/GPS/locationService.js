@@ -20,6 +20,7 @@ function (ErrorService) {
 	};
 
 	var watchPositionFail = function (error) {
+	    alert("Please turn on your GPS to continue");
 	    ErrorService.reportError("getCurrentPosition error", JSON.stringify(error));
 	};
 
