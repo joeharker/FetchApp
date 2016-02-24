@@ -41,8 +41,8 @@ function (mapService, $q, MemorySrvc, ErrorService) {
 			MemorySrvc.set("price", form.data.price);
 			MemorySrvc.set("suggested", form.data.suggested);
 		}, function (reason) {
-		        ErrorService.reportError("calculateCost Failed:", JSON.stringify(reason));
-		    });
+		    ErrorService.reportError("calculateCost Failed:", JSON.stringify(reason));
+		});
 	};
 
 	return c;

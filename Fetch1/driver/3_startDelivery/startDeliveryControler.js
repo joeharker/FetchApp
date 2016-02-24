@@ -35,10 +35,10 @@ function (/*                            */ locationService, $interval, $http, Co
 				            break;
 				        case EnumSrvc.NextNeed.Pickup:
 				            c.pickup = true;
-				            $http.get(ConfigSrvc.serviceUrl + '/api/delivery?driverId=' + c.form.myId + '&lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude);
+				            $http.get(ConfigSrvc.serviceUrl + '/api/delivery?driverId=' + MemorySrvc.get('myId') + '&lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude);
 				            break;
 				        case EnumSrvc.NextNeed.Dropoff:
-				            $http.get(ConfigSrvc.serviceUrl + '/api/delivery?driverId=' + c.form.myId + '&lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude);
+				            $http.get(ConfigSrvc.serviceUrl + '/api/delivery?driverId=' + MemorySrvc.get('myId') + '&lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude);
 				            break;
 				        case EnumSrvc.NextNeed.Transfer:
 				            c.message = 'Waiting for customer to confirm drop off';

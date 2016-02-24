@@ -39,12 +39,8 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 							, function () {
 								$interval.cancel(ticker);
 
-								//auto map
-								for (var key in pin) {
-									if (key in c.form.data) {
-										MemorySrvc.set(key, pin[key]);
-									}
-								}
+								c.form.data = pin;
+								c.form.saveData();
 
 								c.page.load('driver/2_viewDeliver/viewDelivery.html');
 							}

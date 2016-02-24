@@ -52,8 +52,9 @@
 				<div class="short"></div>
 			</div>
 		    <button ng-disabled="(form.distance.$invalid)
-                    || (form.content.$dirty && form.content.$invalid || form.content.$pristine)
-                    || (form.weight.$dirty && form.weight.$invalid || form.weight.$pristine)" ng-click="demo.saveData(); page.load('customer/2_1_deliveryVerification/deliveryVerification.html');" class="wide light">
+                    || (form.content.$invalid)
+                    || (form.weight.$invalid)" 
+                ng-click="demo.saveData(); page.load('customer/2_1_deliveryVerification/deliveryVerification.html');" class="wide light">
 				SET
 				<br />
 				DELIVERY
