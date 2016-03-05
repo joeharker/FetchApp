@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.controller('ViewDeliveryControler', ['ConfigSrvc', '$interval', '$http','EnumSrvc','ErrorService','MemorySrvc',
-function (ConfigSrvc, $interval, $http, EnumSrvc, ErrorService, MemorySrvc) {
+app.controller('ViewDeliveryControler', ['ConfigSrvc', '$interval', '$http','EnumSrvc','ErrorService','MemorySrvc', 'cameraService',
+function (ConfigSrvc, $interval, $http, EnumSrvc, ErrorService, MemorySrvc, cameraService) {
 	var c = this;
 
 	c.driverCut = ConfigSrvc.driverCut;
@@ -15,6 +15,10 @@ function (ConfigSrvc, $interval, $http, EnumSrvc, ErrorService, MemorySrvc) {
 	    //before next page
 	    MemorySrvc.set("pickReady", false);
 	    MemorySrvc.set("dropReady", false);
+	    MemorySrvc.set("pickSrc", cameraService.transparent);
+	    MemorySrvc.set("dropSrc", cameraService.transparent);
+	    MemorySrvc.set("pickup", false);
+	    MemorySrvc.set("drop", false);
 	};
 
 	c.accept = function (f) {

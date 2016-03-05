@@ -6,13 +6,16 @@ function (/*                            */ locationService, $interval, $http, Co
 	c.form = {};
 	c.page = {};
 	c.latLngUrl = '';
-	c.addressMessage = '';
-	c.pickup = false;
-	c.drop = false;
-	c.pickSrc = cameraService.transparent;
-	c.dropSrc = cameraService.transparent;
+    c.addressMessage = '';
 	
 	c.init = function (form, page) {
+	    c.pready = MemorySrvc.get("pickReady");
+	    c.dready = MemorySrvc.get("dropReady");
+	    c.pickSrc = MemorySrvc.get("pickSrc");
+	    c.dropSrc = MemorySrvc.get("dropSrc");
+	    c.pickup = MemorySrvc.get("pickup");
+	    c.drop = MemorySrvc.get("drop");
+
 		c.form = form;
 		c.page = page;
 		c.message = 'Connecting with server';
@@ -35,6 +38,7 @@ function (/*                            */ locationService, $interval, $http, Co
 				            break;
 				        case EnumSrvc.NextNeed.Pickup:
 				            c.pickup = true;
+				            MemorySrvc.set("pickup", c.pickup);
 				            $http.get(ConfigSrvc.serviceUrl + '/api/delivery?driverId=' + MemorySrvc.get('myId') + '&lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude);
 				            break;
 				        case EnumSrvc.NextNeed.Dropoff:
@@ -59,12 +63,14 @@ function (/*                            */ locationService, $interval, $http, Co
 	};
 
     c.onPickLoad = function () {
-        if (MemorySrvc.get("pickReady")) {
+        if (c.pready) {
             var photo = cameraService.resizePhoto("pickImg", 200);
             $http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': MemorySrvc.get("deliveryId"), 'photo': photo })
                 .then(function(response) {
                     c.pickup = false;
+                    MemorySrvc.set("pickup", c.pickup);
                     c.drop = true;
+                    MemorySrvc.set("drop", c.drop);
                     c.addressMessage = 'Get directions to Drop off ' + c.form.data.delivery;
                 }, function(e) {
                     ErrorService.reportMessage("post pick photo error", JSON.stringify(e));
@@ -82,23 +88,27 @@ function (/*                            */ locationService, $interval, $http, Co
 		cameraService.quality = 5;
 		cameraService.takePhoto()
 		.then(function (photo) {
-		    MemorySrvc.set("pickReady", true); //quick hack to not record the first blank image that loads with the page
+		    c.pready = true; //quick hack to not record the first blank image that loads with the page
 		    c.pickSrc = photo;  //this will trigger onPickLoad when the image is loaded
-		    
-		}, function (x) {
+		        MemorySrvc.set("pickReady", c.pready);
+		        MemorySrvc.set("pickSrc", c.pickSrc);
+
+		    }, function (x) {
 		    ErrorService.reportMessage("take pick photo error", JSON.stringify(x));
 		    c.message = "Photo Error";
 		});
 	};
 
 	c.onDropLoad = function () {
-	    if (MemorySrvc.get("dropReady")) {
+	    if (c.dready) {
 	        var photo = cameraService.resizePhoto("dropImg", 200);
 	        
 	        $http.post(ConfigSrvc.serviceUrl + '/api/drop', { 'deliveryId': MemorySrvc.get("deliveryId"), 'photo': photo })
                 .then(function (response) {
                     c.pickup = false;
+                    MemorySrvc.set("pickup", c.pickup);
                     c.drop = false;
+                    MemorySrvc.set("drop", c.drop);
                     c.message = 'Waiting for customer to confirm drop off';
                 }, function (e) {
                     ErrorService.reportMessage("post drop photo error", JSON.stringify(e));
@@ -110,9 +120,11 @@ function (/*                            */ locationService, $interval, $http, Co
 	c.dropPhoto = function () {
 		cameraService.takePhoto()
 		.then(function (photo) {
-		    MemorySrvc.set("dropReady", true); //quick hack to not record the first blank image that loads with the page
+		    c.dready = true; //quick hack to not record the first blank image that loads with the page
 		    c.dropSrc = photo;  //this will trigger onDropLoad when the image is loaded
 			
+		    MemorySrvc.set("dropReady", c.dready);
+		    MemorySrvc.set("dropSrc", c.dropSrc);
 		}, function (e) {
 		    ErrorService.reportMessage("take drop photo error", JSON.stringify(e));
 		    c.message = "Photo error";
