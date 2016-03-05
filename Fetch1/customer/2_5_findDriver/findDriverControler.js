@@ -51,7 +51,6 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 	});
 
 	c.submit = function (description, cents, page) {
-	    console.log([description, cents, page]);
 		var payment = {};
 		handler.open({
 			name: "FETCH1 TRANSPORT LLC",

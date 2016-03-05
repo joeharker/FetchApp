@@ -9,10 +9,10 @@ function (/*                            */ locationService, $interval, $http, Co
 	c.dropSrc = MemorySrvc.get("dropSrc");
 	c.latLngUrl = '';
 	c.addressMessage = '';
-	c.pickup = MemorySrvc.get("pickup");
-	c.drop = MemorySrvc.get("drop");
-	c.pready = MemorySrvc.get("pickReady");
-    c.dready = MemorySrvc.get("dropReady");
+	c.pickup = MemorySrvc.get("pickup") === "true";
+	c.drop = MemorySrvc.get("drop") === "true";
+	c.pready = MemorySrvc.get("pickReady") === "true";
+	c.dready = MemorySrvc.get("dropReady") === "true";
 	
 	c.init = function (form, page) {
 		c.form = form;
