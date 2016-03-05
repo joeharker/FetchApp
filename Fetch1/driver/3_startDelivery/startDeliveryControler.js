@@ -5,17 +5,16 @@ function (/*                            */ locationService, $interval, $http, Co
 	var ticker = {};
 	c.form = {};
 	c.page = {};
+	c.pickSrc = MemorySrvc.get("pickSrc");
+	c.dropSrc = MemorySrvc.get("dropSrc");
 	c.latLngUrl = '';
-    c.addressMessage = '';
+	c.addressMessage = '';
+	c.pickup = MemorySrvc.get("pickup");
+	c.drop = MemorySrvc.get("drop");
+	c.pready = MemorySrvc.get("pickReady");
+    c.dready = MemorySrvc.get("dropReady");
 	
 	c.init = function (form, page) {
-	    c.pready = MemorySrvc.get("pickReady");
-	    c.dready = MemorySrvc.get("dropReady");
-	    c.pickSrc = MemorySrvc.get("pickSrc");
-	    c.dropSrc = MemorySrvc.get("dropSrc");
-	    c.pickup = MemorySrvc.get("pickup");
-	    c.drop = MemorySrvc.get("drop");
-
 		c.form = form;
 		c.page = page;
 		c.message = 'Connecting with server';
@@ -27,7 +26,7 @@ function (/*                            */ locationService, $interval, $http, Co
 		});
 
 		ticker = $interval(function () {
-		    $http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + MemorySrvc.get("deliveryId"))
+			$http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + c.form.data.deliveryId)
 				.then(function (status) {
 				    switch (status.data.nextNeed) {
 				        case EnumSrvc.NextNeed.Driver:
@@ -38,7 +37,7 @@ function (/*                            */ locationService, $interval, $http, Co
 				            break;
 				        case EnumSrvc.NextNeed.Pickup:
 				            c.pickup = true;
-				            MemorySrvc.set("pickup", c.pickup);
+				            MemorySrvc.set("pickup", true);
 				            $http.get(ConfigSrvc.serviceUrl + '/api/delivery?driverId=' + MemorySrvc.get('myId') + '&lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude);
 				            break;
 				        case EnumSrvc.NextNeed.Dropoff:
@@ -63,14 +62,16 @@ function (/*                            */ locationService, $interval, $http, Co
 	};
 
     c.onPickLoad = function () {
-        if (c.pready) {
+        if (!c.pready) {
+            //c.pready = true; //quick hack to not record the first blank image that loads with the page
+        } else {
             var photo = cameraService.resizePhoto("pickImg", 200);
-            $http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': MemorySrvc.get("deliveryId"), 'photo': photo })
+            $http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': c.form.data.deliveryId, 'photo': photo })
                 .then(function(response) {
                     c.pickup = false;
-                    MemorySrvc.set("pickup", c.pickup);
+                    MemorySrvc.set("pickup", false);
                     c.drop = true;
-                    MemorySrvc.set("drop", c.drop);
+                    MemorySrvc.set("drop", true);
                     c.addressMessage = 'Get directions to Drop off ' + c.form.data.delivery;
                 }, function(e) {
                     ErrorService.reportMessage("post pick photo error", JSON.stringify(e));
@@ -89,26 +90,27 @@ function (/*                            */ locationService, $interval, $http, Co
 		cameraService.takePhoto()
 		.then(function (photo) {
 		    c.pready = true; //quick hack to not record the first blank image that loads with the page
+		        MemorySrvc.set("pickReady", true);
 		    c.pickSrc = photo;  //this will trigger onPickLoad when the image is loaded
-		        MemorySrvc.set("pickReady", c.pready);
-		        MemorySrvc.set("pickSrc", c.pickSrc);
-
-		    }, function (x) {
+		    MemorySrvc.set("pickSrc", photo);
+		}, function (x) {
 		    ErrorService.reportMessage("take pick photo error", JSON.stringify(x));
 		    c.message = "Photo Error";
 		});
 	};
 
 	c.onDropLoad = function () {
-	    if (c.dready) {
+	    if (!c.dready) {
+	        //c.dready = true; //quick hack to not record the first blank image that loads with the page
+	    } else {
 	        var photo = cameraService.resizePhoto("dropImg", 200);
 	        
-	        $http.post(ConfigSrvc.serviceUrl + '/api/drop', { 'deliveryId': MemorySrvc.get("deliveryId"), 'photo': photo })
+	        $http.post(ConfigSrvc.serviceUrl + '/api/drop', { 'deliveryId': c.form.data.deliveryId, 'photo': photo })
                 .then(function (response) {
                     c.pickup = false;
-                    MemorySrvc.set("pickup", c.pickup);
-                    c.drop = false;
-                    MemorySrvc.set("drop", c.drop);
+	                MemorySrvc.set("pickup", false);
+	                c.drop = false;
+	                MemorySrvc.set("drop", false);
                     c.message = 'Waiting for customer to confirm drop off';
                 }, function (e) {
                     ErrorService.reportMessage("post drop photo error", JSON.stringify(e));
@@ -121,10 +123,9 @@ function (/*                            */ locationService, $interval, $http, Co
 		cameraService.takePhoto()
 		.then(function (photo) {
 		    c.dready = true; //quick hack to not record the first blank image that loads with the page
+		    MemorySrvc.set("dropReady", true);
 		    c.dropSrc = photo;  //this will trigger onDropLoad when the image is loaded
-			
-		    MemorySrvc.set("dropReady", c.dready);
-		    MemorySrvc.set("dropSrc", c.dropSrc);
+		    MemorySrvc.set("dropSrc", photo);
 		}, function (e) {
 		    ErrorService.reportMessage("take drop photo error", JSON.stringify(e));
 		    c.message = "Photo error";
