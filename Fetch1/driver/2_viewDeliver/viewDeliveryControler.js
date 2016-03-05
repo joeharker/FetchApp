@@ -11,6 +11,10 @@ function (ConfigSrvc, $interval, $http, EnumSrvc, ErrorService, MemorySrvc) {
 	c.init = function (form, page) {
 	    c.form = form;
 	    c.page = page;
+
+	    //before next page
+	    MemorySrvc.set("pickReady", false);
+	    MemorySrvc.set("dropReady", false);
 	};
 
 	c.accept = function (f) {

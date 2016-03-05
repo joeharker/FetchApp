@@ -58,11 +58,8 @@ function (/*                            */ locationService, $interval, $http, Co
 		}, 5000);
 	};
 
-    c.pready = false;
     c.onPickLoad = function () {
-        if (!c.pready) {
-            //c.pready = true; //quick hack to not record the first blank image that loads with the page
-        } else {
+        if (MemorySrvc.get("pickReady")) {
             var photo = cameraService.resizePhoto("pickImg", 200);
             $http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': MemorySrvc.get("deliveryId"), 'photo': photo })
                 .then(function(response) {
@@ -85,7 +82,7 @@ function (/*                            */ locationService, $interval, $http, Co
 		cameraService.quality = 5;
 		cameraService.takePhoto()
 		.then(function (photo) {
-		    c.pready = true; //quick hack to not record the first blank image that loads with the page
+		    MemorySrvc.set("pickReady", true); //quick hack to not record the first blank image that loads with the page
 		    c.pickSrc = photo;  //this will trigger onPickLoad when the image is loaded
 		    
 		}, function (x) {
@@ -94,11 +91,8 @@ function (/*                            */ locationService, $interval, $http, Co
 		});
 	};
 
-	c.dready = false;
 	c.onDropLoad = function () {
-	    if (!c.dready) {
-	        //c.dready = true; //quick hack to not record the first blank image that loads with the page
-	    } else {
+	    if (MemorySrvc.get("dropReady")) {
 	        var photo = cameraService.resizePhoto("dropImg", 200);
 	        
 	        $http.post(ConfigSrvc.serviceUrl + '/api/drop', { 'deliveryId': MemorySrvc.get("deliveryId"), 'photo': photo })
@@ -116,7 +110,7 @@ function (/*                            */ locationService, $interval, $http, Co
 	c.dropPhoto = function () {
 		cameraService.takePhoto()
 		.then(function (photo) {
-		    c.dready = true; //quick hack to not record the first blank image that loads with the page
+		    MemorySrvc.set("dropReady", true); //quick hack to not record the first blank image that loads with the page
 		    c.dropSrc = photo;  //this will trigger onDropLoad when the image is loaded
 			
 		}, function (e) {
