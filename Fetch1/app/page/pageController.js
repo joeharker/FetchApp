@@ -49,7 +49,7 @@ app.controller('PageCtrl', ['ConfigSrvc', 'MemorySrvc', 'cameraService', 'Device
 
 	        DeviceSrvc.splash(false);
 
-	        return true;
+	        return camera;
         };
 
         //onload-complete load a template if listed in a path url param or page one

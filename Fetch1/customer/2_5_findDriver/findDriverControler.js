@@ -8,10 +8,9 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 	var ticker;
 
 	var waitForDriver = function () {
-		var deliveryId = MemorySrvc.get("deliveryId");
 		c.message = "Waiting for a Deliverer";
 		ticker = $interval(function () {
-			$http.get(ConfigSrvc.serviceUrl + "/api/delivery?deliveryId=" + deliveryId)
+		    $http.get(ConfigSrvc.serviceUrl + "/api/delivery?deliveryId=" + MemorySrvc.get("deliveryId"))
 				.then(function (status) {
 					if (status.data.nextNeed === EnumSrvc.NextNeed.Payment) {
 						$interval.cancel(ticker);

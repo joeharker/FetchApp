@@ -10,13 +10,6 @@ function (mapService, $q, MemorySrvc, ErrorService) {
 			var price = 0.0;
 
 			switch (form.data.size) {
-				case "small":
-					price = 0.99;
-					price += 0.0007 * rout.meters;
-					price += 0.0025 * rout.seconds;
-					price = price < 9.99 ? 9.99 : price;
-
-					break;
 				case "medium":
 					price = 0.99;
 					price += 0.0007 * rout.meters;
@@ -31,18 +24,32 @@ function (mapService, $q, MemorySrvc, ErrorService) {
 					price = price < 75 ? 75 : price;
 
 					break;
-				default:
-					//ErrorService.reportError('Unknown size:', form.data.size);
+			    case "small":
+			    default:
+			        price = 0.99;
+			        price += 0.0007 * rout.meters;
+			        price += 0.0025 * rout.seconds;
+			        price = price < 9.99 ? 9.99 : price;
+
+			        break;
 			}
 
 			form.data.price = price.toFixed(2);
 			form.data.suggested = form.data.price;
 
-			MemorySrvc.set("price", form.data.price);
-			MemorySrvc.set("suggested", form.data.suggested);
+			form.saveData();
 		}, function (reason) {
 		    ErrorService.reportError("calculateCost Failed:", JSON.stringify(reason));
 		});
+	};
+
+	c.validatePrice = function (val, form) {
+	    if (
+            val === undefined
+	        || isNaN(parseFloat(val))
+        ) {
+	        form.data.price = "";
+	    }
 	};
 
 	return c;

@@ -1,40 +1,43 @@
 ﻿<div class="hidden">{{ page.theme = 'darker'; }}</div>
-	<div ng-controller="DeliveryCtrl as demo">
-	<div ng-controller="DeliveryVerificationCtrl as delivery" ng-init="delivery.calculateCost(demo)">
-		<div class="short"></div>
-		PLEASE VERIFY INFO FOR ACCURACY
-		<div class="short"></div>
-		<button class="skinnier medium dark fa fa-archive"></button>
-		<span class="skinniest"></span>
-		<div class="window medium wider">
-			I have a {{ demo.data.size }} {{ demo.data.weight }} lb package
-		</div>
-		<div class="short"></div>
-		<button class="skinnier medium dark fa fa-arrow-down"></button>
-		<span class="skinniest"></span>
-		<div class="window medium wider">
-			Package to be picked up from {{ demo.data.pickup }}
-		</div>
-		<div class="short"></div>
-		<button class="skinnier medium dark fa fa-arrow-right"></button>
-		<span class="skinniest"></span>
-		<div class="window medium wider">
-			Package will be delivered to {{ demo.data.delivery }}
-		</div>
-		<div class="short"></div>
-		<button class="skinnier medium dark fa fa-usd"></button>
-		<span class="skinniest"></span>
-		<div class="window medium wider">
-		    Suggested (${{ demo.data.suggested }})<br/>Your Price: <input type="text" value="{{ demo.data.price }}" />
-		</div>
-		<div class="short right-t">I VERIFY THIS</div>
-		<button ng-click="page.back();" class="medium wide stop">
-			EDIT
-		</button>
-		<span class="skinniest"></span>
+<div ng-controller="DeliveryCtrl as demo">
+    <form name="form">
+        <div ng-controller="DeliveryVerificationCtrl as delivery" ng-init="delivery.calculateCost(demo)">
+            <div class="short"></div>
+            PLEASE VERIFY INFO FOR ACCURACY
+            <div class="short"></div>
+            <button class="skinnier medium dark fa fa-archive"></button>
+            <span class="skinniest"></span>
+            <div class="window medium wider">
+                I have a {{ demo.data.size }} {{ demo.data.weight }} lb package
+            </div>
+            <div class="short"></div>
+            <button class="skinnier medium dark fa fa-arrow-down"></button>
+            <span class="skinniest"></span>
+            <div class="window medium wider">
+                Package to be picked up from {{ demo.data.pickup }}
+            </div>
+            <div class="short"></div>
+            <button class="skinnier medium dark fa fa-arrow-right"></button>
+            <span class="skinniest"></span>
+            <div class="window medium wider">
+                Package will be delivered to {{ demo.data.delivery }}
+            </div>
+            <div class="short"></div>
+            <button class="skinnier medium dark fa fa-usd"></button>
+            <span class="skinniest"></span>
+            <div class="window medium wider">
+                Suggested (${{ demo.data.suggested }})<br/>
+                Your Price: <input name="price" type="text" ng-model="demo.data.price" ng-change="delivery.validatePrice(demo.data.price, demo);" ng-class="(demo.data.price === '') ? 'error' : 'x'" required />
+            </div>
+            <div class="short right-t">I VERIFY THIS</div>
+            <button ng-click="page.back();" class="medium wide stop">
+                EDIT
+            </button>
+            <span class="skinniest"></span>
 
-		<button ng-click="page.load('customer/2_5_findDriver/findDriver.html');" class="medium wide light">
-			Confirm
-		</button>
-	</div>
+            <button ng-disabled="(form.price.$invalid)" ng-click="demo.saveData(); page.load('customer/2_5_findDriver/findDriver.html');" class="medium wide light">
+                Confirm
+            </button>
+        </div>
+    </form>
 </div>

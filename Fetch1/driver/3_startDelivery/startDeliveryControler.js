@@ -24,7 +24,7 @@ function (/*                            */ locationService, $interval, $http, Co
 		});
 
 		ticker = $interval(function () {
-			$http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + c.form.data.deliveryId)
+		    $http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + MemorySrvc.get("deliveryId"))
 				.then(function (status) {
 				    switch (status.data.nextNeed) {
 				        case EnumSrvc.NextNeed.Driver:
@@ -64,7 +64,7 @@ function (/*                            */ locationService, $interval, $http, Co
             //c.pready = true; //quick hack to not record the first blank image that loads with the page
         } else {
             var photo = cameraService.resizePhoto("pickImg", 200);
-            $http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': c.form.data.deliveryId, 'photo': photo })
+            $http.post(ConfigSrvc.serviceUrl + '/api/pickup', { 'deliveryId': MemorySrvc.get("deliveryId"), 'photo': photo })
                 .then(function(response) {
                     c.pickup = false;
                     c.drop = true;
@@ -101,7 +101,7 @@ function (/*                            */ locationService, $interval, $http, Co
 	    } else {
 	        var photo = cameraService.resizePhoto("dropImg", 200);
 	        
-	        $http.post(ConfigSrvc.serviceUrl + '/api/drop', { 'deliveryId': c.form.data.deliveryId, 'photo': photo })
+	        $http.post(ConfigSrvc.serviceUrl + '/api/drop', { 'deliveryId': MemorySrvc.get("deliveryId"), 'photo': photo })
                 .then(function (response) {
                     c.pickup = false;
                     c.drop = false;

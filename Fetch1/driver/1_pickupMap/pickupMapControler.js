@@ -41,6 +41,8 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 
 								c.form.data = pin;
 								c.form.saveData();
+								console.log(c.form.data);
+						        MemorySrvc.set("deliveryId", c.form.data.deliveryId);
 
 								c.page.load('driver/2_viewDeliver/viewDelivery.html');
 							}

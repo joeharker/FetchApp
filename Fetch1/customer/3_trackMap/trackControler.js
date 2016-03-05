@@ -15,7 +15,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 		c.page = page;
 
 		ticker = $interval(function () {
-			$http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + c.form.data.deliveryId)
+		    $http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + MemorySrvc.get("deliveryId"))
 				.then(function (status) {
 					//clear old markers
 					mapService.clearPins();
@@ -42,7 +42,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 					    case EnumSrvc.NextNeed.Dropoff:
 						    c.message = 'Approaching drop off';
 							if (c.pickSrc === cameraService.transparent) {
-								$http.get(ConfigSrvc.serviceUrl + '/api/pickup?deliveryId=' + c.form.data.deliveryId)
+							    $http.get(ConfigSrvc.serviceUrl + '/api/pickup?deliveryId=' + MemorySrvc.get("deliveryId"))
 									.then(function (photo) {
 										c.pickSrc = photo.data;
 										DeviceSrvc.buzz();
@@ -56,7 +56,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 					        $interval.cancel(ticker);
 							if (c.dropSrc === cameraService.transparent) {
 								c.accept = true;
-								$http.get(ConfigSrvc.serviceUrl + '/api/drop?deliveryId=' + c.form.data.deliveryId)
+								$http.get(ConfigSrvc.serviceUrl + '/api/drop?deliveryId=' + MemorySrvc.get("deliveryId"))
 									.then(function (photo) {
 										c.dropSrc = photo.data;
 										DeviceSrvc.buzz();
@@ -81,7 +81,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 	};
 
 	c.AcceptDelivery = function () {
-		$http.get(ConfigSrvc.serviceUrl + '/api/complete?deliveryId=' + c.form.data.deliveryId);
+	    $http.get(ConfigSrvc.serviceUrl + '/api/complete?deliveryId=' + MemorySrvc.get("deliveryId"));
 		c.page.load('customer/4_deliveredVerification/deliveredVerification.html');
 	};
 
