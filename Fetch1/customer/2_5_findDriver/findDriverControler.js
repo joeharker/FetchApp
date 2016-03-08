@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.controller("FindDriverCtrl", ["$q", "$scope", "$http", "$interval", "ConfigSrvc", "MemorySrvc", "EnumSrvc","DeviceSrvc",
-function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, DeviceSrvc) {
+app.controller("FindDriverCtrl", ["$q", "$scope", "$http", "$interval", "ConfigSrvc", "MemorySrvc", "EnumSrvc","DeviceSrvc", "cameraService",
+function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, DeviceSrvc, cameraService) {
 	var c = this;
 
 	c.message = "";
