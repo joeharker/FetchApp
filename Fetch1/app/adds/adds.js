@@ -47,6 +47,7 @@
                         autoShow: true,
                         bgColor: 'brown'
                     });
+                    s.toggleMessage = "Hide Advertisements";
                 }
             } else {
                 s.toggleMessage = "";
