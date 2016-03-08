@@ -2,9 +2,12 @@
     function() {
         var s = this;
         var admobid = {};
-        s.toggleMessage = "Hide Advertisements";
+        s.toggleMessage = "";
 
         //init
+        if (typeof AdMob !== "undefined") {
+            s.toggleMessage = "Hide Advertisements";
+        }
         if (/(android)/i.test(navigator.userAgent)) {
             admobid = {
                 // for Android
