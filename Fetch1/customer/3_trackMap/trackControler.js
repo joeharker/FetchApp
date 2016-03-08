@@ -6,9 +6,9 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 	c.message = 'Finding your location';
 	c.form = {};
 	c.page = {};
-	c.pickSrc = cameraService.transparent;
-	c.dropSrc = cameraService.transparent;
-	c.accept = false;
+	c.pickSrc = MemorySrvc.get("pickSrc");
+	c.dropSrc = MemorySrvc.set("dropSrc");
+	c.accept = MemorySrvc.set("accept");
 
 	c.init = function (form, page) {
 		c.form = form;
@@ -44,7 +44,8 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 							if (c.pickSrc === cameraService.transparent) {
 							    $http.get(ConfigSrvc.serviceUrl + '/api/pickup?deliveryId=' + MemorySrvc.get("deliveryId"))
 									.then(function (photo) {
-										c.pickSrc = photo.data;
+									    c.pickSrc = photo.data;
+									    MemorySrvc.set("pickSrc", photo.data);
 										DeviceSrvc.buzz();
 									}, function (x) {
 										c.message = 'Finding Network C';
@@ -55,10 +56,12 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 					        c.message = 'Delivery has arrived';
 					        $interval.cancel(ticker);
 							if (c.dropSrc === cameraService.transparent) {
-								c.accept = true;
+							    c.accept = true;
+							    MemorySrvc.set("accept", true);
 								$http.get(ConfigSrvc.serviceUrl + '/api/drop?deliveryId=' + MemorySrvc.get("deliveryId"))
 									.then(function (photo) {
-										c.dropSrc = photo.data;
+									    c.dropSrc = photo.data;
+									    MemorySrvc.set("dropSrc", photo.data);
 										DeviceSrvc.buzz();
 									}, function (x) {
 										c.message = 'Finding Network D';

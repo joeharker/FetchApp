@@ -7,6 +7,11 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 	c.ready = false;
 	var ticker;
 
+    //init for next page
+	MemorySrvc.set("pickSrc", cameraService.transparent);
+	MemorySrvc.set("dropSrc", cameraService.transparent);
+	MemorySrvc.set("accept", false);
+
 	var waitForDriver = function () {
 		c.message = "Waiting for a Deliverer";
 		ticker = $interval(function () {

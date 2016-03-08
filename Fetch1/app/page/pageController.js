@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.controller('PageCtrl', ['ConfigSrvc', 'MemorySrvc', 'cameraService', 'DeviceSrvc','$q',
-    function (ConfigSrvc, MemorySrvc, cameraService, DeviceSrvc, $q) {
+app.controller('PageCtrl', ['ConfigSrvc', 'MemorySrvc', 'cameraService', 'DeviceSrvc', 'addsService',
+    function (ConfigSrvc, MemorySrvc, cameraService, DeviceSrvc, addsService) {
     	'use strict';
     	var c = this,
             regex,
@@ -16,9 +16,17 @@ app.controller('PageCtrl', ['ConfigSrvc', 'MemorySrvc', 'cameraService', 'Device
     	c.title = '';
     	c.template = '';
     	c.deferred = {};
+        c.toggleMessage = addsService.toggleMessage;
 
         //init
-        DeviceSrvc.splash(true); //show until the devices have been tested for
+    	DeviceSrvc.splash(true); //show until the devices have been tested for
+    	if (window.plugins !== undefined) {
+    	    window.plugins.insomnia.allowSleepAgain();  //default to not sleep
+    	}
+
+        c.toggleBanner = function() {
+            addsService.toggleBanner();
+        };
 
     	c.load = function (template, direction) {
     		if (direction !== undefined) {

@@ -84,6 +84,10 @@
     <!--
         <gap:plugin name="com.phonegap.plugins.barcodescanner" />
     -->
+  
+  <gap:plugin name="nl.x-services.plugins.insomnia" source="pgb" />   <!--stay awake-->
+  <preference name="android-build-tool" value="gradle" />             <!--adds-->
+  <gap:plugin name="cordova-plugin-admobpro" source="npm" />          <!--adds--> 
 
     <!-- Define app icon for each platform. -->
     <icon src="resources/icon/box128.png" />
