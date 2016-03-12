@@ -4,7 +4,7 @@ function () {
     'use strict';
     var s = {};
     	
-    s.version = '1.0.30';
+    s.version = '1.0.31';
 
     //*/
     s.stripeClientId = 'ca_5oSXm50hso4vFBv5IvDHVVklCiUkdP8R';   //test

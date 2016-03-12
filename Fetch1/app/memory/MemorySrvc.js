@@ -1,7 +1,7 @@
 /*global app */
-app.factory('MemorySrvc', [
+app.factory("MemorySrvc", [
     function () {
-    	'use strict';
+    	"use strict";
     	var s = {},
     		keys = [];
 
@@ -13,7 +13,7 @@ app.factory('MemorySrvc', [
     		var val = window.localStorage.getItem(key);
 
     		if (val === null) {
-    			val = '';
+    			val = "";
     		}
 
     		return val;
