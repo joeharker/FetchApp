@@ -7,8 +7,8 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 	c.form = {};
 	c.page = {};
 	c.pickSrc = MemorySrvc.get("pickSrc");
-	c.dropSrc = MemorySrvc.set("dropSrc");
-	c.accept = MemorySrvc.set("accept");
+	c.dropSrc = MemorySrvc.get("dropSrc");
+	c.accept = MemorySrvc.get("accept");
 
 	c.init = function (form, page) {
 		c.form = form;
@@ -53,7 +53,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 							}
 							break;
 					    case EnumSrvc.NextNeed.Transfer:
-					        c.message = 'Delivery has arrived';
+					        c.message = 'Delivery has arrived A';
 					        $interval.cancel(ticker);
 							if (c.dropSrc === cameraService.transparent) {
 							    c.accept = true;
@@ -69,7 +69,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 							}
 							break;
 					    case EnumSrvc.NextNeed.Done:
-					        c.message = 'Delivery has arrived';
+					        c.message = 'Delivery has arrived B';
 					        break;
 					    default:
 					        c.message = status.data.nextNeed;
