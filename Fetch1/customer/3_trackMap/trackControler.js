@@ -8,78 +8,82 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 	c.page = {};
 	c.pickSrc = MemorySrvc.get("pickSrc");
 	c.dropSrc = MemorySrvc.get("dropSrc");
-	c.accept = MemorySrvc.get("accept");
+	c.accept = MemorySrvc.get("accept") === "true";
 
 	c.init = function (form, page) {
 		c.form = form;
 		c.page = page;
 
 		ticker = $interval(function () {
-		    $http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + MemorySrvc.get("deliveryId"))
-				.then(function (status) {
-					//clear old markers
-					mapService.clearPins();
+		    if (MemorySrvc.get("deliveryId") !== "") {
+		        $http.get(ConfigSrvc.serviceUrl + '/api/delivery?deliveryId=' + MemorySrvc.get("deliveryId"))
+		            .then(function(status) {
+		                //clear old markers
+		                mapService.clearPins();
 
-					//update the driver location
-					mapService.addPinLatLon(
-						status.data.lat
-						,status.data.lon
-						, function () {
-							//no click function for now
-						}
-					);
+		                //update the driver location
+		                mapService.addPinLatLon(
+		                    status.data.lat, status.data.lon, function() {
+		                        //no click function for now
+		                    }
+		                );
 
-					switch (status.data.nextNeed) {
-					    case EnumSrvc.NextNeed.Driver:
-					        c.message = 'Waiting';
-					        break;
-					    case EnumSrvc.NextNeed.Payment:
-					        c.message = 'Waiting';
-					        break;
-					    case EnumSrvc.NextNeed.Pickup:
-							c.message = 'Approaching pickup';
-							break;
-					    case EnumSrvc.NextNeed.Dropoff:
-						    c.message = 'Approaching drop off';
-							if (c.pickSrc === cameraService.transparent) {
-							    $http.get(ConfigSrvc.serviceUrl + '/api/pickup?deliveryId=' + MemorySrvc.get("deliveryId"))
-									.then(function (photo) {
-									    c.pickSrc = photo.data;
-									    MemorySrvc.set("pickSrc", photo.data);
-										DeviceSrvc.buzz();
-									}, function (x) {
-										c.message = 'Finding Network C';
-									});
-							}
-							break;
-					    case EnumSrvc.NextNeed.Transfer:
-					        c.message = 'Delivery has arrived A';
-					        $interval.cancel(ticker);
-							if (c.dropSrc === cameraService.transparent) {
-							    c.accept = true;
-							    MemorySrvc.set("accept", true);
-								$http.get(ConfigSrvc.serviceUrl + '/api/drop?deliveryId=' + MemorySrvc.get("deliveryId"))
-									.then(function (photo) {
-									    c.dropSrc = photo.data;
-									    MemorySrvc.set("dropSrc", photo.data);
-										DeviceSrvc.buzz();
-									}, function (x) {
-										c.message = 'Finding Network D';
-									});
-							}
-							break;
-					    case EnumSrvc.NextNeed.Done:
-					        c.message = 'Delivery has arrived B';
-					        break;
-					    default:
-					        c.message = status.data.nextNeed;
-					}
+		                switch (status.data.nextNeed) {
+		                case EnumSrvc.NextNeed.Driver:
+		                    c.message = 'Waiting';
+		                    break;
+		                case EnumSrvc.NextNeed.Payment:
+		                    c.message = 'Waiting';
+		                    break;
+		                case EnumSrvc.NextNeed.Pickup:
+		                    c.message = 'Approaching pickup';
+		                    break;
+		                case EnumSrvc.NextNeed.Dropoff:
+		                    c.message = 'Approaching drop off';
+		                    if (c.pickSrc === cameraService.transparent) {
+		                        if (MemorySrvc.get("deliveryId") !== "") {
+		                            $http.get(ConfigSrvc.serviceUrl + '/api/pickup?deliveryId=' + MemorySrvc.get("deliveryId"))
+		                                .then(function(photo) {
+		                                    c.pickSrc = photo.data;
+		                                    MemorySrvc.set("pickSrc", photo.data);
+		                                    DeviceSrvc.buzz();
+		                                }, function(x) {
+		                                    c.message = 'Finding Network C';
+		                                });
+		                        }
+		                    }
+		                    break;
+		                case EnumSrvc.NextNeed.Transfer:
+		                    c.message = 'Delivery has arrived A';
+		                    $interval.cancel(ticker);
+		                    if (c.dropSrc === cameraService.transparent) {
+		                        c.accept = true;
+		                        MemorySrvc.set("accept", true);
+		                        if (MemorySrvc.get("deliveryId") !== "") {
+		                            $http.get(ConfigSrvc.serviceUrl + '/api/drop?deliveryId=' + MemorySrvc.get("deliveryId"))
+		                                .then(function(photo) {
+		                                    c.dropSrc = photo.data;
+		                                    MemorySrvc.set("dropSrc", photo.data);
+		                                    DeviceSrvc.buzz();
+		                                }, function(x) {
+		                                    c.message = 'Finding Network D';
+		                                });
+		                        }
+		                    }
+		                    break;
+		                case EnumSrvc.NextNeed.Done:
+		                    c.message = 'Delivery has arrived B';
+		                    break;
+		                default:
+		                    c.message = status.data.nextNeed;
+		                }
 
-					//center map on driver
-					mapService.centerMap(status.data.lat, status.data.lon);
-				}, function (e) {
-					c.message = 'Finding Network E';
-				});
+		                //center map on driver
+		                mapService.centerMap(status.data.lat, status.data.lon);
+		            }, function(e) {
+		                c.message = 'Finding Network E';
+		            });
+		    }
 		}, 5000);
 	};
 

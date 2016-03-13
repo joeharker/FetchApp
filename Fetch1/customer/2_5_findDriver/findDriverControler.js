@@ -15,18 +15,20 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 	var waitForDriver = function () {
 		c.message = "Waiting for a Deliverer";
 		ticker = $interval(function () {
-		    $http.get(ConfigSrvc.serviceUrl + "/api/delivery?deliveryId=" + MemorySrvc.get("deliveryId"))
-				.then(function (status) {
+		    if (MemorySrvc.get("deliveryId") !== "") {
+		        $http.get(ConfigSrvc.serviceUrl + "/api/delivery?deliveryId=" + MemorySrvc.get("deliveryId"))
+		            .then(function(status) {
 
-					if (status.data.nextNeed === EnumSrvc.NextNeed.Payment) {
-						$interval.cancel(ticker);
-						c.message = "A deliverer is ready. Please pay to start the delivery";
-						c.ready = true;
-						DeviceSrvc.buzz();
-					}
-				}, function (e) {
-					c.message = "Finding Network A";
-				});
+		                if (status.data.nextNeed === EnumSrvc.NextNeed.Payment) {
+		                    $interval.cancel(ticker);
+		                    c.message = "A deliverer is ready. Please pay to start the delivery";
+		                    c.ready = true;
+		                    DeviceSrvc.buzz();
+		                }
+		            }, function(e) {
+		                c.message = "Finding Network A";
+		            });
+		    }
 		}, 5000);
 	};
 

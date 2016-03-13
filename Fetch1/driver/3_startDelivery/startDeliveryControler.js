@@ -7,8 +7,8 @@ function (/*                            */ locationService, $interval, $http, Co
 	c.page = {};
 	c.pickSrc = MemorySrvc.get("pickSrc");
 	c.dropSrc = MemorySrvc.get("dropSrc");
-	c.latLngUrl = '';
-	c.addressMessage = '';
+	c.latLngUrl = "";
+	c.addressMessage = "";
 	c.pickup = MemorySrvc.get("pickup") === "true";
 	c.drop = MemorySrvc.get("drop") === "true";
 	c.pready = MemorySrvc.get("pickReady") === "true";
