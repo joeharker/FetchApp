@@ -4,8 +4,22 @@
 	<h1>
 		WELCOME
 	</h1>
-	<div class="medium"></div>
-	<button ng-click="page.load('customer/1_requestDelivery/requestDelivery.html');" class="tall widest light">
+    <div class="medium"></div>
+    <div ng-hide="page.agree">
+        <div class="instruction">
+            Fetch1 provides the app.<br/>
+            Stripe validates the user accounts and identities. (they charge a small fee)<br/>
+            The comunity uses the app to agree on a deal.<br/>
+            The delivery is made and the remaining money goes to the deliverer the way social sharing was ment to be.<br/>
+            <a target="_system" href="http://www.fetch1.com/#!blank/ymgoo">Full terms and conditions</a>
+        </div>
+        <br/>
+        <br/>
+        <button ng-click="page.agree = true;" class="tall widest">
+            I UNDERSTAND AND AGREE TO THE TERMS
+        </button>
+    </div>
+	<button ng-click="page.load('customer/1_requestDelivery/requestDelivery.html');" ng-show="page.agree" class="tall widest light">
 		I WANT
 		<br />
 		SOMETHING
@@ -13,7 +27,7 @@
 		DELIVERED
 	</button>
 	<div class="medium"></div>
-	<button ng-click="auth.oauth(page)" class="tall widest dark" ng-show="page.hasCameraAndGPS()">
+	<button ng-click="auth.oauth(page)" class="tall widest dark" ng-show="page.hasCameraAndGPS() && page.agree">
 		I WANT TO
 		<br />
 		DELIVER USING

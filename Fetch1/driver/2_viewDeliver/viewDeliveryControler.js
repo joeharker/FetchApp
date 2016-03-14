@@ -1,6 +1,6 @@
 ﻿/*global app */
-app.controller('ViewDeliveryControler', ['ConfigSrvc', '$interval', '$http','EnumSrvc','ErrorService','MemorySrvc', 'cameraService',
-function (ConfigSrvc, $interval, $http, EnumSrvc, ErrorService, MemorySrvc, cameraService) {
+app.controller('ViewDeliveryControler', ['ConfigSrvc', '$interval', '$http', 'EnumSrvc', 'ErrorService', 'MemorySrvc', 'cameraService', 'mapService',
+function (ConfigSrvc, $interval, $http, EnumSrvc, ErrorService, MemorySrvc, cameraService, mapService) {
 	var c = this;
 
 	c.driverCut = ConfigSrvc.driverCut;
@@ -19,6 +19,13 @@ function (ConfigSrvc, $interval, $http, EnumSrvc, ErrorService, MemorySrvc, came
 	    MemorySrvc.set("dropReady", false);
 	    MemorySrvc.set("pickup", false);
 	    MemorySrvc.set("drop", false);
+
+	    mapService.calculateRoute(form.data.pickup, form.data.delivery)
+	            .then(function (rout) {
+	                form.data.distance = (rout.meters / 1609.34).toFixed(2) + " miles";
+	            }, function (reason) {
+	                form.data.distance = "";
+	            });
 	};
 
 	c.accept = function (f) {

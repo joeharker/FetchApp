@@ -9,6 +9,11 @@ body {
 	font-family: Helvetica, Arial, sans-serif;
 }
 
+::-webkit-scrollbar {width: 5px;}                                                   /*android scroll bars //ignore jslint*/
+::-webkit-scrollbar-track { border-radius: 10px;}                                   /*android scroll bars //ignore jslint*/
+::-webkit-scrollbar-thumb { border-radius: 10px; background: rgb(169,169,169); }    /*android scroll bars //ignore jslint*/
+::-webkit-scrollbar-thumb:window-inactive {background: rgb(128,128,128); }          /*android scroll bars //ignore jslint*/
+
 #addsToggle {
     background-color: orange;
     color: black;
@@ -203,4 +208,21 @@ td{
 #map-canvas { 
 	width  : 100%;
     height : 300px;
+}
+
+.instruction {
+    color: black;
+    background-color: white;
+    overflow: auto;
+    height: 150px;
+    margin: 5px;
+    padding: 0;
+    text-align: left;
+    border: 1px solid gray;
+}
+
+.center-t {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

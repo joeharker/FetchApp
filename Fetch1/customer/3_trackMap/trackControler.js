@@ -54,7 +54,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 		                    }
 		                    break;
 		                case EnumSrvc.NextNeed.Transfer:
-		                    c.message = 'Delivery has arrived A';
+		                    c.message = 'Delivery has arrived';
 		                    $interval.cancel(ticker);
 		                    if (c.dropSrc === cameraService.transparent) {
 		                        c.accept = true;
@@ -72,7 +72,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 		                    }
 		                    break;
 		                case EnumSrvc.NextNeed.Done:
-		                    c.message = 'Delivery has arrived B';
+		                    c.message = 'Delivery has arrived';
 		                    break;
 		                default:
 		                    c.message = status.data.nextNeed;

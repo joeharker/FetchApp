@@ -1,4 +1,4 @@
-﻿<div class="hidden">{{ page.disableBack = true; page.theme = 'darker'; page.title = 'DELIVERY' }}</div>
+﻿<div class="hidden">{{ page.disableBack = false; page.theme = 'darker'; page.title = 'DELIVERY' }}</div>
 	<div ng-controller="DeliveryCtrl as demo">
 		<div ng-controller="ViewDeliveryControler as config" ng-init="config.init(demo, page)">
 		    <div class="short"></div>
@@ -14,16 +14,20 @@
 			<div class="short"></div>
 			<button class="skinnier medium dark fa fa-arrow-down"></button>
 			<span class="skinniest"></span>
-			<div class="window medium wider" style="max-height: 44px">
-				Package to be picked up from {{ demo.data.pickup }}
-			</div>
+		    <div class="window medium wider" style="max-height: 44px">
+		        Package to be picked up from {{ demo.data.pickup }}
+		    </div>
+            <div class="short"></div>
+            <div class="short">
+                <input readonly="readonly" type="text" ng-model="demo.data.distance" name="distance" placeholder="distance" ng-class="demo.data.distance==='' ? 'error' : 'x'" required />
+            </div>
 			<div class="short"></div>
 			<button class="skinnier medium dark fa fa-arrow-right"></button>
 			<span class="skinniest"></span>
 			<div class="window medium wider" style="max-height: 44px">
 				Package will be delivered to {{ demo.data.delivery }}
 			</div>
-			<div class="short"></div>
+		    <div class="short"></div>
 			<div class="window medium widest">
 				Instructions {{ demo.data.instructions }}
 			</div>

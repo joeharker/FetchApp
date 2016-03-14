@@ -17,6 +17,7 @@ app.controller("PageCtrl", ["ConfigSrvc", "MemorySrvc", "cameraService", "Device
         c.template = "";
         c.deferred = {};
         c.toggleMessage = addsService.toggleMessage;
+        c.agree = false;
 
         //init
         DeviceSrvc.splash(true); //show until the devices have been tested for
