@@ -52,11 +52,11 @@ function (/*                            */ locationService, $interval, $http, Co
 				            break;
 				        default:
 				            ErrorService.reportMessage("test photo error driver", status.data.nextNeed);
-				            c.message = "Finding Network J";
+				            c.message = "Finding Network";
 				    }
 				}, function (x) {
 				    ErrorService.reportMessage("test photo error", JSON.stringify(x));
-				    c.message = "Finding Network K";
+				    c.message = "Finding Network";
 				});
 		}, 5000);
 	};

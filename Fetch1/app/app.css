@@ -187,6 +187,8 @@ button:disabled {
 	border: 1px solid gray;
 	border-radius: 4px;
 	overflow: auto;
+    padding: 5px;
+    overflow: hidden;
 }
 
 .error{
@@ -216,7 +218,7 @@ td{
     overflow: auto;
     height: 150px;
     margin: 5px;
-    padding: 0;
+    padding: 5px;
     text-align: left;
     border: 1px solid gray;
 }

@@ -26,7 +26,7 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 		                    DeviceSrvc.buzz();
 		                }
 		            }, function(e) {
-		                c.message = "Finding Network A";
+		                c.message = "Finding Network";
 		            });
 		    }
 		}, 5000);
@@ -96,7 +96,7 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 				    console.log(payResponse);
 					page.load("customer/3_trackMap/trackMap.html");
 				}, function (e) {
-					c.message = "Finding Network B";
+					c.message = "Finding Network";
 				});
 			}
 		}, 1000);

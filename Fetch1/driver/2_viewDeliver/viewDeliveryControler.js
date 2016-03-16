@@ -47,7 +47,7 @@ function (ConfigSrvc, $interval, $http, EnumSrvc, ErrorService, MemorySrvc, came
 	                                }
 	                            }, function(e) {
 	                                ErrorService.reportMessage("post pick photo error", JSON.stringify(e));
-	                                c.message = "Finding Network G";
+	                                c.message = "Finding Network";
 	                            });
 	                        break;
 	                    case EnumSrvc.NextNeed.Payment:
@@ -55,11 +55,11 @@ function (ConfigSrvc, $interval, $http, EnumSrvc, ErrorService, MemorySrvc, came
 	                        break;
 	                    default:
 	                        ErrorService.reportMessage("EnumSrvc.NextNeed.Driver error", EnumSrvc.NextNeed.Driver);
-	                        c.message = "Finding Network H";
+	                        c.message = "Finding Network";
 	                    }
 	                }, function(x) {
 	                    ErrorService.reportMessage("test photo error", JSON.stringify(x));
-	                    c.message = 'Finding Network I';
+	                    c.message = 'Finding Network';
 	                });
 	        }
 	    }, 1000);

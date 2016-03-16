@@ -49,7 +49,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 						
 					});
 				}, function (e) {
-					c.message = 'Finding Network F';
+					c.message = 'Finding Network';
 				});
 		}, 5000);
 	};

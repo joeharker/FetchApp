@@ -6,15 +6,11 @@
 		    <br/>
 			DELIVERY {{ MemorySrvc.get("deliveryId") }} INFO
 			<div class="short"></div>
-			<button class="skinnier medium dark fa fa-archive"></button>
-			<span class="skinniest"></span>
-			<div class="window medium wider">
+			<div class="window medium widest">
 				A {{ demo.data.size }} {{ demo.data.weight }} lb package
 			</div>
 			<div class="short"></div>
-			<button class="skinnier medium dark fa fa-arrow-down"></button>
-			<span class="skinniest"></span>
-		    <div class="window medium wider" style="max-height: 44px">
+		    <div class="window medium widest" style="max-height: 44px">
 		        Package to be picked up from {{ demo.data.pickup }}
 		    </div>
             <div class="short"></div>
@@ -22,9 +18,7 @@
                 <input readonly="readonly" type="text" ng-model="demo.data.distance" name="distance" placeholder="distance" ng-class="demo.data.distance==='' ? 'error' : 'x'" required />
             </div>
 			<div class="short"></div>
-			<button class="skinnier medium dark fa fa-arrow-right"></button>
-			<span class="skinniest"></span>
-			<div class="window medium wider" style="max-height: 44px">
+			<div class="window medium widest" style="max-height: 44px">
 				Package will be delivered to {{ demo.data.delivery }}
 			</div>
 		    <div class="short"></div>
@@ -32,9 +26,7 @@
 				Instructions {{ demo.data.instructions }}
 			</div>
 			<div class="short"></div>
-			<button class="skinnier medium dark fa fa-usd"></button>
-			<span class="skinniest"></span>
-			<div class="window medium wider">
+			<div class="window medium widest">
 				Payment ${{ (demo.data.price * config.driverCut).toFixed(2); }}
 			</div>
 			<button ng-click="page.load('driver/1_pickupMap/pickupMap.html');" class="medium wide stop">

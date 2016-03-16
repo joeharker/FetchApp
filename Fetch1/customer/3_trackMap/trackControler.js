@@ -48,7 +48,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 		                                    MemorySrvc.set("pickSrc", photo.data);
 		                                    DeviceSrvc.buzz();
 		                                }, function(x) {
-		                                    c.message = 'Finding Network C';
+		                                    c.message = 'Finding Network';
 		                                });
 		                        }
 		                    }
@@ -66,7 +66,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 		                                    MemorySrvc.set("dropSrc", photo.data);
 		                                    DeviceSrvc.buzz();
 		                                }, function(x) {
-		                                    c.message = 'Finding Network D';
+		                                    c.message = 'Finding Network';
 		                                });
 		                        }
 		                    }
@@ -81,7 +81,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 		                //center map on driver
 		                mapService.centerMap(status.data.lat, status.data.lon);
 		            }, function(e) {
-		                c.message = 'Finding Network E';
+		                c.message = 'Finding Network';
 		            });
 		    }
 		}, 5000);
