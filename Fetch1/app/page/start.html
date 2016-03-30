@@ -1,4 +1,5 @@
-﻿<div ng-controller="AuthCtrl as auth" ng-init="auth.checkVersion(page.ver)">
+﻿<div class="hidden">{{ page.theme = 'darker'; page.title = 'WELCOME'; }}</div>
+<div ng-controller="AuthCtrl as auth" ng-init="auth.checkVersion(page.ver)">
 	<div class="hidden">{{ page.disableBack = true; page.theme = 'darker'; }}</div>
 	<div class="medium"></div>
 	<h1>

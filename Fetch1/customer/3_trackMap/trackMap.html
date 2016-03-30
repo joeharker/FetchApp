@@ -1,4 +1,4 @@
-﻿<div class="hidden">{{ page.theme = 'darker'; }}</div>
+﻿<div class="hidden">{{ page.theme = 'darker'; page.title = 'DELIVERIES'; }}</div>
 <div ng-controller="MapController as map">
 	<div ng-controller="DeliveryCtrl as demo" ng-init="map.calculateRoute(demo.data.pickup, demo.data.delivery)">
 		<div ng-controller="TrackControler as track" ng-init="track.init(demo, page)">
