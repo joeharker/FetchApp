@@ -62,6 +62,14 @@ app.controller("PageCtrl", ["ConfigSrvc", "MemorySrvc", "cameraService", "Device
             //return camera;
         };
 
+        c.tutorial = function() {
+            window.open('http://www.fetch1.com/#!tutorial-video/l84n1', '_system');
+        };
+
+        c.conditions = function() {
+            window.open('http://www.fetch1.com/#!terms-and-conditions/cxpuj', '_system');
+        };
+
         //onload-complete load a template if listed in a path url param or page one
         regex = new RegExp("(?:\\?|&)path=([^&]*)(?=&|$)", "gi");
         match = regex.exec(window.document.location.search);

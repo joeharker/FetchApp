@@ -22,6 +22,7 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 		                if (status.data.nextNeed === EnumSrvc.NextNeed.Payment) {
 		                    $interval.cancel(ticker);
 		                    c.message = "A deliverer is ready. Please pay to start the delivery";
+		                    page.title = 'PAYMENT'; //TODO
 		                    c.ready = true;
 		                    DeviceSrvc.buzz();
 		                }
