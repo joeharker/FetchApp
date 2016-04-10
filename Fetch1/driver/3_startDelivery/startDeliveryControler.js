@@ -36,8 +36,9 @@ function (/*                            */ locationService, $interval, $http, Co
 				            c.message = 'Waiting for customer payment';
 				            break;
 				        case EnumSrvc.NextNeed.Pickup:
-				            console.log('d');
-				            DeviceSrvc.buzz();
+				            if (!c.pickup) {
+				                DeviceSrvc.buzz();
+				            }
 				            c.pickup = true;
 				            MemorySrvc.set("pickup", true);
 				            $http.get(ConfigSrvc.serviceUrl + '/api/delivery?driverId=' + MemorySrvc.get('myId') + '&lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude);

@@ -24,7 +24,6 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 		                    c.message = "A deliverer is ready. Please pay to start the delivery";
 		                    page.title = 'PAYMENT';
 		                    c.ready = true;
-		                    console.log('a');
 		                    DeviceSrvc.buzz();
 		                }
 		            }, function(e) {

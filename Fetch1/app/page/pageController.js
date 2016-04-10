@@ -54,12 +54,12 @@ app.controller("PageCtrl", ["ConfigSrvc", "MemorySrvc", "cameraService", "Device
         };
 
         c.hasCameraAndGPS = function () {
-            var camera = cameraService.hasCamera();
+            var hasCamera = cameraService.hasCamera();
 
             DeviceSrvc.splash(false);
 
-            return true;
-            //return camera;
+            //return true;
+            return hasCamera;
         };
 
         c.tutorial = function() {
@@ -68,6 +68,10 @@ app.controller("PageCtrl", ["ConfigSrvc", "MemorySrvc", "cameraService", "Device
 
         c.conditions = function() {
             window.open('http://www.fetch1.com/#!terms-and-conditions/cxpuj', '_system');
+        };
+
+        c.tip = function () {
+            window.open('http://www.fetch1.com/#!donate-page/zwaoc', '_system');
         };
 
         //onload-complete load a template if listed in a path url param or page one
