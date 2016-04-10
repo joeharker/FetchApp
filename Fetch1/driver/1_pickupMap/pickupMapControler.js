@@ -21,19 +21,24 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 	};
 
 	var startUpdates = function () {
+	    var lastpincount = 0;
 	    mapService.centerMap(locationService.position.latitude, locationService.position.longitude);
 		ticker = $interval(function () {
 			$http.get(ConfigSrvc.serviceUrl + '/api/delivery?lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude)
 				.then(function (response) {
-					c.message = 'Click a pickup to view the request';
+				    c.message = 'Click a pickup to view the request';
 
-					//clear old markers
+				    //buzz if there are new pins
+				    if (response.data.length > lastpincount) {
+			            DeviceSrvc.buzz();
+				    }
+				    lastpincount = response.data.length;
+
+			        //clear old markers
 					mapService.clearPins();
 
 					//add new markers
 					angular.forEach(response.data, function (pin, i) {
-						//TODO DeviceSrvc.buzz(); if there is a new pin
-						
 						mapService.addPinAddress(
 							pin.pickup
 							, function () {

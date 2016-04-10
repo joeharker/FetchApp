@@ -46,6 +46,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 		                                .then(function(photo) {
 		                                    c.pickSrc = photo.data;
 		                                    MemorySrvc.set("pickSrc", photo.data);
+		                                    console.log('b');
 		                                    DeviceSrvc.buzz();
 		                                }, function(x) {
 		                                    c.message = 'Finding Network';
@@ -64,6 +65,7 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 		                                .then(function(photo) {
 		                                    c.dropSrc = photo.data;
 		                                    MemorySrvc.set("dropSrc", photo.data);
+		                                    console.log('c');
 		                                    DeviceSrvc.buzz();
 		                                }, function(x) {
 		                                    c.message = 'Finding Network';

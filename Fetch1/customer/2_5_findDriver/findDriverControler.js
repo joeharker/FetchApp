@@ -12,7 +12,7 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 	MemorySrvc.set("dropSrc", cameraService.transparent);
 	MemorySrvc.set("accept", false);
 
-	var waitForDriver = function () {
+	var waitForDriver = function (page) {
 		c.message = "Waiting for a Deliverer";
 		ticker = $interval(function () {
 		    if (MemorySrvc.get("deliveryId") !== "") {
@@ -22,8 +22,9 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 		                if (status.data.nextNeed === EnumSrvc.NextNeed.Payment) {
 		                    $interval.cancel(ticker);
 		                    c.message = "A deliverer is ready. Please pay to start the delivery";
-		                    page.title = 'PAYMENT'; //TODO
+		                    page.title = 'PAYMENT';
 		                    c.ready = true;
+		                    console.log('a');
 		                    DeviceSrvc.buzz();
 		                }
 		            }, function(e) {
@@ -33,18 +34,18 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 		}, 5000);
 	};
 
-	c.init = function (json) {
+	c.init = function (json, page) {
 	    if (MemorySrvc.get("deliveryId") === "") {
 	        c.message = "Posting your request";
 			$http.post(ConfigSrvc.serviceUrl + "/api/delivery", json)
 				.then(function (deliveryResponse) {
 					MemorySrvc.set("deliveryId", deliveryResponse.data);
-					waitForDriver();
+					waitForDriver(page);
 				}, function (e) {
 					c.message = "An error has occured at post delivery";
 				});
 		} else {
-			waitForDriver();
+	        waitForDriver(page);
 		}
 	};
 

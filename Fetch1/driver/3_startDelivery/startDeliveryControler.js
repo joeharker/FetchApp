@@ -36,6 +36,7 @@ function (/*                            */ locationService, $interval, $http, Co
 				            c.message = 'Waiting for customer payment';
 				            break;
 				        case EnumSrvc.NextNeed.Pickup:
+				            console.log('d');
 				            DeviceSrvc.buzz();
 				            c.pickup = true;
 				            MemorySrvc.set("pickup", true);
