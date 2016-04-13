@@ -1,9 +1,25 @@
 ﻿/*global app */
-app.controller('DeliveredControler', ['MemorySrvc',
-function (MemorySrvc) {
-	var c = this;
-	
-	MemorySrvc.reset();
+app.controller('DeliveredControler', ['MemorySrvc', 'ConfigSrvc', '$http', 'ErrorService',
+function (MemorySrvc, ConfigSrvc, $http, ErrorService) {
+    var c = this;
 
-	return c;
+    c.id = 0;
+
+    c.init = function(form) {
+        c.id = c.form.data.deliveryId;
+        MemorySrvc.reset();
+    };
+
+    c.rate = function (rate, notes) {
+        //int id, bool customer, int rate, string notes
+        $http.post(ConfigSrvc.serviceUrl + '/api/delivery', { 'id': c.id, 'customer': false, 'rate': rate, 'notes': notes })
+        .then(function (response) {
+            page.load('app/page/start.html');
+        }, function (e) {
+            ErrorService.reportMessage("Driver rate delivery error", JSON.stringify(e));
+            c.message = "Driver rate delivery error";
+        });
+    };
+
+    return c;
 }]);
