@@ -26,9 +26,10 @@
 				Instructions {{ demo.data.instructions }}
 			</div>
 			<div class="short"></div>
-			<div class="window medium widest">
-				Payment ${{ (demo.data.price * config.driverCut).toFixed(2); }}
-			</div>
+		    <div class="window medium widest">
+                {{demo.data.price}}
+		        Payment ${{ (demo.data.price - (demo.data.price * config.driverCut) - 0.30).toFixed(2); }}
+		    </div>
 			<button ng-click="page.load('driver/1_pickupMap/pickupMap.html');" class="medium wide stop">
 				REJECT
 			</button>

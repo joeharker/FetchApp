@@ -17,7 +17,7 @@
                 Package will be delivered to {{ demo.data.delivery }}
             </div>
             <div class="short"></div>
-            <div class="window medium widest center-t">
+            <div class="window medium widest">
                 Suggested (${{ demo.data.suggested }})<br/>
                 <br />
                 Your Price: $<input name="price" type="text" ng-model="demo.data.price" ng-change="delivery.validatePrice(demo.data.price, demo);" ng-class="(demo.data.price === '') ? 'error' : 'x'" required />

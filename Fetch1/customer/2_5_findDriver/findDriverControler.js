@@ -36,7 +36,6 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 	c.init = function (json, page) {
 	    if (MemorySrvc.get("deliveryId") === "") {
 	        c.message = "Posting your request";
-	        console.log(['delivery request', json]);
 			$http.post(ConfigSrvc.serviceUrl + "/api/delivery", json)
 				.then(function (deliveryResponse) {
 					MemorySrvc.set("deliveryId", deliveryResponse.data);
@@ -95,7 +94,6 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 				payment.used = thisToken.used;
 				$http.post(ConfigSrvc.serviceUrl + "/api/pay", payment)
 				.then(function (payResponse) {
-				    console.log(payResponse);
 					page.load("customer/3_trackMap/trackMap.html");
 				}, function (e) {
 					c.message = "Finding Network";

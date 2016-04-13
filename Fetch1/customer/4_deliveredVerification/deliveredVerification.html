@@ -1,6 +1,6 @@
 ﻿<div class="hidden">{{ page.disableBack = true; page.theme = 'dark city'; page.title = 'RATE YOUR TRANSACTION' }}</div>
 <div ng-controller="DeliveredControler as del">
-    <div ng-controller="DeliveryCtrl as demo" ng-init="start.init(demo)">
+    <div ng-controller="DeliveryCtrl as demo" ng-init="start.init(demo, page)">
         <div class="tall"></div>
         <div class="tall"></div>
         <div class="tall"></div>
@@ -27,20 +27,20 @@
                     <td>F1 Driver</td>
                     <td>
                         1
-                        <input name="driver" type="radio" value="1"/>
-                        <input name="driver" type="radio" value="2"/>
-                        <input name="driver" type="radio" value="3"/>
-                        <input name="driver" type="radio" value="4"/>
-                        <input name="driver" type="radio" value="5"/>
+                        <input name="driver" type="radio" ng-model="driver" value="1"/>
+                        <input name="driver" type="radio" ng-model="driver" value="2"/>
+                        <input name="driver" type="radio" ng-model="driver" value="3"/>
+                        <input name="driver" type="radio" ng-model="driver" value="4"/>
+                        <input name="driver" type="radio" ng-model="driver" value="5"/>
                         5
                     </td>
                 </tr>
             </table>
-            <textarea style="width: 100%;" placeholder="Comments"></textarea>
+            <textarea style="width: 100%;" ng-model="notes" placeholder="Comments"></textarea>
         </div>
         <br />
         <button ng-click="page.load('app/page/start.html');" class="short wide stop">NO THANKS</button>
         <span class="skinnier"></span>
-        <button ng-click="page.load('app/page/start.html');" class="short wide light">RATE</button>
+        <button ng-click="del.rate(driver, notes, page);" class="short wide light">RATE</button>
     </div>
 </div>
