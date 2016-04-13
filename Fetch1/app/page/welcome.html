@@ -1,0 +1,28 @@
+﻿<div class="hidden">{{ page.disableBack = true; page.theme = 'darker'; page.title = 'WELCOME'; }}</div>
+<div ng-controller="AuthCtrl as auth" ng-init="auth.checkVersion(page.ver)">
+	<div class="medium"></div>
+	<h1>
+		WELCOME
+	</h1>
+    <div class="medium"></div>
+	<button ng-click="page.load('customer/1_requestDelivery/requestDelivery.html');" class="tall widest light">
+		I WANT
+		<br />
+		SOMETHING
+		<br />
+		DELIVERED
+	</button>
+	<div class="medium"></div>
+	<button ng-click="auth.oauth(page)" class="tall widest dark" ng-show="page.hasCameraAndGPS()">
+		I WANT TO
+		<br />
+		DELIVER USING
+		<br />
+		FETCH 1
+	</button>
+	<div class="medium"></div>
+	Version {{ page.ver }}
+	<button class="wide dark" ng-show="auth.newer" ng-click="auth.upgrade()">
+		{{auth.next}} available
+	</button>
+</div>

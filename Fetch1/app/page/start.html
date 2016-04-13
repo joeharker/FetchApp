@@ -1,6 +1,5 @@
 ﻿<div class="hidden">{{ page.theme = 'darker'; page.title = 'TERMS AND CONDITIONS'; }}</div>
 <div ng-controller="AuthCtrl as auth" ng-init="auth.checkVersion(page.ver)">
-	<div class="hidden">{{ page.disableBack = true; page.theme = 'darker'; }}</div>
 	<div class="medium"></div>
 	<h1>
 		WELCOME
@@ -15,25 +14,10 @@
             Read our terms and conditions
         </button>
         <div class="medium"></div>
-            <button ng-click="page.agree = true; page.title='WELCOME'" class="tall widest light">
+            <button ng-click="page.load('app/page/welcome.html');" class="tall widest light">
                 I AM 18 OR OLDER AND UNDERSTAND AND AGREE TO THE TERMS
             </button>
 </div>
-	<button ng-click="page.load('customer/1_requestDelivery/requestDelivery.html');" ng-show="page.agree" class="tall widest light">
-		I WANT
-		<br />
-		SOMETHING
-		<br />
-		DELIVERED
-	</button>
-	<div class="medium"></div>
-	<button ng-click="auth.oauth(page)" class="tall widest dark" ng-show="page.hasCameraAndGPS() && page.agree">
-		I WANT TO
-		<br />
-		DELIVER USING
-		<br />
-		FETCH 1
-	</button>
 	<div class="medium"></div>
 	Version {{ page.ver }}
 	<button class="wide dark" ng-show="auth.newer" ng-click="auth.upgrade()">
