@@ -13,8 +13,12 @@ function (MemorySrvc, ConfigSrvc, $http, ErrorService) {
     };
 
     c.rate = function (rate, notes, page) {
-        //int id, bool customer, int rate, string notes
-        $http.post(ConfigSrvc.serviceUrl + '/api/delivery?id=' + c.id + '&customer=' + true + '&rate=' + parseInt(rate) + '&notes=' + encodeURIComponent(notes))
+        var ratenum = parseInt(rate);
+        if (isNaN(ratenum)) {
+            ratenum = 0;
+        }
+
+        $http.post(ConfigSrvc.serviceUrl + '/api/delivery?id=' + c.id + '&customer=' + true + '&rate=' + ratenum + '&notes=' + encodeURIComponent(notes))
         .then(function (response) {
             console.log([c.page, response]);
             page.load('app/page/start.html');

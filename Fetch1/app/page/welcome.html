@@ -22,7 +22,7 @@
 	</button>
 	<div class="medium"></div>
 	Version {{ page.ver }}
-	<button class="wide dark" ng-show="auth.newer" ng-click="auth.upgrade()">
+	<button class="wide dark" ng-show="auth.newer && page.hasCameraAndGPS()" ng-click="auth.upgrade()">
 		{{auth.next}} available
 	</button>
 </div>

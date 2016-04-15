@@ -37,6 +37,7 @@ function (/*                            */ locationService, $interval, $http, Co
 				            break;
 				        case EnumSrvc.NextNeed.Pickup:
 				            if (!c.pickup) {
+				                c.message = 'Waiting for driver pick up';
 				                DeviceSrvc.buzz();
 				            }
 				            c.pickup = true;
@@ -44,12 +45,14 @@ function (/*                            */ locationService, $interval, $http, Co
 				            $http.get(ConfigSrvc.serviceUrl + '/api/delivery?driverId=' + MemorySrvc.get('myId') + '&lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude);
 				            break;
 				        case EnumSrvc.NextNeed.Dropoff:
+				            c.message = 'Waiting for driver drop off';
 				            $http.get(ConfigSrvc.serviceUrl + '/api/delivery?driverId=' + MemorySrvc.get('myId') + '&lat=' + locationService.position.latitude + '&lon=' + locationService.position.longitude);
 				            break;
 				        case EnumSrvc.NextNeed.Transfer:
 				            c.message = 'Waiting for customer to confirm drop off';
 				            break;
 				        case EnumSrvc.NextNeed.Done:
+				            c.message = 'Waiting for verification';
 				            $interval.cancel(ticker);
 				            c.page.load('driver/4_drivenVerification/drivenVerification.html');
 				            break;

@@ -11,14 +11,14 @@
         if (/(android)/i.test(navigator.userAgent)) {
             admobid = {
                 // for Android
-                banner: 'ca-app-pub-1438477418297657/3974559721',
-                interstitial: 'ca-app-pub-1438477418297657/3276555724'
+                banner: 'ca-app-pub-7413719602698918/4826535183',
+                interstitial: 'ca-app-pub-7413719602698918/6303268381'
             };
         } else if (/(ipod|iphone|ipad)/i.test(navigator.userAgent)) {
             admobid = {
                 // for iOS
-                banner: 'ca-app-pub-1438477418297657/9881492520',
-                interstitial: 'ca-app-pub-1438477418297657/1799822520'
+                banner: 'ca-app-pub-7413719602698918/9256734782',
+                interstitial: 'ca-app-pub-7413719602698918/1733467984'
             };
         } else {
             admobid = {
