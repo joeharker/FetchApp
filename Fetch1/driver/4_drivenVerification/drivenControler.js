@@ -24,7 +24,7 @@ function (MemorySrvc, ConfigSrvc, $http, ErrorService) {
         }, function (e) {
             ErrorService.reportMessage("Driver rate delivery error", JSON.stringify(e));
             c.message = "Driver rate delivery error";
-            page.load('app/page/start.html');
+            c.page.load('app/page/start.html');
         });
     };
 

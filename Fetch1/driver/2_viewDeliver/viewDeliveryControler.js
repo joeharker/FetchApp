@@ -52,6 +52,7 @@ function (ConfigSrvc, $interval, $http, EnumSrvc, ErrorService, MemorySrvc, came
 	                        break;
 	                    case EnumSrvc.NextNeed.Payment:
 	                        //sometimes we get here before the startDelivery page loads
+	                        c.message = "Confirming Payment";
 	                        break;
 	                    default:
 	                        ErrorService.reportMessage("EnumSrvc.NextNeed.Driver error", EnumSrvc.NextNeed.Driver);

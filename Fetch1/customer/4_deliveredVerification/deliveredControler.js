@@ -20,7 +20,6 @@ function (MemorySrvc, ConfigSrvc, $http, ErrorService) {
 
         $http.post(ConfigSrvc.serviceUrl + '/api/delivery?id=' + c.id + '&customer=' + true + '&rate=' + ratenum + '&notes=' + encodeURIComponent(notes))
         .then(function (response) {
-            console.log([c.page, response]);
             page.load('app/page/start.html');
         }, function (e) {
             ErrorService.reportMessage("Driver rate delivery error", JSON.stringify(e));

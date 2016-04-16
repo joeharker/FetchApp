@@ -2,7 +2,7 @@
     function() {
         var s = this;
         var admobid = {};
-        s.toggleMessage = "";
+        s.toggleMessage = "Advertisements";
 
         //init
         if (typeof AdMob !== "undefined") {
