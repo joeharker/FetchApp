@@ -27,7 +27,6 @@
 			</div>
 			<div class="short"></div>
 		    <div class="window medium widest">
-		        {{demo.data.price}}
                 <!--one cent is added here incase of rounding loss-->
 		        Payment ${{ (demo.data.price - (demo.data.price * config.driverCut) - 0.31).toFixed(2); }}
 		    </div>

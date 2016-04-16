@@ -1,5 +1,5 @@
 ﻿<div class="hidden">{{ page.disableBack = true; page.theme = 'dark city'; page.title = 'RATE TRANSACTION' }}</div>
-<div ng-controller="DrivenControler as del">
+<div ng-controller="DrivenControler as driv">
     <div ng-controller="DeliveryCtrl as demo" ng-init="start.init(demo, page)">
         <div class="tall"></div>
         <div class="tall"></div>
@@ -41,6 +41,6 @@
         </div>
         <button ng-click="page.load('app/page/start.html');" class="short wide stop">NO THANKS</button>
         <span class="skinnier"></span>
-        <button ng-click="del.rate(driver, notes);" class="short wide light">RATE</button>
+        <button ng-click="driv.rate(driver, notes)" class="short wide light">RATE</button>
     </div>
 </div>
