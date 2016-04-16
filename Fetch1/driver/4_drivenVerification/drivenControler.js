@@ -4,15 +4,13 @@ function (MemorySrvc, ConfigSrvc, $http, ErrorService) {
     var c = this;
 
     c.id = 0;
-    c.page = {};
 
-    c.init = function (form, page) {
-        c.page = page;
+    c.init = function (form) {
         c.id = form.data.deliveryId;
         MemorySrvc.reset();
     };
 
-    c.rate = function (rate, notes) {
+    c.rate = function (rate, notes, page) {
         var ratenum = parseInt(rate);
         if (isNaN(ratenum)) {
             ratenum = 0;
@@ -20,11 +18,11 @@ function (MemorySrvc, ConfigSrvc, $http, ErrorService) {
 
         $http.post(ConfigSrvc.serviceUrl + '/api/delivery?id=' + c.id + '&customer=' + false + '&rate=' + ratenum + '&notes=' + encodeURIComponent(notes))
         .then(function (response) {
-            c.page.load('app/page/start.html');
+            page.load('app/page/start.html');
         }, function (e) {
             ErrorService.reportMessage("Driver rate delivery error", JSON.stringify(e));
             c.message = "Driver rate delivery error";
-            c.page.load('app/page/start.html');
+            page.load('app/page/start.html');
         });
     };
 

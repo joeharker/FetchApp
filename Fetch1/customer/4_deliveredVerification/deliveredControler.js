@@ -4,11 +4,9 @@ function (MemorySrvc, ConfigSrvc, $http, ErrorService) {
     var c = this;
 
     c.id = 0;
-    c.page = {};
 
-    c.init = function(form, page) {
+    c.init = function(form) {
         c.id = form.data.deliveryId;
-        c.page = page;
         MemorySrvc.reset();
     };
 
