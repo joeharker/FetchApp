@@ -3,7 +3,6 @@ app.controller('ViewDeliveryControler', ['ConfigSrvc', '$interval', '$http', 'En
 function (ConfigSrvc, $interval, $http, EnumSrvc, ErrorService, MemorySrvc, cameraService, mapService) {
 	var c = this;
 
-	c.driverCut = ConfigSrvc.driverCut;
 	c.message = '';
     c.form = {};
     c.page = {};

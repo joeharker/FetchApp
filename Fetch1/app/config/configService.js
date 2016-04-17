@@ -4,7 +4,7 @@ function () {
     'use strict';
     var s = {};
     	
-    s.version = '1.0.41';
+    s.version = '1.0.42';
 
     //*/
     s.stripeClientId = 'ca_5oSXm50hso4vFBv5IvDHVVklCiUkdP8R';   //test
@@ -15,7 +15,8 @@ function () {
     //*/
 
     s.serviceUrl = 'http://fetch001.azurewebsites.net';
-    s.driverCut = 0.029;
+    s.stripePercent = 0.029;
+    s.stripeFixxed = 0.31;
 
     return s;
 }]);
