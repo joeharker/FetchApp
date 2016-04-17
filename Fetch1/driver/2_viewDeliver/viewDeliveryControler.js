@@ -6,10 +6,13 @@ function (ConfigSrvc, $interval, $http, EnumSrvc, ErrorService, MemorySrvc, came
 	c.message = '';
     c.form = {};
     c.page = {};
+    c.total = '';
 
 	c.init = function (form, page) {
 	    c.form = form;
 	    c.page = page;
+
+	    c.total = (form.data.price - (form.data.price * ConfigSrvc.stripePercent) - ConfigSrvc.stripeFixxed).toFixed(2);
 
 	    //before next page
 	    MemorySrvc.set("pickSrc", cameraService.transparent);

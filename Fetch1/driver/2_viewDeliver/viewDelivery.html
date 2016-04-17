@@ -1,8 +1,8 @@
 ﻿<div class="hidden">{{ page.disableBack = false; page.theme = 'darker'; page.title = 'DELIVERY INFO' }}</div>
 	<div ng-controller="DeliveryCtrl as demo">
-		<div ng-controller="ViewDeliveryControler as config" ng-init="config.init(demo, page)">
+		<div ng-controller="ViewDeliveryControler as view" ng-init="view.init(demo, page)">
 		    <div class="short"></div>
-		    {{ config.message }}
+		    {{ view.message }}
 		    <br/>
 			DELIVERY {{ MemorySrvc.get("deliveryId") }} INFO
 			<div class="short"></div>
@@ -27,14 +27,14 @@
 			</div>
 			<div class="short"></div>
 		    <div class="window medium widest">
-                <!--one cent is added here incase of rounding loss-->
-		        Payment ${{ (demo.data.price - (demo.data.price * 0.029) - 0.31).toFixed(2); }}
+		        <!--one cent is added here incase of rounding loss-->
+		        Payment ${{ view.total }}
 		    </div>
 			<button ng-click="page.load('driver/1_pickupMap/pickupMap.html');" class="medium wide stop">
 				REJECT
 			</button>
 			<span class="skinniest"></span>
-			<button ng-click="config.accept();" class="medium wide light">
+			<button ng-click="view.accept();" class="medium wide light">
 				ACCEPT
 			</button>
 		</div>
