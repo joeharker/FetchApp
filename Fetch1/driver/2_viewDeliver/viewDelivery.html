@@ -28,7 +28,7 @@
 			<div class="short"></div>
 		    <div class="window medium widest">
                 <!--one cent is added here incase of rounding loss-->
-		        Payment ${{ (demo.data.price - (demo.data.price * config.stripePercent) - config.stripeFixxed).toFixed(2); }}
+		        Payment ${{ (demo.data.price - (demo.data.price * 0.029) - 0.31).toFixed(2); }}
 		    </div>
 			<button ng-click="page.load('driver/1_pickupMap/pickupMap.html');" class="medium wide stop">
 				REJECT
