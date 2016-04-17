@@ -16,6 +16,7 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 		c.message = "Waiting for a Deliverer";
 		ticker = $interval(function () {
 		    if (MemorySrvc.get("deliveryId") !== "") {
+                //get status
 		        $http.get(ConfigSrvc.serviceUrl + "/api/delivery?deliveryId=" + MemorySrvc.get("deliveryId"))
 		            .then(function(status) {
 

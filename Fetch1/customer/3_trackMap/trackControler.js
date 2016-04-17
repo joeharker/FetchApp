@@ -89,7 +89,11 @@ function (mapService, locationService, $interval, $http, ConfigSrvc, MemorySrvc,
 
 	c.AcceptDelivery = function () {
 	    $http.get(ConfigSrvc.serviceUrl + '/api/complete?deliveryId=' + MemorySrvc.get("deliveryId"));
-		c.page.load('customer/4_deliveredVerification/deliveredVerification.html');
+        //.then(function (photo) {
+            c.page.load('customer/4_deliveredVerification/deliveredVerification.html');
+        //}, function (x) {
+        //    c.message = 'Payment Error';
+        //});
 	};
 
 	return c;
