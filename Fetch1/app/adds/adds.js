@@ -30,7 +30,7 @@
 
         s.toggleBanner = function () {
             if (s.toggleMessage === "Hide Advertisements") {
-                hideBanner();
+                admobid.hideBanner();
                 s.toggleMessage = "Help keep the lights on";
             } else {
                 showBanner(AdMob.AD_POSITION.BOTTOM_CENTER);
