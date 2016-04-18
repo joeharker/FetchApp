@@ -58,8 +58,8 @@ app.controller("PageCtrl", ["ConfigSrvc", "MemorySrvc", "cameraService", "Device
 
             DeviceSrvc.splash(false);
 
-            return true;
-            //return hasCamera;
+            //return true;
+            return hasCamera;
         };
 
         c.tutorial = function() {
