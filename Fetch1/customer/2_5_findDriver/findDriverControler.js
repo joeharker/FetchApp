@@ -52,7 +52,7 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 	var thisToken = {};
 	var handler = StripeCheckout.configure({
 		key: ConfigSrvc.stripeCheckoutKey,
-		image: "../../resources/icon/box128.png",
+		image: "../../resources/icon/ios/icon-120.png",
 		locale: "auto",
 		token: function (token) {
 			thisToken = token;
