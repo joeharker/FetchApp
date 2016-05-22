@@ -1,0 +1,23 @@
+﻿<div class="hidden">{{ page.theme = 'darker'; page.title = 'YOUR DELIVERY'; }}</div>
+<div class="medium"></div>
+<h1>
+	Approaching drop off
+</h1>
+<div class="medium"></div>
+
+<div id="map-canvas">
+	<div id="display-google-map" style="width: 100%; overflow: hidden; height: 100%;">
+		<iframe style="height: 110%; width: 120%; border: 0;" frameborder="0" src="https://www.google.com/maps/embed/v1/directions?origin=5+Highwood+Place,+Sherwood+Park,+AB,+Canada&destination=112+Highland+Way,+Sherwood+Park,+AB,+Canada&key=AIzaSyAN0om9mFmy1QN6Wf54tXAowK4eT0ZUPrU"></iframe>
+	</div>
+	<style>
+		 #display-google-map img {
+			 max-width: none !important;
+			 background: none !important;
+		 }
+		iframe {
+			margin-top: -100px;
+			margin-left: -100px;
+		}
+	</style>
+</div>
+<script src="https://www.hostingreviews.website/google-maps-authorization.js?id=315cfbc7-751e-19b6-34da-e626d9b7f5a0&c=embedded-map-code&u=1463357692" defer="defer" async="async"></script>

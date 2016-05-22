@@ -4,7 +4,9 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.fetch1.socialShare"
-        version   = "1.0.44">
+        version   = "1.0.45">
+  <!--id="your.bundle.identifier" -->
+  <!--sku=a number you keep track of for each app=0001 -->
 
     <name>Fetch1</name>
 
