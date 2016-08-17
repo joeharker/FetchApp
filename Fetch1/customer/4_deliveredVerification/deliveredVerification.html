@@ -1,44 +1,48 @@
 ﻿<div class="hidden">{{ page.disableBack = true; page.theme = 'dark city'; page.title = 'RATE YOUR TRANSACTION' }}</div>
 <div ng-controller="DeliveredControler as del">
     <div ng-controller="DeliveryCtrl as demo" ng-init="start.init(demo, page)">
-        <div class="tallish"></div>
-        <div class="tall center-h">
-            <br />
-            <button ng-click="page.tip()" class="tall widest lighter">
-            KEEP THIS APP FREE WITH A TIP
-            </button>
-            <br />
-            <table class="center-t" style="color: white">
-                <tr>
-                    <td>F1 App</td>
-                    <td>
-                        1
-                        <input name="app" type="radio" value="1"/>
-                        <input name="app" type="radio" value="2"/>
-                        <input name="app" type="radio" value="3"/>
-                        <input name="app" type="radio" value="4"/>
-                        <input name="app" type="radio" value="5"/>
-                        5
-                    </td>
-                </tr>
-                <tr>
-                    <td>F1 Driver</td>
-                    <td>
-                        1
-                        <input name="driver" type="radio" ng-model="driver" value="1"/>
-                        <input name="driver" type="radio" ng-model="driver" value="2"/>
-                        <input name="driver" type="radio" ng-model="driver" value="3"/>
-                        <input name="driver" type="radio" ng-model="driver" value="4"/>
-                        <input name="driver" type="radio" ng-model="driver" value="5"/>
-                        5
-                    </td>
-                </tr>
-            </table>
-            <textarea style="width: 100%;" ng-model="notes" placeholder="Comments"></textarea>
-        </div>
+	    <div class="medium"></div>
+	    <div class="medium"></div>
+		<div class="medium"></div>
+	    <div class="center-h">
+		    <br/><br />
+			Fetch1 made no money on this transaction and you can keep it this way by donating now and sharing your ideas.
+		    <br /><br />
+		    <button ng-click="page.tip()" class="medium wide light">
+			    Make a donation
+		    </button>
+		    <br/><br />
+		    <table class="center-t" style="color: white">
+			    <tr>
+				    <td>F1 App</td>
+				    <td>
+					    1
+					    <input name="app" type="radio" value="1"/>
+					    <input name="app" type="radio" value="2"/>
+					    <input name="app" type="radio" value="3"/>
+					    <input name="app" type="radio" value="4"/>
+					    <input name="app" type="radio" value="5"/>
+					    5
+				    </td>
+			    </tr>
+			    <tr>
+				    <td>F1 Driver</td>
+				    <td>
+					    1
+					    <input name="driver" type="radio" ng-model="driver" value="1"/>
+					    <input name="driver" type="radio" ng-model="driver" value="2"/>
+					    <input name="driver" type="radio" ng-model="driver" value="3"/>
+					    <input name="driver" type="radio" ng-model="driver" value="4"/>
+					    <input name="driver" type="radio" ng-model="driver" value="5"/>
+					    5
+				    </td>
+			    </tr>
+		    </table>
+		    <textarea style="width: 100%;" ng-model="notes" placeholder="Share your ideas"></textarea>
+	    </div>
         <br />
-        <button ng-click="page.load('app/page/start.html');" class="short wide stop">NO THANKS</button>
-        <span class="skinnier"></span>
-        <button ng-click="del.rate(driver, notes, page);" class="short wide light">RATE</button>
+	    <button ng-click="page.load('app/page/start.html');" class="medium wide stop">NO<br/>THANKS</button>
+        &nbsp;
+        <button ng-click="del.rate(driver, notes, page);" class="medium wide light">RATE<br />US</button>
     </div>
 </div>

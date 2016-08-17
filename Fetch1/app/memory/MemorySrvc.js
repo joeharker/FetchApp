@@ -13,7 +13,7 @@ app.factory("MemorySrvc", [
     		var val = window.localStorage.getItem(key);
 
     		if (val === null) {
-    			val = "";
+    			val = '';
     		}
 
     		return val;
