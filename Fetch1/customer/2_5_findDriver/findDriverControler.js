@@ -5,6 +5,7 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 
 	c.message = "";
 	c.ready = false;
+	c.timmer = 1800;
 	var ticker;
 
     //init for next page
@@ -20,14 +21,19 @@ function ($q, $scope, $http, $interval, ConfigSrvc, MemorySrvc, EnumSrvc, Device
 		        $http.get(ConfigSrvc.serviceUrl + "/api/delivery?deliveryId=" + MemorySrvc.get("deliveryId"))
 		            .then(function(status) {
 
-		                if (status.data.nextNeed === EnumSrvc.NextNeed.Payment) {
-		                    $interval.cancel(ticker);
-		                    c.message = "A deliverer is ready. Please pay to start the delivery";
-		                    page.title = 'PAYMENT';
-		                    c.ready = true;
-		                    DeviceSrvc.buzz();
-		                }
-		            }, function(e) {
+				        if (status.data.nextNeed === EnumSrvc.NextNeed.Payment) {
+					        $interval.cancel(ticker);
+					        c.message = "A deliverer is ready. Please pay to start the delivery";
+					        page.title = 'PAYMENT';
+					        c.ready = true;
+					        DeviceSrvc.buzz();
+				        } else {
+				        	c.timmer = c.timmer - 5;
+				        	if (c.timmer < 0) {
+						        page.load('app/page/start.html');
+					        }
+				        }
+			        }, function(e) {
 		                c.message = "Finding Network";
 		            });
 		    }

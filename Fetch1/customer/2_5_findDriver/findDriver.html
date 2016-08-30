@@ -5,9 +5,11 @@
 
         {{ driver.message }}
 
-        <div class="tall"></div>
+	    <div class="short"></div>
+		Unaccepted requests will automatically cancel in {{ (driver.timmer / 60).toFixed(0) }} min
+		<div class="short"></div>
 
-        <button ng-click="driver.submit(('Delivery of '+ demo.data.content), (demo.data.price * 100.00), page);" class="medium wide light" ng-show="driver.ready">
+	    <button ng-click="driver.submit(('Delivery of '+ demo.data.content), (demo.data.price * 100.00), page);" class="medium wide light" ng-show="driver.ready">
             Pay With Card
         </button>
         <!--<button class="light" ng-click="page.load('app/page/start.html');">
