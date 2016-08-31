@@ -28,7 +28,7 @@
     <preference name="permissions"                value="none"/>
 
     <!-- Customize your app and platform with the preference element. -->
-    <preference name="phonegap-version"           value="cli-6.2.0" />      <!-- all: https://build.phonegap.com/current-support -->
+    <preference name="phonegap-version"           value="cli-6.3.0" />      <!-- all: https://build.phonegap.com/current-support -->
     <preference name="orientation"                value="default" />        <!-- all: default means both landscape and portrait are enabled -->
     <preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
     <preference name="fullscreen"                 value="false" />          <!-- all: hides the status bar at the top of the screen -->
@@ -54,7 +54,7 @@
 	<gap:plugin name="org.apache.cordova.vibration" source="npm" />		  <!-- buzz -->
 	<gap:plugin name="org.apache.cordova.dialogs" source="npm" />       <!-- buzz -->
 	<gap:plugin name="org.apache.cordova.splashscreen" />               <!-- splash -->
-	<gap:plugin name="nl.x-services.plugins.insomnia" source="pgb" />   <!--stay awake-->
+	<!--gap:plugin name="nl.x-services.plugins.insomnia" source="pgb" /-->   <!--stay awake-->
 	<preference name="android-build-tool" value="gradle" />             <!--adds-->
 	<gap:plugin name="cordova-plugin-admobpro" source="npm" />          <!--adds--> 
   
